@@ -54,9 +54,9 @@ namespace libsignal.kdf
             {
                 return Sign.sha256sum(salt, inputKeyMaterial);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception(e.Message);
+                throw new Exception(ex.Message, ex);
             }
         }
 
