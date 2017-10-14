@@ -7,13 +7,8 @@
   <ItemGroup>
     <PackageReference Include="curve25519-pcl" Version="1.1.0" />
     <PackageReference Include="Google.ProtocolBuffers" Version="2.4.1.555" />
-    <PackageReference Include="PCLCrypto" Version="2.0.147" />
-    <PackageReference Include="PInvoke.BCrypt" Version="0.5.97" />
-    <PackageReference Include="PInvoke.Kernel32" Version="0.5.97" />
-    <PackageReference Include="PInvoke.NCrypt" Version="0.5.97" />
-    <PackageReference Include="PInvoke.Windows.Core" Version="0.5.97" />
-    <PackageReference Include="Strilanc.Value.May" Version="1.0.2" />
-    <PackageReference Include="Validation" Version="2.4.15" />
+    <PackageReference Include="PCLCrypto" Version="2.1.13-alpha-g51fc118017" />
+    <PackageReference Include="Strilanc.Value.May" Version="1.0.2" />    
   </ItemGroup>
 
   <ItemGroup>
