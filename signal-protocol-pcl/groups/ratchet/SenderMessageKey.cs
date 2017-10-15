@@ -19,7 +19,7 @@ using System.Text;
 using Libsignal.Kdf;
 using Libsignal.Util;
 
-namespace Libsignal.Groups.ratchet
+namespace Libsignal.Groups.Ratchet
 {
     /**
      * The final symmetric material (IV and Cipher Key) used for encrypting

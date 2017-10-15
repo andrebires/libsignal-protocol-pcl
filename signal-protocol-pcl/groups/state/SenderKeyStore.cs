@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Libsignal.Groups.state
+namespace Libsignal.Groups.State
 {
     public interface ISenderKeyStore
     {

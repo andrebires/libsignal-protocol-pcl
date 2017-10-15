@@ -18,11 +18,11 @@
 using System.Collections.Generic;
 using Google.ProtocolBuffers;
 using Libsignal.Ecc;
-using Libsignal.Groups.ratchet;
+using Libsignal.Groups.Ratchet;
 using Libsignal.State;
 using Strilanc.Value;
 
-namespace Libsignal.Groups.state
+namespace Libsignal.Groups.State
 {
     /**
      * Represents the state of an individual SenderKey ratchet.

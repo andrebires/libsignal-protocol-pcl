@@ -16,7 +16,7 @@
  */
 
 using System;
-using Libsignal.Groups.state;
+using Libsignal.Groups.State;
 using Libsignal.Protocol;
 using Libsignal.Util;
 

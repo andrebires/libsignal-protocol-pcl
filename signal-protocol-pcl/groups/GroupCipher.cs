@@ -16,8 +16,8 @@
  */
 
 using System;
-using Libsignal.Groups.ratchet;
-using Libsignal.Groups.state;
+using Libsignal.Groups.Ratchet;
+using Libsignal.Groups.State;
 using Libsignal.Protocol;
 
 namespace Libsignal.Groups

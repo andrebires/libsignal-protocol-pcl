@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Libsignal.Groups;
-using Libsignal.Groups.state;
+using Libsignal.Groups.State;
 
 namespace Libsignal.Tests.Groups
 {

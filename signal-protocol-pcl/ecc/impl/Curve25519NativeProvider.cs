@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal.Ecc.impl
+namespace Libsignal.Ecc.Impl
 {
 	class Curve25519NativeProvider : ICurve25519Provider
 	{

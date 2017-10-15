@@ -17,7 +17,7 @@
 
 using Libsignal.Util;
 
-namespace Libsignal.Groups.ratchet
+namespace Libsignal.Groups.Ratchet
 {
     /**
      * Each SenderKey is a "chain" of keys, each derived from the previous.
