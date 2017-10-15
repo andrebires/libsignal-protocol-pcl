@@ -18,7 +18,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Libsignal.State.Impl
+namespace WhisperSystems.Libsignal.State.Impl
 {
     public class InMemorySignalProtocolStore : ISignalProtocolStore
     {

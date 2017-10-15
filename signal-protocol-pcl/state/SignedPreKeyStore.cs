@@ -17,7 +17,7 @@
 
 using System.Collections.Generic;
 
-namespace Libsignal.State
+namespace WhisperSystems.Libsignal.State
 {
     public interface ISignedPreKeyStore
     {

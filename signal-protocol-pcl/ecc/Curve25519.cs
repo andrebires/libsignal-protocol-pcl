@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Libsignal.Ecc.Impl;
 using PCLCrypto;
+using WhisperSystems.Libsignal.Ecc.Impl;
 
-namespace Libsignal.Ecc
+namespace WhisperSystems.Libsignal.Ecc
 {
 	/// <summary>
 	/// Choose between various implementations of Curve25519 (native, managed, etc).

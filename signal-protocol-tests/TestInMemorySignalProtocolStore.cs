@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Libsignal.Ecc;
-using Libsignal.State.Impl;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.State.Impl;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Tests
+namespace WhisperSystems.Libsignal.Tests
 {
     class TestInMemorySignalProtocolStore : InMemorySignalProtocolStore
     {

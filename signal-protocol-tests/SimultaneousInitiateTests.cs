@@ -17,13 +17,13 @@
 
 using System;
 using System.Text;
-using Libsignal.Ecc;
-using Libsignal.Protocol;
-using Libsignal.State;
-using Libsignal.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Protocol;
+using WhisperSystems.Libsignal.State;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Tests
+namespace WhisperSystems.Libsignal.Tests
 {
     [TestClass]
     public class SimultaneousInitiateTests

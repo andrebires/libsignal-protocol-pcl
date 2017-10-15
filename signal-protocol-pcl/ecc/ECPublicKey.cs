@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal.Ecc
+namespace WhisperSystems.Libsignal.Ecc
 {
     public interface IEcPublicKey : IComparable
     {

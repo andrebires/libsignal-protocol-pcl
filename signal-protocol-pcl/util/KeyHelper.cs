@@ -17,11 +17,11 @@
 
 using System;
 using System.Collections.Generic;
-using Libsignal.Ecc;
-using Libsignal.State;
 using PCLCrypto;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.State;
 
-namespace Libsignal.Util
+namespace WhisperSystems.Libsignal.Util
 {
     /**
      * Helper class for generating keys of different types.

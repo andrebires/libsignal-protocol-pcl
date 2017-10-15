@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal.Groups
+namespace WhisperSystems.Libsignal.Groups
 {
     /**
      * A representation of a (groupId + senderId + deviceId) tuple.

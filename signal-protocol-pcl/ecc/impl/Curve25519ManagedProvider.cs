@@ -15,7 +15,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Libsignal.Ecc.Impl
+namespace WhisperSystems.Libsignal.Ecc.Impl
 {
     internal class Curve25519ManagedProvider : ICurve25519Provider
     {

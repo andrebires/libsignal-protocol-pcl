@@ -18,10 +18,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Libsignal.Groups;
-using Libsignal.Groups.State;
+using WhisperSystems.Libsignal.Groups;
+using WhisperSystems.Libsignal.Groups.State;
 
-namespace Libsignal.Tests.Groups
+namespace WhisperSystems.Libsignal.Tests.Groups
 {
     class InMemorySenderKeyStore : ISenderKeyStore
     {

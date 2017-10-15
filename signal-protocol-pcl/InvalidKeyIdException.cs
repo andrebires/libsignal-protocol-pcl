@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal
+namespace WhisperSystems.Libsignal
 {
     public class InvalidKeyIdException : Exception
     {

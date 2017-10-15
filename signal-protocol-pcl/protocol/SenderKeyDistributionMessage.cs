@@ -17,10 +17,10 @@
 
 using System;
 using Google.ProtocolBuffers;
-using Libsignal.Ecc;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Protocol
+namespace WhisperSystems.Libsignal.Protocol
 {
     public partial class SenderKeyDistributionMessage : CiphertextMessage
     {

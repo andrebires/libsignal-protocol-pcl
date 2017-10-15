@@ -16,10 +16,10 @@
  */
 
 using Google.ProtocolBuffers;
-using Libsignal.Ecc;
-using Libsignal.State;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.State;
 
-namespace Libsignal
+namespace WhisperSystems.Libsignal
 {
     /**
      * Holder for public and private identity key pair.
@@ -63,10 +63,13 @@ namespace Libsignal
 
         public byte[] Serialize()
         {
-            return StorageProtos.IdentityKeyPairStructure.CreateBuilder()
-                                           .SetPublicKey(ByteString.CopyFrom(_publicKey.Serialize()))
-                                           .SetPrivateKey(ByteString.CopyFrom(_privateKey.Serialize()))
-                                           .Build().ToByteArray();
+            return StorageProtos
+                .IdentityKeyPairStructure
+                .CreateBuilder()
+                .SetPublicKey(ByteString.CopyFrom(_publicKey.Serialize()))
+                .SetPrivateKey(ByteString.CopyFrom(_privateKey.Serialize()))
+                .Build()
+                .ToByteArray();
         }
     }
 }

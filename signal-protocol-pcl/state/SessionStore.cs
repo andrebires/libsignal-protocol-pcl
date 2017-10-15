@@ -18,7 +18,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Libsignal.State
+namespace WhisperSystems.Libsignal.State
 {
     /**
      * The interface to the durable store of session state information

@@ -15,9 +15,9 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Fingerprint
+namespace WhisperSystems.Libsignal.Fingerprint
 {
     public class DisplayableFingerprint
     {

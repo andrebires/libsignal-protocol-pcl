@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Libsignal.Ecc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WhisperSystems.Libsignal.Ecc;
 
-namespace Libsignal.Tests.Ecc
+namespace WhisperSystems.Libsignal.Tests.Ecc
 {
     [TestClass]
     public class Curve25519Test

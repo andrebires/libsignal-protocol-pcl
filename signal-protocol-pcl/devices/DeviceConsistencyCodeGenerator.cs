@@ -18,10 +18,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Libsignal.Util;
 using PCLCrypto;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Devices
+namespace WhisperSystems.Libsignal.Devices
 {
     public class DeviceConsistencyCodeGenerator
     {

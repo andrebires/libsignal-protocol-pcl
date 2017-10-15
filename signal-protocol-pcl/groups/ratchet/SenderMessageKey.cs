@@ -16,10 +16,10 @@
  */
 
 using System.Text;
-using Libsignal.Kdf;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Kdf;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Groups.Ratchet
+namespace WhisperSystems.Libsignal.Groups.Ratchet
 {
     /**
      * The final symmetric material (IV and Cipher Key) used for encrypting

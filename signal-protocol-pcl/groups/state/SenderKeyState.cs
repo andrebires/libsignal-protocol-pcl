@@ -17,12 +17,12 @@
 
 using System.Collections.Generic;
 using Google.ProtocolBuffers;
-using Libsignal.Ecc;
-using Libsignal.Groups.Ratchet;
-using Libsignal.State;
 using Strilanc.Value;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Groups.Ratchet;
+using WhisperSystems.Libsignal.State;
 
-namespace Libsignal.Groups.State
+namespace WhisperSystems.Libsignal.Groups.State
 {
     /**
      * Represents the state of an individual SenderKey ratchet.

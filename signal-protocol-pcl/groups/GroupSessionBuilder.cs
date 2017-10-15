@@ -16,11 +16,11 @@
  */
 
 using System;
-using Libsignal.Groups.State;
-using Libsignal.Protocol;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Groups.State;
+using WhisperSystems.Libsignal.Protocol;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Groups
+namespace WhisperSystems.Libsignal.Groups
 {
     /**
      * GroupSessionBuilder is responsible for setting up group SenderKey encrypted sessions.

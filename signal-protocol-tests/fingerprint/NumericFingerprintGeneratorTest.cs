@@ -16,11 +16,11 @@
  */
 
 using System;
-using Libsignal.Ecc;
-using Libsignal.Fingerprint;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Fingerprint;
 
-namespace Libsignal.Tests.Fingerprint
+namespace WhisperSystems.Libsignal.Tests.Fingerprint
 {
     [TestClass]
     public class NumericFingerprintGeneratorTest

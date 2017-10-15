@@ -16,11 +16,11 @@
  */
 
 using System.Text;
-using Libsignal.Ecc;
-using Libsignal.Kdf;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Kdf;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Ratchet
+namespace WhisperSystems.Libsignal.Ratchet
 {
     public class RootKey
     {

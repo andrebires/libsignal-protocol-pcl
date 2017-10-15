@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Libsignal.Ecc;
+using WhisperSystems.Libsignal.Ecc;
 
-namespace Libsignal.State
+namespace WhisperSystems.Libsignal.State
 {
     /**
  * A class that contains a remote PreKey and collection

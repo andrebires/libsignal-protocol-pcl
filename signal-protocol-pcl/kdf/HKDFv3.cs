@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Libsignal.Kdf
+namespace WhisperSystems.Libsignal.Kdf
 {
     public class HkdFv3 : Hkdf
     {

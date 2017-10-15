@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Libsignal.Protocol
+namespace WhisperSystems.Libsignal.Protocol
 {
     public abstract class CiphertextMessage
     {

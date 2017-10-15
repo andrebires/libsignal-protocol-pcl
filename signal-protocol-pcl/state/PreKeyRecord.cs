@@ -17,9 +17,9 @@
 
 using System;
 using Google.ProtocolBuffers;
-using Libsignal.Ecc;
+using WhisperSystems.Libsignal.Ecc;
 
-namespace Libsignal.State
+namespace WhisperSystems.Libsignal.State
 {
     public class PreKeyRecord
     {

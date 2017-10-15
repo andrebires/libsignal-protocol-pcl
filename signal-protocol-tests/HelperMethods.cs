@@ -18,7 +18,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Libsignal.Tests
+namespace WhisperSystems.Libsignal.Tests
 {
     public static class HelperMethods
     {

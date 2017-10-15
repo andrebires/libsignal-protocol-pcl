@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal.Util
+namespace WhisperSystems.Libsignal.Util
 {
     public class Pair<T1, T2>
     {

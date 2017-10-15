@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using PCLCrypto;
 
-namespace Libsignal.Util
+namespace WhisperSystems.Libsignal.Util
 {
     public class Sign
     {

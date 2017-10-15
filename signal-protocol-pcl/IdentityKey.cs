@@ -16,9 +16,9 @@
  */
 
 using System;
-using Libsignal.Ecc;
+using WhisperSystems.Libsignal.Ecc;
 
-namespace Libsignal
+namespace WhisperSystems.Libsignal
 {
     /**
      * A class for representing an identity key.

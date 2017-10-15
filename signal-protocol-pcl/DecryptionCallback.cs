@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Libsignal
+namespace WhisperSystems.Libsignal
 {
     public interface IDecryptionCallback
     {

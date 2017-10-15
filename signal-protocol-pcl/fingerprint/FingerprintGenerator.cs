@@ -17,7 +17,7 @@
 
 using System.Collections.Generic;
 
-namespace Libsignal.Fingerprint
+namespace WhisperSystems.Libsignal.Fingerprint
 {
     public interface IFingerprintGenerator {
         Fingerprint CreateFor(string localStableIdentifier, IdentityKey localIdentityKey,

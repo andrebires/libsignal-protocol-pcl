@@ -1,4 +1,4 @@
-﻿namespace Libsignal.Ecc
+﻿namespace WhisperSystems.Libsignal.Ecc
 {
     /// <summary>
     /// Curve25519 public and private key stored together.

@@ -17,7 +17,7 @@
 
 using System.Collections.Generic;
 
-namespace Libsignal.Util
+namespace WhisperSystems.Libsignal.Util
 {
     public class IdentityKeyComparator : ByteArrayComparator, IComparer<IdentityKey>
     {

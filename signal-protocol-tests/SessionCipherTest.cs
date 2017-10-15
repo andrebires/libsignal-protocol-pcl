@@ -18,15 +18,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Libsignal.Ecc;
-using Libsignal.Protocol;
-using Libsignal.Ratchet;
-using Libsignal.State;
-using Libsignal.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Strilanc.Value;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Protocol;
+using WhisperSystems.Libsignal.Ratchet;
+using WhisperSystems.Libsignal.State;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Tests
+namespace WhisperSystems.Libsignal.Tests
 {
     [TestClass]
     public class SessionCipherTest

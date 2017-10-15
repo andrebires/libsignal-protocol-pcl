@@ -20,10 +20,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Libsignal.Util;
 using PCLCrypto;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Fingerprint
+namespace WhisperSystems.Libsignal.Fingerprint
 {
     public class NumericFingerprintGenerator : IFingerprintGenerator
     {

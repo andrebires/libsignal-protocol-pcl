@@ -18,14 +18,14 @@
 using System;
 using System.IO;
 using System.Text;
-using Libsignal.Ecc;
-using Libsignal.Kdf;
-using Libsignal.Protocol;
-using Libsignal.State;
-using Libsignal.Util;
 using Strilanc.Value;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Kdf;
+using WhisperSystems.Libsignal.Protocol;
+using WhisperSystems.Libsignal.State;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Ratchet
+namespace WhisperSystems.Libsignal.Ratchet
 {
     public class RatchetingSession
     {

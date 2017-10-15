@@ -17,9 +17,9 @@
 
 using System;
 using System.IO;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Kdf
+namespace WhisperSystems.Libsignal.Kdf
 {
     public abstract class Hkdf
     {

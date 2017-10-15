@@ -17,7 +17,7 @@
 
 using System.Collections.Generic;
 
-namespace Libsignal.State.Impl
+namespace WhisperSystems.Libsignal.State.Impl
 {
 	/// <summary>
 	/// In-memory / testing implementation of IdentityKeyStore

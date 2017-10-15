@@ -17,12 +17,12 @@
 
 using System;
 using System.Collections.Generic;
-using Libsignal.Devices;
-using Libsignal.Protocol;
-using Libsignal.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WhisperSystems.Libsignal.Devices;
+using WhisperSystems.Libsignal.Protocol;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Tests.Devices
+namespace WhisperSystems.Libsignal.Tests.Devices
 {
     [TestClass]
     public class DeviceConsistencyTest

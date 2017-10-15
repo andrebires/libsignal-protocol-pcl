@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal.Fingerprint
+namespace WhisperSystems.Libsignal.Fingerprint
 {
     public class FingerprintVersionMismatchException : Exception
     {

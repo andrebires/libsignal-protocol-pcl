@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Libsignal.Ecc;
-using Libsignal.Kdf;
-using Libsignal.Ratchet;
-using Libsignal.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Kdf;
+using WhisperSystems.Libsignal.Ratchet;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Tests.Ratchet
+namespace WhisperSystems.Libsignal.Tests.Ratchet
 {
     [TestClass]
     public class RootKeyTest

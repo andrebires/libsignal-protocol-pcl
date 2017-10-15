@@ -18,7 +18,7 @@
 using System;
 using System.IO;
 
-namespace Libsignal.Util
+namespace WhisperSystems.Libsignal.Util
 {
     public class ByteUtil
     {

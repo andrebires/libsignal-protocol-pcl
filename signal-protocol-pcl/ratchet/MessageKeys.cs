@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Libsignal.Ratchet
+namespace WhisperSystems.Libsignal.Ratchet
 {
     public class MessageKeys
     {

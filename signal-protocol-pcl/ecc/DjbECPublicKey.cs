@@ -17,9 +17,9 @@
 
 using System;
 using System.Linq;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Ecc
+namespace WhisperSystems.Libsignal.Ecc
 {
     public class DjbEcPublicKey : IEcPublicKey
     {

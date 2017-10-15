@@ -17,11 +17,11 @@
 
 using System.Diagnostics;
 using Google.ProtocolBuffers;
-using Libsignal.Devices;
-using Libsignal.Ecc;
 using org.whispersystems.curve25519;
+using WhisperSystems.Libsignal.Devices;
+using WhisperSystems.Libsignal.Ecc;
 
-namespace Libsignal.Protocol
+namespace WhisperSystems.Libsignal.Protocol
 {
     public class DeviceConsistencyMessage
     {

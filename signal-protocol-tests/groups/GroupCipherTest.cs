@@ -18,12 +18,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Libsignal.Groups;
-using Libsignal.Protocol;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PCLCrypto;
+using WhisperSystems.Libsignal.Groups;
+using WhisperSystems.Libsignal.Protocol;
 
-namespace Libsignal.Tests.Groups
+namespace WhisperSystems.Libsignal.Tests.Groups
 {
     [TestClass]
     public class GroupCipherTest

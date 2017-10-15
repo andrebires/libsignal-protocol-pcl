@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Libsignal.Devices
+namespace WhisperSystems.Libsignal.Devices
 {
     public class DeviceConsistencySignature
     {

@@ -18,7 +18,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Libsignal.State
+namespace WhisperSystems.Libsignal.State
 {
     /**
  * A SessionRecord encapsulates the state of an ongoing session.

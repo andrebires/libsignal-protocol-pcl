@@ -5,9 +5,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>Libsignal.Tests</AssemblyName>
+    <AssemblyName>WhisperSystems.Libsignal.Tests</AssemblyName>
 
-    <RootNamespace>Libsignal.Tests</RootNamespace>
+    <RootNamespace>WhisperSystems.Libsignal.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\signal-protocol-pcl\Libsignal.csproj" />
+    <ProjectReference Include="..\signal-protocol-pcl\WhisperSystems.Libsignal.csproj" />
   </ItemGroup>
 
 </Project>

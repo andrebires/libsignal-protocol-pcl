@@ -16,11 +16,11 @@
  */
 
 using System;
-using Libsignal.Groups.Ratchet;
-using Libsignal.Groups.State;
-using Libsignal.Protocol;
+using WhisperSystems.Libsignal.Groups.Ratchet;
+using WhisperSystems.Libsignal.Groups.State;
+using WhisperSystems.Libsignal.Protocol;
 
-namespace Libsignal.Groups
+namespace WhisperSystems.Libsignal.Groups
 {
     /**
      * The main entry point for Signal Protocol group encrypt/decrypt operations.

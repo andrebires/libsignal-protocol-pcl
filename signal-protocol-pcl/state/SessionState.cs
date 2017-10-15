@@ -19,13 +19,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Google.ProtocolBuffers;
-using Libsignal.Ecc;
-using Libsignal.Kdf;
-using Libsignal.Ratchet;
-using Libsignal.Util;
 using Strilanc.Value;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Kdf;
+using WhisperSystems.Libsignal.Ratchet;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.State
+namespace WhisperSystems.Libsignal.State
 {
     public class SessionState
 	{

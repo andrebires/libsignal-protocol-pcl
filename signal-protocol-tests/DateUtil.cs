@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal.Tests
+namespace WhisperSystems.Libsignal.Tests
 {
     class DateUtil
     {

@@ -16,9 +16,9 @@
  */
 
 using System;
-using Libsignal.Ecc;
+using WhisperSystems.Libsignal.Ecc;
 
-namespace Libsignal.Ratchet
+namespace WhisperSystems.Libsignal.Ratchet
 {
     public class SymmetricSignalProtocolParameters
     {

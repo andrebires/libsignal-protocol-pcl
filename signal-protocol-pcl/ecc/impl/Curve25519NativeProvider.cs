@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Libsignal.Ecc.Impl
+namespace WhisperSystems.Libsignal.Ecc.Impl
 {
     internal class Curve25519NativeProvider : ICurve25519Provider
 	{

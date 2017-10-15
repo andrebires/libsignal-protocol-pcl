@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libsignal", "signal-protocol-pcl\Libsignal.csproj", "{28969CF5-0CEC-4B94-B5CC-BDF648A66E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhisperSystems.Libsignal", "signal-protocol-pcl\WhisperSystems.Libsignal.csproj", "{28969CF5-0CEC-4B94-B5CC-BDF648A66E70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libsignal.Tests", "signal-protocol-tests\Libsignal.Tests.csproj", "{3B01684C-A5C1-4165-A384-FB9D89D10F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhisperSystems.Libsignal.Tests", "signal-protocol-tests\WhisperSystems.Libsignal.Tests.csproj", "{3B01684C-A5C1-4165-A384-FB9D89D10F16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

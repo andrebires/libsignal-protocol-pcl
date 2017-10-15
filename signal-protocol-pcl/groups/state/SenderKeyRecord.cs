@@ -16,10 +16,10 @@
  */
 
 using System.Collections.Generic;
-using Libsignal.Ecc;
-using Libsignal.State;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.State;
 
-namespace Libsignal.Groups.State
+namespace WhisperSystems.Libsignal.Groups.State
 {
     /**
      * A durable representation of a set of SenderKeyStates for a specific

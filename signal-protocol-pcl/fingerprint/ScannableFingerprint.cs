@@ -16,9 +16,9 @@
  */
 
 using Google.ProtocolBuffers;
-using Libsignal.Util;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Fingerprint
+namespace WhisperSystems.Libsignal.Fingerprint
 {
     public class ScannableFingerprint
     {

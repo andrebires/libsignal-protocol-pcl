@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Libsignal.Kdf;
-using Libsignal.Ratchet;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WhisperSystems.Libsignal.Kdf;
+using WhisperSystems.Libsignal.Ratchet;
 
-namespace Libsignal.Tests.Ratchet
+namespace WhisperSystems.Libsignal.Tests.Ratchet
 {
     [TestClass]
     public class ChainKeyTest

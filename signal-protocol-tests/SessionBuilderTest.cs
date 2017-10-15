@@ -18,13 +18,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Libsignal.Ecc;
-using Libsignal.Protocol;
-using Libsignal.State;
-using Libsignal.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Protocol;
+using WhisperSystems.Libsignal.State;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal.Tests
+namespace WhisperSystems.Libsignal.Tests
 {
 
     [TestClass]
@@ -40,8 +40,8 @@ namespace Libsignal.Tests
 
             public BobDecryptionCallback(ISignalProtocolStore bobStore, String originalMessage)
             {
-                this._bobStore = bobStore;
-                this._originalMessage = originalMessage;
+                _bobStore = bobStore;
+                _originalMessage = originalMessage;
             }
 
             public void HandlePlaintext(byte[] plaintext)

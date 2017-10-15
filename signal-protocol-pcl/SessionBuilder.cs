@@ -16,14 +16,14 @@
  */
 
 using System.Diagnostics;
-using Libsignal.Ecc;
-using Libsignal.Protocol;
-using Libsignal.Ratchet;
-using Libsignal.State;
-using Libsignal.Util;
 using Strilanc.Value;
+using WhisperSystems.Libsignal.Ecc;
+using WhisperSystems.Libsignal.Protocol;
+using WhisperSystems.Libsignal.Ratchet;
+using WhisperSystems.Libsignal.State;
+using WhisperSystems.Libsignal.Util;
 
-namespace Libsignal
+namespace WhisperSystems.Libsignal
 {
     /**
  * SessionBuilder is responsible for setting up encrypted sessions.
