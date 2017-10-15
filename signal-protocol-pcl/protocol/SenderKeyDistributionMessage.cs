@@ -24,7 +24,6 @@ namespace Libsignal.Protocol
 {
     public partial class SenderKeyDistributionMessage : CiphertextMessage
     {
-
         private readonly uint _id;
         private readonly uint _iteration;
         private readonly byte[] _chainKey;
@@ -93,7 +92,6 @@ namespace Libsignal.Protocol
         {
             return _serialized;
         }
-
 
         public override uint GetMessageType()
         {

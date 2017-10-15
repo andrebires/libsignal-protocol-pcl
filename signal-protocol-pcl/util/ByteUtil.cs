@@ -306,6 +306,5 @@ namespace Libsignal.Util
                     ((bytes[offset + 6] & 0xffL) << 8) |
                     ((bytes[offset + 7] & 0xffL));
         }
-
     }
 }

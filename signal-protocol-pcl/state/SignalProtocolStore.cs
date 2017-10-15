@@ -20,5 +20,4 @@ namespace Libsignal.State
     public interface ISignalProtocolStore : IDentityKeyStore, IPreKeyStore, ISessionStore, ISignedPreKeyStore
     {
     }
-
 }

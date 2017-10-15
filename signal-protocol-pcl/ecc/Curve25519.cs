@@ -111,7 +111,6 @@ namespace Libsignal.Ecc
 		/// <returns>64 byte signature</returns>
 		public byte[] CalculateSignature(byte[] privateKey, byte[] message)
 		{
-
             byte[] random = WinRTCrypto.CryptographicBuffer.GenerateRandom(64);
 			return _provider.CalculateSignature(random, privateKey, message);
 		}

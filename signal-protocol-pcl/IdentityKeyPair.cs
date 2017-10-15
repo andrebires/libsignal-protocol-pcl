@@ -28,7 +28,6 @@ namespace Libsignal
      */
     public class IdentityKeyPair
     {
-
         private readonly IdentityKey _publicKey;
         private readonly IEcPrivateKey _privateKey;
 

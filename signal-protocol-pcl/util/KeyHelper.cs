@@ -30,7 +30,6 @@ namespace Libsignal.Util
      */
     public class KeyHelper
     {
-
         private KeyHelper() { }
 
         /**
@@ -73,9 +72,7 @@ namespace Libsignal.Util
 
         public static uint GetRandomSequence(uint max)
         {
-
             return WinRTCrypto.CryptographicBuffer.GenerateRandomNumber() % max;
-
 
         }
 
@@ -134,7 +131,6 @@ namespace Libsignal.Util
             return new SignedPreKeyRecord(signedPreKeyId, GetTime(), keyPair, signature);
         }
 
-
         public static EcKeyPair GenerateSenderSigningKey()
         {
             return Curve.GenerateKeyPair();
@@ -148,9 +144,7 @@ namespace Libsignal.Util
 
         public static uint GenerateSenderKeyId()
         {
-
             return WinRTCrypto.CryptographicBuffer.GenerateRandomNumber();
-
         }
 
         public static ulong GetTime()

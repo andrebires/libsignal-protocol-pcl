@@ -24,7 +24,6 @@ namespace Libsignal.Groups
      */
     public class SenderKeyName
     {
-
         private readonly String _groupId;
         private readonly SignalProtocolAddress _sender;
 
@@ -49,7 +48,6 @@ namespace Libsignal.Groups
             return _groupId + "::" + _sender.GetName() + "::" + _sender.GetDeviceId();
         }
 
-
         public override bool Equals(Object other)
         {
             if (other == null) return false;
@@ -66,6 +64,5 @@ namespace Libsignal.Groups
         {
             return _groupId.GetHashCode() ^ _sender.GetHashCode();
         }
-
     }
 }

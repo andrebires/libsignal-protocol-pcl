@@ -24,7 +24,6 @@ namespace Libsignal.State
      */
     public interface IPreKeyStore
     {
-
         /**
          * Load a local PreKeyRecord.
          *
@@ -54,6 +53,5 @@ namespace Libsignal.State
          * @param preKeyId The ID of the PreKeyRecord to remove.
          */
         void RemovePreKey(uint preKeyId);
-
     }
 }

@@ -29,7 +29,6 @@ namespace Libsignal.Groups.ratchet
      */
     public class SenderMessageKey
     {
-
         private readonly uint _iteration;
         private readonly byte[] _iv;
         private readonly byte[] _cipherKey;

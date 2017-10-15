@@ -21,7 +21,6 @@ namespace Libsignal.Fingerprint
 {
     public class FingerprintIdentifierMismatchException : Exception
     {
-
         private readonly string _localIdentifier;
         private readonly string _remoteIdentifier;
         private readonly string _scannedLocalIdentifier;

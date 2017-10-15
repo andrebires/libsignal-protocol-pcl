@@ -27,19 +27,18 @@ namespace Libsignal.State
  */
     public class PreKeyBundle
     {
+        private readonly uint _registrationId;
 
-        private uint _registrationId;
+        private readonly uint _deviceId;
 
-        private uint _deviceId;
+        private readonly uint _preKeyId;
+        private readonly IEcPublicKey _preKeyPublic;
 
-        private uint _preKeyId;
-        private IEcPublicKey _preKeyPublic;
+        private readonly uint _signedPreKeyId;
+        private readonly IEcPublicKey _signedPreKeyPublic;
+        private readonly byte[] _signedPreKeySignature;
 
-        private uint _signedPreKeyId;
-        private IEcPublicKey _signedPreKeyPublic;
-        private byte[] _signedPreKeySignature;
-
-        private IdentityKey _identityKey;
+        private readonly IdentityKey _identityKey;
 
         public PreKeyBundle(uint registrationId, uint deviceId, uint preKeyId, IEcPublicKey preKeyPublic,
                             uint signedPreKeyId, IEcPublicKey signedPreKeyPublic, byte[] signedPreKeySignature,

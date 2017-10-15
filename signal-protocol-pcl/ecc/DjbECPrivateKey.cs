@@ -19,7 +19,6 @@ namespace Libsignal.Ecc
 {
     public class DjbEcPrivateKey : IEcPrivateKey
     {
-
         private readonly byte[] _privateKey;
 
         public DjbEcPrivateKey(byte[] privateKey)
@@ -27,12 +26,10 @@ namespace Libsignal.Ecc
             _privateKey = privateKey;
         }
 
-
         public byte[] Serialize()
         {
             return _privateKey;
         }
-
 
         public int GetKeyType()
         {

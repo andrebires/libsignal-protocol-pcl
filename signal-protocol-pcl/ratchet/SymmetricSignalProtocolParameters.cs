@@ -22,7 +22,6 @@ namespace Libsignal.Ratchet
 {
     public class SymmetricSignalProtocolParameters
     {
-
         private readonly EcKeyPair       _ourBaseKey;
   private readonly EcKeyPair       _ourRatchetKey;
   private readonly IdentityKeyPair _ourIdentityKey;

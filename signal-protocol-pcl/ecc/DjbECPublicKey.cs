@@ -30,19 +30,16 @@ namespace Libsignal.Ecc
             _publicKey = publicKey;
         }
 
-
         public byte[] Serialize()
         {
             byte[] type = { (byte)Curve.DjbType };
             return ByteUtil.Combine(type, _publicKey);
         }
 
-
         public int GetKeyType()
         {
             return Curve.DjbType;
         }
-
 
         public override bool Equals(Object other)
         {
@@ -53,12 +50,10 @@ namespace Libsignal.Ecc
             return Enumerable.SequenceEqual(_publicKey, that._publicKey);
         }
 
-
         public override int GetHashCode()
         {
             return string.Join(",", _publicKey).GetHashCode();
         }
-
 
         public int CompareTo(Object another)
         {
@@ -72,6 +67,5 @@ namespace Libsignal.Ecc
         {
             return _publicKey;
         }
-
     }
 }

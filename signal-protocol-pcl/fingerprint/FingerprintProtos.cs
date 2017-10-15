@@ -6,10 +6,8 @@ using pb = global::Google.ProtocolBuffers;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 
 namespace Libsignal.Fingerprint {
-  
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class FingerprintProtos {
-  
     #region Extension registration
     public static void RegisterAllExtensions(pb::ExtensionRegistry registry) {
     }

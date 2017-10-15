@@ -19,7 +19,6 @@ namespace Libsignal.Ratchet
 {
     public class MessageKeys
     {
-
         private readonly byte[] _cipherKey;
         private readonly byte[] _macKey;
         private readonly byte[] _iv;

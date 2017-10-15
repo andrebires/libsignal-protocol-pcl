@@ -26,7 +26,6 @@ namespace Libsignal.Protocol
 {
     public partial class SignalMessage : CiphertextMessage
     {
-
         private static readonly int MacLength = 8;
 
         private readonly uint _messageVersion;
@@ -175,6 +174,5 @@ namespace Libsignal.Protocol
             return message != null && message.Length >= 1 &&
                 ByteUtil.HighBitsToInt(message[0]) <= UnsupportedVersion;
         }
-
     }
 }

@@ -5,7 +5,6 @@
     /// </summary>
     public class Curve25519KeyPair
     {
-
         private readonly byte[] _publicKey;
         private readonly byte[] _privateKey;
 

@@ -23,8 +23,7 @@ namespace Libsignal.State
 {
     public class SignedPreKeyRecord
     {
-
-        private StorageProtos.SignedPreKeyRecordStructure _structure;
+        private readonly StorageProtos.SignedPreKeyRecordStructure _structure;
 
         public SignedPreKeyRecord(uint id, ulong timestamp, EcKeyPair keyPair, byte[] signature)
         {

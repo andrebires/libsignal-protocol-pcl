@@ -22,9 +22,7 @@ namespace Libsignal.State.Impl
 {
     public class InMemoryPreKeyStore : IPreKeyStore
 	{
-
 		private readonly IDictionary<uint, byte[]> _store = new Dictionary<uint, byte[]>();
-
 
 		public PreKeyRecord LoadPreKey(uint preKeyId)
 		{
@@ -45,18 +43,15 @@ namespace Libsignal.State.Impl
 			}
 		}
 
-
 		public void StorePreKey(uint preKeyId, PreKeyRecord record)
 		{
 			_store[preKeyId] = record.Serialize();
 		}
 
-
 		public bool ContainsPreKey(uint preKeyId)
 		{
 			return _store.ContainsKey(preKeyId);
 		}
-
 
 		public void RemovePreKey(uint preKeyId)
 		{

@@ -23,7 +23,6 @@ namespace Libsignal
 {
     public class InvalidMessageException : Exception
     {
-
         public InvalidMessageException() { }
 
         public InvalidMessageException(String detailMessage)

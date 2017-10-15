@@ -23,26 +23,23 @@ namespace Libsignal.State
 {
     public class PreKeyRecord
     {
-
-        private StorageProtos.PreKeyRecordStructure _structure;
+        private readonly StorageProtos.PreKeyRecordStructure _structure;
 
         public PreKeyRecord(uint id, EcKeyPair keyPair)
         {
-            _structure = StorageProtos.PreKeyRecordStructure.CreateBuilder()
-                                                  .SetId(id)
-                                                  .SetPublicKey(ByteString.CopyFrom(keyPair.GetPublicKey()
-                                                                                           .Serialize()))
-                                                  .SetPrivateKey(ByteString.CopyFrom(keyPair.GetPrivateKey()
-                                                                                            .Serialize()))
-                                                  .Build();
+            _structure = StorageProtos
+                .PreKeyRecordStructure
+                .CreateBuilder()
+                .SetId(id)
+                .SetPublicKey(ByteString.CopyFrom(keyPair.GetPublicKey().Serialize()))
+                .SetPrivateKey(ByteString.CopyFrom(keyPair.GetPrivateKey().Serialize()))
+                .Build();
         }
 
         public PreKeyRecord(byte[] serialized)
         {
             _structure = StorageProtos.PreKeyRecordStructure.ParseFrom(serialized);
         }
-
-
 
         public uint GetId()
         {

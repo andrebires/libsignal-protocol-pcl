@@ -44,7 +44,6 @@ namespace Libsignal
  */
     public class SessionBuilder
     {
-
         private readonly ISessionStore _sessionStore;
         private readonly IPreKeyStore _preKeyStore;
         private readonly ISignedPreKeyStore _signedPreKeyStore;
@@ -115,7 +114,6 @@ namespace Libsignal
 
         private May<uint> ProcessV3(SessionRecord sessionRecord, PreKeySignalMessage message)
         {
-
             if (sessionRecord.HasSessionState(message.GetMessageVersion(), message.GetBaseKey().Serialize()))
             {
                 Debug.WriteLine("We've already setup a session for this V3 message, letting bundled message fall through...");

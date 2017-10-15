@@ -81,7 +81,6 @@ namespace Libsignal.Util
             return result;
         }
 
-
     }
 
     /// <summary>

@@ -7,10 +7,8 @@ using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
 namespace Libsignal.State {
-  
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class StorageProtos {
-  
     #region Extension registration
     public static void RegisterAllExtensions(pb::ExtensionRegistry registry) {
     }
@@ -963,7 +961,6 @@ namespace Libsignal.State {
                 object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
               }
             }
-            
           }
           #endregion
           
@@ -2305,7 +2302,6 @@ namespace Libsignal.State {
             object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
-        
       }
       #endregion
       
@@ -5696,7 +5692,6 @@ namespace Libsignal.State {
             object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
-        
       }
       #endregion
       

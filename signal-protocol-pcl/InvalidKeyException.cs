@@ -21,7 +21,6 @@ namespace Libsignal
 {
     public class InvalidKeyException : Exception
     {
-
         public InvalidKeyException() { }
 
         public InvalidKeyException(String detailMessage)

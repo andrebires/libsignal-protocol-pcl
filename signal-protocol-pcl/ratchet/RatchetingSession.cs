@@ -29,7 +29,6 @@ namespace Libsignal.Ratchet
 {
     public class RatchetingSession
     {
-
         public static void InitializeSession(SessionState sessionState,
                                              SymmetricSignalProtocolParameters parameters)
         {
@@ -87,7 +86,6 @@ namespace Libsignal.Ratchet
                 secrets.Write(agree2, 0, agree2.Length);
                 secrets.Write(agree3, 0, agree3.Length);
 
-
                 if (parameters.GetTheirOneTimePreKey().HasValue)
                 {
                     byte[] otAgree = Curve.CalculateAgreement(parameters.GetTheirOneTimePreKey().ForceGetValue(),
@@ -111,7 +109,6 @@ namespace Libsignal.Ratchet
         public static void InitializeSession(SessionState sessionState,
                                              BobSignalProtocolParameters parameters)
         {
-
             try
             {
                 sessionState.SetSessionVersion(CiphertextMessage.CurrentVersion);

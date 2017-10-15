@@ -25,7 +25,6 @@ namespace Libsignal.Protocol
 {
     public partial class PreKeySignalMessage : CiphertextMessage
     {
-
         private readonly uint _version;
         private readonly uint _registrationId;
         private readonly May<uint> _preKeyId;
@@ -143,17 +142,14 @@ namespace Libsignal.Protocol
             return _message;
         }
 
-
         public override byte[] Serialize()
         {
             return _serialized;
         }
 
-
         public override uint GetMessageType()
         {
             return PrekeyType;
         }
-
     }
 }

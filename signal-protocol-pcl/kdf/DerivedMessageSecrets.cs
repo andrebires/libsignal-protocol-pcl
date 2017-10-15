@@ -21,7 +21,6 @@ namespace Libsignal.Kdf
 {
     public class DerivedMessageSecrets
     {
-
         public static readonly int Size = 80;
         private static readonly int CipherKeyLength = 32;
         private static readonly int MacKeyLength = 32;

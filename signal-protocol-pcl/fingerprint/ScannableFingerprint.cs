@@ -20,7 +20,6 @@ using Libsignal.Util;
 
 namespace Libsignal.Fingerprint
 {
-
     public class ScannableFingerprint
     {
         private static readonly int Version = 0;

@@ -24,7 +24,6 @@ namespace Libsignal.Ratchet
 {
     public class RootKey
     {
-
         private readonly Hkdf _kdf;
         private readonly byte[] _key;
 

@@ -25,7 +25,6 @@ using PCLCrypto;
 
 namespace Libsignal.Fingerprint
 {
-
     public class NumericFingerprintGenerator : IFingerprintGenerator
     {
         private static readonly int FingerprintVersion = 0;
@@ -139,5 +138,4 @@ namespace Libsignal.Fingerprint
             return baos.ToArray();
         }
     }
-
 }

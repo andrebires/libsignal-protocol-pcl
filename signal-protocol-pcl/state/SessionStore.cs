@@ -28,7 +28,6 @@ namespace Libsignal.State
      */
     public interface ISessionStore
     {
-
         /**
          * Returns a copy of the {@link SessionRecord} corresponding to the recipientId + deviceId tuple,
          * or a new SessionRecord if one does not currently exist.
@@ -79,6 +78,5 @@ namespace Libsignal.State
          * @param name the name of the remote client.
          */
         void DeleteAllSessions(String name);
-
     }
 }

@@ -21,7 +21,6 @@ namespace Libsignal
 {
     class InvalidMacException : Exception
     {
-
         public InvalidMacException(String detailMessage)
             :base(detailMessage)
         {

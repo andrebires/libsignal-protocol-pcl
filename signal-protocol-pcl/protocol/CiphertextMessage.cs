@@ -19,7 +19,6 @@ namespace Libsignal.Protocol
 {
     public abstract class CiphertextMessage
     {
-
         public const uint UnsupportedVersion = 1;
         public const uint CurrentVersion = 3;
 
@@ -35,6 +34,5 @@ namespace Libsignal.Protocol
 
         public abstract byte[] Serialize();
         public abstract uint GetMessageType();
-
     }
 }

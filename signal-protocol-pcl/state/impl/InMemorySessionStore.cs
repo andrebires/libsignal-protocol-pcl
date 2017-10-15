@@ -22,10 +22,9 @@ namespace Libsignal.State.Impl
 {
     public class InMemorySessionStore : ISessionStore
 	{
-
 		static object _lock = new object();
 
-		private IDictionary<SignalProtocolAddress, byte[]> _sessions = new Dictionary<SignalProtocolAddress, byte[]>();
+		private readonly IDictionary<SignalProtocolAddress, byte[]> _sessions = new Dictionary<SignalProtocolAddress, byte[]>();
 
 		public InMemorySessionStore() { }
 
@@ -52,7 +51,6 @@ namespace Libsignal.State.Impl
 			}
 		}
 
-
 		public List<uint> GetSubDeviceSessions(String name)
 		{
 			List<uint> deviceIds = new List<uint>();
@@ -69,24 +67,20 @@ namespace Libsignal.State.Impl
 			return deviceIds;
 		}
 
-
 		public void StoreSession(SignalProtocolAddress address, SessionRecord record)
 		{
 			_sessions[address] = record.Serialize();
 		}
-
 
 		public bool ContainsSession(SignalProtocolAddress address)
 		{
 			return _sessions.ContainsKey(address);
 		}
 
-
 		public void DeleteSession(SignalProtocolAddress address)
 		{
 			_sessions.Remove(address);
 		}
-
 
 		public void DeleteAllSessions(String name)
 		{

@@ -24,7 +24,6 @@ namespace Libsignal.State
      */
     public interface IDentityKeyStore
     {
-
         /**
          * Get the local client's identity key pair.
          *
@@ -52,7 +51,6 @@ namespace Libsignal.State
          */
         bool SaveIdentity(SignalProtocolAddress address, IdentityKey identityKey);
 
-
         /**
          * Verify a remote client's identity key.
          * <p>
@@ -68,6 +66,5 @@ namespace Libsignal.State
          * @return true if trusted, false if untrusted.
          */
         bool IsTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey);
-
     }
 }

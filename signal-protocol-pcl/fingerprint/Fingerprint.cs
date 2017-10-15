@@ -19,7 +19,6 @@
 {
     public class Fingerprint
     {
-
         private readonly DisplayableFingerprint _displayableFingerprint;
         private readonly ScannableFingerprint _scannableFingerprint;
 

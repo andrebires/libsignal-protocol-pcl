@@ -19,7 +19,6 @@ namespace Libsignal.Groups.state
 {
     public interface ISenderKeyStore
     {
-
         /**
          * Commit to storage the {@link org.whispersystems.libsignal.groups.state.SenderKeyRecord} for a
          * given (groupId + senderId + deviceId) tuple.

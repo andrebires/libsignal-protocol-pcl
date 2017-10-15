@@ -24,7 +24,6 @@ namespace Libsignal.Protocol
 {
     public partial class SenderKeyMessage : CiphertextMessage
     {
-
         private static readonly int SignatureLength = 64;
 
         private readonly uint _messageVersion;
@@ -116,7 +115,6 @@ namespace Libsignal.Protocol
                 {
                     throw new InvalidMessageException("Invalid signature!");
                 }
-
             }
             catch (InvalidKeyException e)
             {
@@ -140,7 +138,6 @@ namespace Libsignal.Protocol
         {
             return _serialized;
         }
-
 
         public override uint GetMessageType()
         {

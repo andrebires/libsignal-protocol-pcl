@@ -23,7 +23,6 @@ namespace Libsignal.Ratchet
 {
     public class BobSignalProtocolParameters
     {
-
         private readonly IdentityKeyPair _ourIdentityKey;
         private readonly EcKeyPair _ourSignedPreKey;
         private readonly May<EcKeyPair> _ourOneTimePreKey;

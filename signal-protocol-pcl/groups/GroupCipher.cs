@@ -34,7 +34,6 @@ namespace Libsignal.Groups
      */
     public class GroupCipher
     {
-
         public static readonly Object Lock = new Object();
 
         private readonly ISenderKeyStore _senderKeyStore;
@@ -218,6 +217,5 @@ namespace Libsignal.Groups
         {
             public void HandlePlaintext(byte[] plaintext) { }
         }
-
     }
 }

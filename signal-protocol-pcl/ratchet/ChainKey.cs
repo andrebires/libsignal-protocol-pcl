@@ -24,7 +24,6 @@ namespace Libsignal.Ratchet
 {
     public class ChainKey
     {
-
         private static readonly byte[] MessageKeySeed = { 0x01 };
         private static readonly byte[] ChainKeySeed = { 0x02 };
 

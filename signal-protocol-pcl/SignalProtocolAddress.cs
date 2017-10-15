@@ -21,7 +21,6 @@ namespace Libsignal
 {
     public class SignalProtocolAddress
     {
-
         private readonly String _name;
         private readonly uint _deviceId;
 
@@ -54,7 +53,6 @@ namespace Libsignal
             SignalProtocolAddress that = (SignalProtocolAddress)other;
             return _name.Equals(that._name) && _deviceId == that._deviceId;
         }
-
 
         public override int GetHashCode()
         {

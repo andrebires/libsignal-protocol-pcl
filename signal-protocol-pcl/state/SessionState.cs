@@ -268,7 +268,6 @@ namespace Libsignal.State
 								chainKeyStructure.Key.ToByteArray(), chainKeyStructure.Index);
 		}
 
-
 		public void SetSenderChainKey(ChainKey nextChainKey)
 		{
 			StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKey = StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder()
@@ -551,7 +550,6 @@ namespace Libsignal.State
 				_signedPreKeyId = signedPreKeyId;
 				_baseKey = baseKey;
 			}
-
 
 			public May<uint> GetPreKeyId()
 			{

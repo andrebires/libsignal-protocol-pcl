@@ -28,8 +28,7 @@ namespace Libsignal
 
     public class IdentityKey
     {
-
-        private IEcPublicKey _publicKey;
+        private readonly IEcPublicKey _publicKey;
 
         public IdentityKey(IEcPublicKey publicKey)
         {
@@ -63,7 +62,6 @@ namespace Libsignal
 
             return _publicKey.Equals(((IdentityKey)other).GetPublicKey());
         }
-
 
         public override int GetHashCode()
         {

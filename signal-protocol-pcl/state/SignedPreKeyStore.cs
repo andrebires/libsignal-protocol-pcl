@@ -22,7 +22,6 @@ namespace Libsignal.State
     public interface ISignedPreKeyStore
     {
 
-
         /**
          * Load a local SignedPreKeyRecord.
          *

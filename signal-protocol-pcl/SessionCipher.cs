@@ -26,7 +26,6 @@ using Strilanc.Value;
 
 namespace Libsignal
 {
-
     /**
      * The main entry point for Signal Protocol encrypt/decrypt operations.
      *
@@ -38,7 +37,6 @@ namespace Libsignal
      */
     public class SessionCipher
 	{
-
 		public static readonly Object SessionLock = new Object();
 
 		private readonly ISessionStore _sessionStore;
@@ -64,7 +62,7 @@ namespace Libsignal
 			_sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
 													 identityKeyStore, remoteAddress);
 		}
-
+        
 		public SessionCipher(ISignalProtocolStore store, SignalProtocolAddress remoteAddress)
 			: this(store, store, store, store, remoteAddress)
 		{
@@ -218,7 +216,6 @@ namespace Libsignal
 		{
 			lock (SessionLock)
 			{
-
 				if (!_sessionStore.ContainsSession(_remoteAddress))
 				{
 					throw new NoSessionException($"No session for: {_remoteAddress}");
@@ -443,7 +440,6 @@ namespace Libsignal
 
 		private class NullDecryptionCallback : IDecryptionCallback
 		{
-
 			public void HandlePlaintext(byte[] plaintext) { }
 		}
 	}

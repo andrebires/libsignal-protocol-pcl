@@ -19,7 +19,6 @@ namespace Libsignal.Ecc
 {
     public class EcKeyPair
     {
-
         private readonly IEcPublicKey _publicKey;
         private readonly IEcPrivateKey _privateKey;
 

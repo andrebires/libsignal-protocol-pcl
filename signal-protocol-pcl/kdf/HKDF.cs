@@ -23,7 +23,6 @@ namespace Libsignal.Kdf
 {
     public abstract class Hkdf
     {
-
         private static readonly int HashOutputSize = 32;
 
         public static Hkdf CreateFor(uint messageVersion)
@@ -98,6 +97,5 @@ namespace Libsignal.Kdf
         }
 
         protected abstract int GetIterationStartOffset();
-
     }
 }

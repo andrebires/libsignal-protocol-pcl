@@ -20,6 +20,5 @@ namespace Libsignal.Util
     public class Medium
     {
         public static uint MaxValue = 0xFFFFFF;
-
     }
 }

@@ -24,7 +24,6 @@ namespace Libsignal.State.Impl
 	/// </summary>
 	public class InMemoryIdentityKeyStore : IDentityKeyStore
 	{
-
 		private readonly IDictionary<SignalProtocolAddress, IdentityKey> _trustedKeys = new Dictionary<SignalProtocolAddress, IdentityKey>();
 
 		private readonly IdentityKeyPair _identityKeyPair;
@@ -43,7 +42,6 @@ namespace Libsignal.State.Impl
 		{
 			return _identityKeyPair;
 		}
-
 
 		public uint GetLocalRegistrationId()
 		{

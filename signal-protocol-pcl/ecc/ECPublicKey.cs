@@ -21,7 +21,6 @@ namespace Libsignal.Ecc
 {
     public interface IEcPublicKey : IComparable
     {
-
         //int KEY_SIZE = 33;
 
         byte[] Serialize();

@@ -31,7 +31,6 @@ namespace Libsignal.Groups.ratchet
     */
     public class SenderChainKey
     {
-
         private static readonly byte[] MessageKeySeed = { 0x01 };
         private static readonly byte[] ChainKeySeed = { 0x02 };
 
@@ -74,6 +73,5 @@ namespace Libsignal.Groups.ratchet
                 throw new AssertionError(e);
             }*/
         }
-
     }
 }

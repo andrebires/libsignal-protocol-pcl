@@ -23,7 +23,6 @@ namespace Libsignal.Ratchet
 {
     public class AliceSignalProtocolParameters
     {
-
         private readonly IdentityKeyPair _ourIdentityKey;
         private readonly EcKeyPair _ourBaseKey;
 

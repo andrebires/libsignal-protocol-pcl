@@ -40,7 +40,6 @@ namespace Libsignal.Groups
 
     public class GroupSessionBuilder
     {
-
         private readonly ISenderKeyStore _senderKeyStore;
 
         public GroupSessionBuilder(ISenderKeyStore senderKeyStore)
@@ -96,7 +95,6 @@ namespace Libsignal.Groups
                                                             state.GetSenderChainKey().GetIteration(),
                                                             state.GetSenderChainKey().GetSeed(),
                                                             state.GetSigningKeyPublic());
-
                 }
                 catch (Exception e) when (e is InvalidKeyIdException || e is InvalidKeyException)
                 {
