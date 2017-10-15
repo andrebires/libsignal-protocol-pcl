@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\signal-protocol-pcl\signal-protocol-pcl.csproj" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <ProjectReference Include="..\signal-protocol-pcl\Libsignal.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "signal-protocol-pcl", "signal-protocol-pcl\signal-protocol-pcl.csproj", "{28969CF5-0CEC-4B94-B5CC-BDF648A66E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libsignal", "signal-protocol-pcl\Libsignal.csproj", "{28969CF5-0CEC-4B94-B5CC-BDF648A66E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "signal-protocol-tests", "signal-protocol-tests\signal-protocol-tests.csproj", "{3B01684C-A5C1-4165-A384-FB9D89D10F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libsignal.Tests", "signal-protocol-tests\Libsignal.Tests.csproj", "{3B01684C-A5C1-4165-A384-FB9D89D10F16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34DECBDA-DD40-42BE-8B54-91BBF58BCD88}
 	EndGlobalSection
 EndGlobal
