@@ -19,7 +19,7 @@ using System;
 
 namespace Libsignal.Ecc.Impl
 {
-	class Curve25519NativeProvider : ICurve25519Provider
+    internal class Curve25519NativeProvider : ICurve25519Provider
 	{
 		//private curve25519.Curve25519Native native = new curve25519.Curve25519Native();
 

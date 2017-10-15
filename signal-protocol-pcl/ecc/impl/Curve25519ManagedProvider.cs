@@ -17,7 +17,7 @@
 
 namespace Libsignal.Ecc.Impl
 {
-    class Curve25519ManagedProvider : ICurve25519Provider
+    internal class Curve25519ManagedProvider : ICurve25519Provider
     {
         private readonly org.whispersystems.curve25519.Curve25519 _curve;
         /// <summary>
