@@ -17,9 +17,9 @@
 
 using System.Collections.Generic;
 
-namespace libsignal.state
+namespace Libsignal.State
 {
-    public interface SignedPreKeyStore
+    public interface ISignedPreKeyStore
     {
 
 

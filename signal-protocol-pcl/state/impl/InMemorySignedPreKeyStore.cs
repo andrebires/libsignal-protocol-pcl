@@ -18,25 +18,25 @@
 using System;
 using System.Collections.Generic;
 
-namespace libsignal.state.impl
+namespace Libsignal.State.Impl
 {
-    public class InMemorySignedPreKeyStore : SignedPreKeyStore
+    public class InMemorySignedPreKeyStore : ISignedPreKeyStore
 	{
 
-		private readonly IDictionary<uint, byte[]> store = new Dictionary<uint, byte[]>();
+		private readonly IDictionary<uint, byte[]> _store = new Dictionary<uint, byte[]>();
 
 
 		public SignedPreKeyRecord LoadSignedPreKey(uint signedPreKeyId)
 		{
 			try
 			{
-				if (!store.ContainsKey(signedPreKeyId))
+				if (!_store.ContainsKey(signedPreKeyId))
 				{
 					throw new InvalidKeyIdException("No such signedprekeyrecord! " + signedPreKeyId);
 				}
 
 				byte[] record;
-				store.TryGetValue(signedPreKeyId, out record);  // get()
+				_store.TryGetValue(signedPreKeyId, out record);  // get()
 
 				return new SignedPreKeyRecord(record);
 			}
@@ -53,7 +53,7 @@ namespace libsignal.state.impl
 			{
 				List<SignedPreKeyRecord> results = new List<SignedPreKeyRecord>();
 
-				foreach (byte[] serialized in store.Values) //values()
+				foreach (byte[] serialized in _store.Values) //values()
 				{
 					results.Add(new SignedPreKeyRecord(serialized));
 				}
@@ -69,19 +69,19 @@ namespace libsignal.state.impl
 
 		public void StoreSignedPreKey(uint signedPreKeyId, SignedPreKeyRecord record)
 		{
-			store[signedPreKeyId] = record.serialize();
+			_store[signedPreKeyId] = record.Serialize();
 		}
 
 
 		public bool ContainsSignedPreKey(uint signedPreKeyId)
 		{
-			return store.ContainsKey(signedPreKeyId);
+			return _store.ContainsKey(signedPreKeyId);
 		}
 
 
 		public void RemoveSignedPreKey(uint signedPreKeyId)
 		{
-			store.Remove(signedPreKeyId);
+			_store.Remove(signedPreKeyId);
 		}
 	}
 }

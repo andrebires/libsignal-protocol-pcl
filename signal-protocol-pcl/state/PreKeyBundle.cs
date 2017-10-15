@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
+using Libsignal.Ecc;
 
-namespace libsignal.state
+namespace Libsignal.State
 {
     /**
  * A class that contains a remote PreKey and collection
@@ -28,95 +28,95 @@ namespace libsignal.state
     public class PreKeyBundle
     {
 
-        private uint registrationId;
+        private uint _registrationId;
 
-        private uint deviceId;
+        private uint _deviceId;
 
-        private uint preKeyId;
-        private ECPublicKey preKeyPublic;
+        private uint _preKeyId;
+        private IEcPublicKey _preKeyPublic;
 
-        private uint signedPreKeyId;
-        private ECPublicKey signedPreKeyPublic;
-        private byte[] signedPreKeySignature;
+        private uint _signedPreKeyId;
+        private IEcPublicKey _signedPreKeyPublic;
+        private byte[] _signedPreKeySignature;
 
-        private IdentityKey identityKey;
+        private IdentityKey _identityKey;
 
-        public PreKeyBundle(uint registrationId, uint deviceId, uint preKeyId, ECPublicKey preKeyPublic,
-                            uint signedPreKeyId, ECPublicKey signedPreKeyPublic, byte[] signedPreKeySignature,
+        public PreKeyBundle(uint registrationId, uint deviceId, uint preKeyId, IEcPublicKey preKeyPublic,
+                            uint signedPreKeyId, IEcPublicKey signedPreKeyPublic, byte[] signedPreKeySignature,
                             IdentityKey identityKey)
         {
-            this.registrationId = registrationId;
-            this.deviceId = deviceId;
-            this.preKeyId = preKeyId;
-            this.preKeyPublic = preKeyPublic;
-            this.signedPreKeyId = signedPreKeyId;
-            this.signedPreKeyPublic = signedPreKeyPublic;
-            this.signedPreKeySignature = signedPreKeySignature;
-            this.identityKey = identityKey;
+            _registrationId = registrationId;
+            _deviceId = deviceId;
+            _preKeyId = preKeyId;
+            _preKeyPublic = preKeyPublic;
+            _signedPreKeyId = signedPreKeyId;
+            _signedPreKeyPublic = signedPreKeyPublic;
+            _signedPreKeySignature = signedPreKeySignature;
+            _identityKey = identityKey;
         }
 
         /**
          * @return the device ID this PreKey belongs to.
          */
-        public uint getDeviceId()
+        public uint GetDeviceId()
         {
-            return deviceId;
+            return _deviceId;
         }
 
         /**
          * @return the unique key ID for this PreKey.
          */
-        public uint getPreKeyId()
+        public uint GetPreKeyId()
         {
-            return preKeyId;
+            return _preKeyId;
         }
 
         /**
          * @return the public key for this PreKey.
          */
-        public ECPublicKey getPreKey()
+        public IEcPublicKey GetPreKey()
         {
-            return preKeyPublic;
+            return _preKeyPublic;
         }
 
         /**
          * @return the unique key ID for this signed prekey.
          */
-        public uint getSignedPreKeyId()
+        public uint GetSignedPreKeyId()
         {
-            return signedPreKeyId;
+            return _signedPreKeyId;
         }
 
         /**
          * @return the signed prekey for this PreKeyBundle.
          */
-        public ECPublicKey getSignedPreKey()
+        public IEcPublicKey GetSignedPreKey()
         {
-            return signedPreKeyPublic;
+            return _signedPreKeyPublic;
         }
 
         /**
          * @return the signature over the signed  prekey.
          */
-        public byte[] getSignedPreKeySignature()
+        public byte[] GetSignedPreKeySignature()
         {
-            return signedPreKeySignature;
+            return _signedPreKeySignature;
         }
 
         /**
          * @return the {@link org.whispersystems.libsignal.IdentityKey} of this PreKeys owner.
          */
-        public IdentityKey getIdentityKey()
+        public IdentityKey GetIdentityKey()
         {
-            return identityKey;
+            return _identityKey;
         }
 
         /**
          * @return the registration ID associated with this PreKey.
          */
-        public uint getRegistrationId()
+        public uint GetRegistrationId()
         {
-            return registrationId;
+            return _registrationId;
         }
     }
 }

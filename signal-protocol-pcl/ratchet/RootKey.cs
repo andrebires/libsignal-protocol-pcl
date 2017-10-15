@@ -15,38 +15,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
-using libsignal.kdf;
-using libsignal.util;
 using System.Text;
+using Libsignal.Ecc;
+using Libsignal.Kdf;
+using Libsignal.Util;
 
-namespace libsignal.ratchet
+namespace Libsignal.Ratchet
 {
     public class RootKey
     {
 
-        private readonly HKDF kdf;
-        private readonly byte[] key;
+        private readonly Hkdf _kdf;
+        private readonly byte[] _key;
 
-        public RootKey(HKDF kdf, byte[] key)
+        public RootKey(Hkdf kdf, byte[] key)
         {
-            this.kdf = kdf;
-            this.key = key;
+            _kdf = kdf;
+            _key = key;
         }
 
-        public byte[] getKeyBytes()
+        public byte[] GetKeyBytes()
         {
-            return key;
+            return _key;
         }
 
-        public Pair<RootKey, ChainKey> createChain(ECPublicKey theirRatchetKey, ECKeyPair ourRatchetKey)
+        public Pair<RootKey, ChainKey> CreateChain(IEcPublicKey theirRatchetKey, EcKeyPair ourRatchetKey)
         {
-            byte[] sharedSecret = Curve.calculateAgreement(theirRatchetKey, ourRatchetKey.getPrivateKey());
-            byte[] derivedSecretBytes = kdf.deriveSecrets(sharedSecret, key, Encoding.UTF8.GetBytes("WhisperRatchet"), DerivedRootSecrets.SIZE);
+            byte[] sharedSecret = Curve.CalculateAgreement(theirRatchetKey, ourRatchetKey.GetPrivateKey());
+            byte[] derivedSecretBytes = _kdf.DeriveSecrets(sharedSecret, _key, Encoding.UTF8.GetBytes("WhisperRatchet"), DerivedRootSecrets.Size);
             DerivedRootSecrets derivedSecrets = new DerivedRootSecrets(derivedSecretBytes);
 
-            RootKey newRootKey = new RootKey(kdf, derivedSecrets.getRootKey());
-            ChainKey newChainKey = new ChainKey(kdf, derivedSecrets.getChainKey(), 0);
+            RootKey newRootKey = new RootKey(_kdf, derivedSecrets.GetRootKey());
+            ChainKey newChainKey = new ChainKey(_kdf, derivedSecrets.GetChainKey(), 0);
 
             return new Pair<RootKey, ChainKey>(newRootKey, newChainKey);
         }

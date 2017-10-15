@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.kdf
+namespace Libsignal.Kdf
 {
-    public class HKDFv3 : HKDF
+    public class HkdFv3 : Hkdf
     {
-        protected override int getIterationStartOffset()
+        protected override int GetIterationStartOffset()
         {
             return 1;
         }

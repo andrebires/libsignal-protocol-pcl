@@ -15,53 +15,46 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using libsignal;
-using libsignal.util;
-using PCLCrypto;
-using static PCLCrypto.WinRTCrypto;
+using Libsignal.Util;
 
-namespace org.whispersystems.libsignal.fingerprint
+namespace Libsignal.Fingerprint
 {
     public class DisplayableFingerprint
     {
-        private readonly string localFingerprintNumbers;
-        private readonly string remoteFingerprintNumbers;
+        private readonly string _localFingerprintNumbers;
+        private readonly string _remoteFingerprintNumbers;
 
         internal DisplayableFingerprint(byte[] localFingerprint, byte[] remoteFingerprint)
         {
-            this.localFingerprintNumbers = getDisplayStringFor(localFingerprint);
-            this.remoteFingerprintNumbers = getDisplayStringFor(remoteFingerprint);
+            _localFingerprintNumbers = GetDisplayStringFor(localFingerprint);
+            _remoteFingerprintNumbers = GetDisplayStringFor(remoteFingerprint);
         }
 
-        public string getDisplayText()
+        public string GetDisplayText()
         {
-            if (localFingerprintNumbers.CompareTo(remoteFingerprintNumbers) <= 0)
+            if (_localFingerprintNumbers.CompareTo(_remoteFingerprintNumbers) <= 0)
             {
-                return localFingerprintNumbers + remoteFingerprintNumbers;
+                return _localFingerprintNumbers + _remoteFingerprintNumbers;
             }
             else
             {
-                return remoteFingerprintNumbers + localFingerprintNumbers;
+                return _remoteFingerprintNumbers + _localFingerprintNumbers;
             }
         }
 
-        private string getDisplayStringFor(byte[] fingerprint)
+        private string GetDisplayStringFor(byte[] fingerprint)
         {
-            return getEncodedChunk(fingerprint, 0) +
-                getEncodedChunk(fingerprint, 5) +
-                getEncodedChunk(fingerprint, 10) +
-                getEncodedChunk(fingerprint, 15) +
-                getEncodedChunk(fingerprint, 20) +
-                getEncodedChunk(fingerprint, 25);
+            return GetEncodedChunk(fingerprint, 0) +
+                GetEncodedChunk(fingerprint, 5) +
+                GetEncodedChunk(fingerprint, 10) +
+                GetEncodedChunk(fingerprint, 15) +
+                GetEncodedChunk(fingerprint, 20) +
+                GetEncodedChunk(fingerprint, 25);
         }
 
-        private string getEncodedChunk(byte[] hash, int offset)
+        private string GetEncodedChunk(byte[] hash, int offset)
         {
-            long chunk = ByteUtil.byteArray5ToLong(hash, offset) % 100000;
+            long chunk = ByteUtil.ByteArray5ToLong(hash, offset) % 100000;
             return string.Format("{0:d5}", chunk);
         }
     }

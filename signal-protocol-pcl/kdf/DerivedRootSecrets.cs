@@ -15,32 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.util;
+using Libsignal.Util;
 
-namespace libsignal.kdf
+namespace Libsignal.Kdf
 {
     public class DerivedRootSecrets
     {
-        public static readonly int SIZE = 64;
+        public static readonly int Size = 64;
 
-        private readonly byte[] rootKey;
-        private readonly byte[] chainKey;
+        private readonly byte[] _rootKey;
+        private readonly byte[] _chainKey;
 
         public DerivedRootSecrets(byte[] okm)
         {
-            byte[][] keys = ByteUtil.split(okm, 32, 32);
-            this.rootKey = keys[0];
-            this.chainKey = keys[1];
+            byte[][] keys = ByteUtil.Split(okm, 32, 32);
+            _rootKey = keys[0];
+            _chainKey = keys[1];
         }
 
-        public byte[] getRootKey()
+        public byte[] GetRootKey()
         {
-            return rootKey;
+            return _rootKey;
         }
 
-        public byte[] getChainKey()
+        public byte[] GetChainKey()
         {
-            return chainKey;
+            return _chainKey;
         }
     }
 }

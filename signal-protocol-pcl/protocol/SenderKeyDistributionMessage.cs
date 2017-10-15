@@ -15,55 +15,55 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Google.ProtocolBuffers;
-using libsignal.ecc;
-using libsignal.util;
 using System;
+using Google.ProtocolBuffers;
+using Libsignal.Ecc;
+using Libsignal.Util;
 
-namespace libsignal.protocol
+namespace Libsignal.Protocol
 {
     public partial class SenderKeyDistributionMessage : CiphertextMessage
     {
 
-        private readonly uint id;
-        private readonly uint iteration;
-        private readonly byte[] chainKey;
-        private readonly ECPublicKey signatureKey;
-        private readonly byte[] serialized;
+        private readonly uint _id;
+        private readonly uint _iteration;
+        private readonly byte[] _chainKey;
+        private readonly IEcPublicKey _signatureKey;
+        private readonly byte[] _serialized;
 
-        public SenderKeyDistributionMessage(uint id, uint iteration, byte[] chainKey, ECPublicKey signatureKey)
+        public SenderKeyDistributionMessage(uint id, uint iteration, byte[] chainKey, IEcPublicKey signatureKey)
         {
-            byte[] version = { ByteUtil.intsToByteHighAndLow((int)CURRENT_VERSION, (int)CURRENT_VERSION) };
+            byte[] version = { ByteUtil.IntsToByteHighAndLow((int)CurrentVersion, (int)CurrentVersion) };
             byte[] protobuf = WhisperProtos.SenderKeyDistributionMessage.CreateBuilder()
                                                                         .SetId(id)
                                                                         .SetIteration(iteration)
                                                                         .SetChainKey(ByteString.CopyFrom(chainKey))
-                                                                        .SetSigningKey(ByteString.CopyFrom(signatureKey.serialize()))
+                                                                        .SetSigningKey(ByteString.CopyFrom(signatureKey.Serialize()))
                                                                         .Build().ToByteArray();
 
-            this.id = id;
-            this.iteration = iteration;
-            this.chainKey = chainKey;
-            this.signatureKey = signatureKey;
-            this.serialized = ByteUtil.combine(version, protobuf);
+            _id = id;
+            _iteration = iteration;
+            _chainKey = chainKey;
+            _signatureKey = signatureKey;
+            _serialized = ByteUtil.Combine(version, protobuf);
         }
 
         public SenderKeyDistributionMessage(byte[] serialized)
         {
             try
             {
-                byte[][] messageParts = ByteUtil.split(serialized, 1, serialized.Length - 1);
+                byte[][] messageParts = ByteUtil.Split(serialized, 1, serialized.Length - 1);
                 byte version = messageParts[0][0];
                 byte[] message = messageParts[1];
 
-                if (ByteUtil.highBitsToInt(version) < CiphertextMessage.CURRENT_VERSION)
+                if (ByteUtil.HighBitsToInt(version) < CurrentVersion)
                 {
-                    throw new LegacyMessageException("Legacy message: " + ByteUtil.highBitsToInt(version));
+                    throw new LegacyMessageException("Legacy message: " + ByteUtil.HighBitsToInt(version));
                 }
 
-                if (ByteUtil.highBitsToInt(version) > CURRENT_VERSION)
+                if (ByteUtil.HighBitsToInt(version) > CurrentVersion)
                 {
-                    throw new InvalidMessageException("Unknown version: " + ByteUtil.highBitsToInt(version));
+                    throw new InvalidMessageException("Unknown version: " + ByteUtil.HighBitsToInt(version));
                 }
 
                 WhisperProtos.SenderKeyDistributionMessage distributionMessage = WhisperProtos.SenderKeyDistributionMessage.ParseFrom(message);
@@ -76,11 +76,11 @@ namespace libsignal.protocol
                     throw new InvalidMessageException("Incomplete message.");
                 }
 
-                this.serialized = serialized;
-                this.id = distributionMessage.Id;
-                this.iteration = distributionMessage.Iteration;
-                this.chainKey = distributionMessage.ChainKey.ToByteArray();
-                this.signatureKey = Curve.decodePoint(distributionMessage.SigningKey.ToByteArray(), 0);
+                _serialized = serialized;
+                _id = distributionMessage.Id;
+                _iteration = distributionMessage.Iteration;
+                _chainKey = distributionMessage.ChainKey.ToByteArray();
+                _signatureKey = Curve.DecodePoint(distributionMessage.SigningKey.ToByteArray(), 0);
             }
             catch (Exception e)
             {
@@ -89,35 +89,35 @@ namespace libsignal.protocol
             }
         }
 
-        public override byte[] serialize()
+        public override byte[] Serialize()
         {
-            return serialized;
+            return _serialized;
         }
 
 
-        public override uint getType()
+        public override uint GetMessageType()
         {
-            return SENDERKEY_DISTRIBUTION_TYPE;
+            return SenderkeyDistributionType;
         }
 
-        public uint getIteration()
+        public uint GetIteration()
         {
-            return iteration;
+            return _iteration;
         }
 
-        public byte[] getChainKey()
+        public byte[] GetChainKey()
         {
-            return chainKey;
+            return _chainKey;
         }
 
-        public ECPublicKey getSignatureKey()
+        public IEcPublicKey GetSignatureKey()
         {
-            return signatureKey;
+            return _signatureKey;
         }
 
-        public uint getId()
+        public uint GetId()
         {
-            return id;
+            return _id;
         }
     }
 }

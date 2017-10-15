@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>Libsignal.Tests</AssemblyName>
+
+    <RootNamespace>Libsignal.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

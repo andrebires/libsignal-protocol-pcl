@@ -16,10 +16,10 @@
  */
 
 using Google.ProtocolBuffers;
-using libsignal.ecc;
-using static libsignal.state.StorageProtos;
+using Libsignal.Ecc;
+using Libsignal.State;
 
-namespace libsignal
+namespace Libsignal
 {
     /**
      * Holder for public and private identity key pair.
@@ -29,22 +29,22 @@ namespace libsignal
     public class IdentityKeyPair
     {
 
-        private readonly IdentityKey publicKey;
-        private readonly ECPrivateKey privateKey;
+        private readonly IdentityKey _publicKey;
+        private readonly IEcPrivateKey _privateKey;
 
-        public IdentityKeyPair(IdentityKey publicKey, ECPrivateKey privateKey)
+        public IdentityKeyPair(IdentityKey publicKey, IEcPrivateKey privateKey)
         {
-            this.publicKey = publicKey;
-            this.privateKey = privateKey;
+            _publicKey = publicKey;
+            _privateKey = privateKey;
         }
 
         public IdentityKeyPair(byte[] serialized)
         {
             try
             {
-                IdentityKeyPairStructure structure = IdentityKeyPairStructure.ParseFrom(serialized);
-                this.publicKey = new IdentityKey(structure.PublicKey.ToByteArray(), 0);
-                this.privateKey = Curve.decodePrivatePoint(structure.PrivateKey.ToByteArray());
+                StorageProtos.IdentityKeyPairStructure structure = StorageProtos.IdentityKeyPairStructure.ParseFrom(serialized);
+                _publicKey = new IdentityKey(structure.PublicKey.ToByteArray(), 0);
+                _privateKey = Curve.DecodePrivatePoint(structure.PrivateKey.ToByteArray());
             }
             catch (InvalidProtocolBufferException e)
             {
@@ -52,21 +52,21 @@ namespace libsignal
             }
         }
 
-        public IdentityKey getPublicKey()
+        public IdentityKey GetPublicKey()
         {
-            return publicKey;
+            return _publicKey;
         }
 
-        public ECPrivateKey getPrivateKey()
+        public IEcPrivateKey GetPrivateKey()
         {
-            return privateKey;
+            return _privateKey;
         }
 
-        public byte[] serialize()
+        public byte[] Serialize()
         {
-            return IdentityKeyPairStructure.CreateBuilder()
-                                           .SetPublicKey(ByteString.CopyFrom(publicKey.serialize()))
-                                           .SetPrivateKey(ByteString.CopyFrom(privateKey.serialize()))
+            return StorageProtos.IdentityKeyPairStructure.CreateBuilder()
+                                           .SetPublicKey(ByteString.CopyFrom(_publicKey.Serialize()))
+                                           .SetPrivateKey(ByteString.CopyFrom(_privateKey.Serialize()))
                                            .Build().ToByteArray();
         }
     }

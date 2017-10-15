@@ -15,35 +15,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
- namespace org.whispersystems.libsignal.fingerprint
+ namespace Libsignal.Fingerprint
 {
     public class Fingerprint
     {
 
-        private readonly DisplayableFingerprint displayableFingerprint;
-        private readonly ScannableFingerprint scannableFingerprint;
+        private readonly DisplayableFingerprint _displayableFingerprint;
+        private readonly ScannableFingerprint _scannableFingerprint;
 
         public Fingerprint(DisplayableFingerprint displayableFingerprint,
                            ScannableFingerprint scannableFingerprint)
         {
-            this.displayableFingerprint = displayableFingerprint;
-            this.scannableFingerprint = scannableFingerprint;
+            _displayableFingerprint = displayableFingerprint;
+            _scannableFingerprint = scannableFingerprint;
         }
 
         /**
          * @return A text fingerprint that can be displayed and compared remotely.
          */
-        public DisplayableFingerprint getDisplayableFingerprint()
+        public DisplayableFingerprint GetDisplayableFingerprint()
         {
-            return displayableFingerprint;
+            return _displayableFingerprint;
         }
 
         /**
          * @return A scannable fingerprint that can be scanned anc compared locally.
          */
-        public ScannableFingerprint getScannableFingerprint()
+        public ScannableFingerprint GetScannableFingerprint()
         {
-            return scannableFingerprint;
+            return _scannableFingerprint;
         }
     }
 }

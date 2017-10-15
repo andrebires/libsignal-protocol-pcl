@@ -14,30 +14,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
- using System;
 
-namespace org.whispersystems.libsignal.fingerprint
+using System;
+
+namespace Libsignal.Fingerprint
 {
     public class FingerprintVersionMismatchException : Exception
     {
-        private readonly int theirVersion;
-        private readonly int ourVersion;
+        private readonly int _theirVersion;
+        private readonly int _ourVersion;
 
         public FingerprintVersionMismatchException(int theirVersion, int ourVersion) : base()
         {
-            this.theirVersion = theirVersion;
-            this.ourVersion = ourVersion;
+            _theirVersion = theirVersion;
+            _ourVersion = ourVersion;
         }
 
-        public int getTheirVersion()
+        public int GetTheirVersion()
         {
-            return theirVersion;
+            return _theirVersion;
         }
 
-        public int getOurVersion()
+        public int GetOurVersion()
         {
-            return ourVersion;
+            return _ourVersion;
         }
     }
 }

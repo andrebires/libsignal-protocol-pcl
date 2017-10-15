@@ -18,135 +18,135 @@
 using System;
 using System.Collections.Generic;
 
-namespace libsignal.state.impl
+namespace Libsignal.State.Impl
 {
-    public class InMemorySignalProtocolStore : SignalProtocolStore
+    public class InMemorySignalProtocolStore : ISignalProtocolStore
     {
 
-        private readonly InMemoryPreKeyStore preKeyStore = new InMemoryPreKeyStore();
-        private readonly InMemorySessionStore sessionStore = new InMemorySessionStore();
-        private readonly InMemorySignedPreKeyStore signedPreKeyStore = new InMemorySignedPreKeyStore();
+        private readonly InMemoryPreKeyStore _preKeyStore = new InMemoryPreKeyStore();
+        private readonly InMemorySessionStore _sessionStore = new InMemorySessionStore();
+        private readonly InMemorySignedPreKeyStore _signedPreKeyStore = new InMemorySignedPreKeyStore();
 
-        private readonly InMemoryIdentityKeyStore identityKeyStore;
+        private readonly InMemoryIdentityKeyStore _identityKeyStore;
 
         public InMemorySignalProtocolStore(IdentityKeyPair identityKeyPair, uint registrationId)
         {
-            this.identityKeyStore = new InMemoryIdentityKeyStore(identityKeyPair, registrationId);
+            _identityKeyStore = new InMemoryIdentityKeyStore(identityKeyPair, registrationId);
         }
 
 
         public IdentityKeyPair GetIdentityKeyPair()
         {
-            return identityKeyStore.GetIdentityKeyPair();
+            return _identityKeyStore.GetIdentityKeyPair();
         }
 
 
         public uint GetLocalRegistrationId()
         {
-            return identityKeyStore.GetLocalRegistrationId();
+            return _identityKeyStore.GetLocalRegistrationId();
         }
 
 
         public bool SaveIdentity(SignalProtocolAddress address, IdentityKey identityKey)
         {
-            identityKeyStore.SaveIdentity(address, identityKey);
+            _identityKeyStore.SaveIdentity(address, identityKey);
             return true;
         }
 
 
         public bool IsTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey)
         {
-            return identityKeyStore.IsTrustedIdentity(address, identityKey);
+            return _identityKeyStore.IsTrustedIdentity(address, identityKey);
         }
 
 
         public PreKeyRecord LoadPreKey(uint preKeyId)
         {
-            return preKeyStore.LoadPreKey(preKeyId);
+            return _preKeyStore.LoadPreKey(preKeyId);
         }
 
 
         public void StorePreKey(uint preKeyId, PreKeyRecord record)
         {
-            preKeyStore.StorePreKey(preKeyId, record);
+            _preKeyStore.StorePreKey(preKeyId, record);
         }
 
 
         public bool ContainsPreKey(uint preKeyId)
         {
-            return preKeyStore.ContainsPreKey(preKeyId);
+            return _preKeyStore.ContainsPreKey(preKeyId);
         }
 
 
         public void RemovePreKey(uint preKeyId)
         {
-            preKeyStore.RemovePreKey(preKeyId);
+            _preKeyStore.RemovePreKey(preKeyId);
         }
 
 
         public SessionRecord LoadSession(SignalProtocolAddress address)
         {
-            return sessionStore.LoadSession(address);
+            return _sessionStore.LoadSession(address);
         }
 
 
         public List<uint> GetSubDeviceSessions(String name)
         {
-            return sessionStore.GetSubDeviceSessions(name);
+            return _sessionStore.GetSubDeviceSessions(name);
         }
 
 
         public void StoreSession(SignalProtocolAddress address, SessionRecord record)
         {
-            sessionStore.StoreSession(address, record);
+            _sessionStore.StoreSession(address, record);
         }
 
 
         public bool ContainsSession(SignalProtocolAddress address)
         {
-            return sessionStore.ContainsSession(address);
+            return _sessionStore.ContainsSession(address);
         }
 
 
         public void DeleteSession(SignalProtocolAddress address)
         {
-            sessionStore.DeleteSession(address);
+            _sessionStore.DeleteSession(address);
         }
 
 
         public void DeleteAllSessions(String name)
         {
-            sessionStore.DeleteAllSessions(name);
+            _sessionStore.DeleteAllSessions(name);
         }
 
 
         public SignedPreKeyRecord LoadSignedPreKey(uint signedPreKeyId)
         {
-            return signedPreKeyStore.LoadSignedPreKey(signedPreKeyId);
+            return _signedPreKeyStore.LoadSignedPreKey(signedPreKeyId);
         }
 
 
         public List<SignedPreKeyRecord> LoadSignedPreKeys()
         {
-            return signedPreKeyStore.LoadSignedPreKeys();
+            return _signedPreKeyStore.LoadSignedPreKeys();
         }
 
 
         public void StoreSignedPreKey(uint signedPreKeyId, SignedPreKeyRecord record)
         {
-            signedPreKeyStore.StoreSignedPreKey(signedPreKeyId, record);
+            _signedPreKeyStore.StoreSignedPreKey(signedPreKeyId, record);
         }
 
 
         public bool ContainsSignedPreKey(uint signedPreKeyId)
         {
-            return signedPreKeyStore.ContainsSignedPreKey(signedPreKeyId);
+            return _signedPreKeyStore.ContainsSignedPreKey(signedPreKeyId);
         }
 
 
         public void RemoveSignedPreKey(uint signedPreKeyId)
         {
-            signedPreKeyStore.RemoveSignedPreKey(signedPreKeyId);
+            _signedPreKeyStore.RemoveSignedPreKey(signedPreKeyId);
         }
     }
 }

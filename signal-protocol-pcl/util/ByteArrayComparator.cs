@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.util
+namespace Libsignal.Util
 {
     public abstract class ByteArrayComparator
     {
-        protected int compare(byte[] left, byte[] right)
+        protected int Compare(byte[] left, byte[] right)
         {
             for (int i = 0, j = 0; i < left.Length && j < right.Length; i++, j++)
             {

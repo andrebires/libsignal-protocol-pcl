@@ -15,39 +15,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Google.ProtocolBuffers;
-using libsignal.ecc;
-using libsignal.util;
-using Strilanc.Value;
 using System;
+using Google.ProtocolBuffers;
+using Libsignal.Ecc;
+using Libsignal.Util;
+using Strilanc.Value;
 
-namespace libsignal.protocol
+namespace Libsignal.Protocol
 {
     public partial class PreKeySignalMessage : CiphertextMessage
     {
 
-        private readonly uint version;
-        private readonly uint registrationId;
-        private readonly May<uint> preKeyId;
-        private readonly uint signedPreKeyId;
-        private readonly ECPublicKey baseKey;
-        private readonly IdentityKey identityKey;
-        private readonly SignalMessage message;
-        private readonly byte[] serialized;
+        private readonly uint _version;
+        private readonly uint _registrationId;
+        private readonly May<uint> _preKeyId;
+        private readonly uint _signedPreKeyId;
+        private readonly IEcPublicKey _baseKey;
+        private readonly IdentityKey _identityKey;
+        private readonly SignalMessage _message;
+        private readonly byte[] _serialized;
 
         public PreKeySignalMessage(byte[] serialized)
         {
             try
             {
-                this.version = (uint)ByteUtil.highBitsToInt(serialized[0]);
+                _version = (uint)ByteUtil.HighBitsToInt(serialized[0]);
 
-                if (this.version > CiphertextMessage.CURRENT_VERSION)
+                if (_version > CurrentVersion)
                 {
-                    throw new InvalidVersionException("Unknown version: " + this.version);
+                    throw new InvalidVersionException("Unknown version: " + _version);
                 }
 
-      if (this.version < CiphertextMessage.CURRENT_VERSION) {
-        throw new LegacyMessageException("Legacy version: " + this.version);
+      if (_version < CurrentVersion) {
+        throw new LegacyMessageException("Legacy version: " + _version);
       }
                 WhisperProtos.PreKeySignalMessage preKeySignalMessage
                     = WhisperProtos.PreKeySignalMessage.ParseFrom(ByteString.CopyFrom(serialized, 1,
@@ -62,13 +62,13 @@ namespace libsignal.protocol
                     throw new InvalidMessageException("Incomplete message.");
                 }
 
-                this.serialized = serialized;
-                this.registrationId = preKeySignalMessage.RegistrationId;
-                this.preKeyId = preKeySignalMessage.HasPreKeyId ? new May<uint>(preKeySignalMessage.PreKeyId) : May<uint>.NoValue;
-                this.signedPreKeyId = preKeySignalMessage.HasSignedPreKeyId ? preKeySignalMessage.SignedPreKeyId : uint.MaxValue; // -1
-                this.baseKey = Curve.decodePoint(preKeySignalMessage.BaseKey.ToByteArray(), 0);
-                this.identityKey = new IdentityKey(Curve.decodePoint(preKeySignalMessage.IdentityKey.ToByteArray(), 0));
-                this.message = new SignalMessage(preKeySignalMessage.Message.ToByteArray());
+                _serialized = serialized;
+                _registrationId = preKeySignalMessage.RegistrationId;
+                _preKeyId = preKeySignalMessage.HasPreKeyId ? new May<uint>(preKeySignalMessage.PreKeyId) : May<uint>.NoValue;
+                _signedPreKeyId = preKeySignalMessage.HasSignedPreKeyId ? preKeySignalMessage.SignedPreKeyId : uint.MaxValue; // -1
+                _baseKey = Curve.DecodePoint(preKeySignalMessage.BaseKey.ToByteArray(), 0);
+                _identityKey = new IdentityKey(Curve.DecodePoint(preKeySignalMessage.IdentityKey.ToByteArray(), 0));
+                _message = new SignalMessage(preKeySignalMessage.Message.ToByteArray());
             }
             catch (Exception e)
             {
@@ -78,23 +78,23 @@ namespace libsignal.protocol
         }
 
         public PreKeySignalMessage(uint messageVersion, uint registrationId, May<uint> preKeyId,
-                                    uint signedPreKeyId, ECPublicKey baseKey, IdentityKey identityKey,
+                                    uint signedPreKeyId, IEcPublicKey baseKey, IdentityKey identityKey,
                                     SignalMessage message)
         {
-            this.version = messageVersion;
-            this.registrationId = registrationId;
-            this.preKeyId = preKeyId;
-            this.signedPreKeyId = signedPreKeyId;
-            this.baseKey = baseKey;
-            this.identityKey = identityKey;
-            this.message = message;
+            _version = messageVersion;
+            _registrationId = registrationId;
+            _preKeyId = preKeyId;
+            _signedPreKeyId = signedPreKeyId;
+            _baseKey = baseKey;
+            _identityKey = identityKey;
+            _message = message;
 
             WhisperProtos.PreKeySignalMessage.Builder builder =
                 WhisperProtos.PreKeySignalMessage.CreateBuilder()
                                                   .SetSignedPreKeyId(signedPreKeyId)
-                                                  .SetBaseKey(ByteString.CopyFrom(baseKey.serialize()))
-                                                  .SetIdentityKey(ByteString.CopyFrom(identityKey.serialize()))
-                                                  .SetMessage(ByteString.CopyFrom(message.serialize()))
+                                                  .SetBaseKey(ByteString.CopyFrom(baseKey.Serialize()))
+                                                  .SetIdentityKey(ByteString.CopyFrom(identityKey.Serialize()))
+                                                  .SetMessage(ByteString.CopyFrom(message.Serialize()))
                                                   .SetRegistrationId(registrationId);
 
             if (preKeyId.HasValue) // .isPresent()
@@ -102,57 +102,57 @@ namespace libsignal.protocol
                 builder.SetPreKeyId(preKeyId.ForceGetValue()); // get()
             }
 
-            byte[] versionBytes = { ByteUtil.intsToByteHighAndLow((int)this.version, (int)CURRENT_VERSION) };
+            byte[] versionBytes = { ByteUtil.IntsToByteHighAndLow((int)_version, (int)CurrentVersion) };
             byte[] messageBytes = builder.Build().ToByteArray();
 
-            this.serialized = ByteUtil.combine(versionBytes, messageBytes);
+            _serialized = ByteUtil.Combine(versionBytes, messageBytes);
         }
 
-        public uint getMessageVersion()
+        public uint GetMessageVersion()
         {
-            return version;
+            return _version;
         }
 
-        public IdentityKey getIdentityKey()
+        public IdentityKey GetIdentityKey()
         {
-            return identityKey;
+            return _identityKey;
         }
 
-        public uint getRegistrationId()
+        public uint GetRegistrationId()
         {
-            return registrationId;
+            return _registrationId;
         }
 
-        public May<uint> getPreKeyId()
+        public May<uint> GetPreKeyId()
         {
-            return preKeyId;
+            return _preKeyId;
         }
 
-        public uint getSignedPreKeyId()
+        public uint GetSignedPreKeyId()
         {
-            return signedPreKeyId;
+            return _signedPreKeyId;
         }
 
-        public ECPublicKey getBaseKey()
+        public IEcPublicKey GetBaseKey()
         {
-            return baseKey;
+            return _baseKey;
         }
 
-        public SignalMessage getSignalMessage()
+        public SignalMessage GetSignalMessage()
         {
-            return message;
-        }
-
-
-        public override byte[] serialize()
-        {
-            return serialized;
+            return _message;
         }
 
 
-        public override uint getType()
+        public override byte[] Serialize()
         {
-            return CiphertextMessage.PREKEY_TYPE;
+            return _serialized;
+        }
+
+
+        public override uint GetMessageType()
+        {
+            return PrekeyType;
         }
 
     }

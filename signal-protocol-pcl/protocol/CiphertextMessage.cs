@@ -15,26 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.protocol
+namespace Libsignal.Protocol
 {
     public abstract class CiphertextMessage
     {
 
-        public const uint UNSUPPORTED_VERSION = 1;
-        public const uint CURRENT_VERSION = 3;
+        public const uint UnsupportedVersion = 1;
+        public const uint CurrentVersion = 3;
 
-        public const uint WHISPER_TYPE = 2;
-        public const uint PREKEY_TYPE = 3;
-        public const uint SENDERKEY_TYPE = 4;
-        public const uint SENDERKEY_DISTRIBUTION_TYPE = 5;
+        public const uint WhisperType = 2;
+        public const uint PrekeyType = 3;
+        public const uint SenderkeyType = 4;
+        public const uint SenderkeyDistributionType = 5;
 
         /// <summary>
         /// This should be the worst case (worse than V2).  So not always accurate, but good enough for padding.
         /// </summary>
-        public const uint ENCRYPTED_MESSAGE_OVERHEAD = 53;
+        public const uint EncryptedMessageOverhead = 53;
 
-        public abstract byte[] serialize();
-        public abstract uint getType();
+        public abstract byte[] Serialize();
+        public abstract uint GetMessageType();
 
     }
 }

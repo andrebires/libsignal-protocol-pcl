@@ -17,15 +17,15 @@
 
 using System;
 
-namespace libsignal.ecc
+namespace Libsignal.Ecc
 {
-    public interface ECPublicKey : IComparable
+    public interface IEcPublicKey : IComparable
     {
 
         //int KEY_SIZE = 33;
 
-        byte[] serialize();
+        byte[] Serialize();
 
-        int getType();
+        int GetKeyType();
     }
 }

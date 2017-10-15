@@ -17,13 +17,13 @@
 
 using System.Collections.Generic;
 
-namespace libsignal.util
+namespace Libsignal.Util
 {
     public class IdentityKeyComparator : ByteArrayComparator, IComparer<IdentityKey>
     {
         public int Compare(IdentityKey first, IdentityKey second)
         {
-            return compare(first.getPublicKey().serialize(), second.getPublicKey().serialize());
+            return Compare(first.GetPublicKey().Serialize(), second.GetPublicKey().Serialize());
         }
     }
 }

@@ -15,52 +15,51 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 
-namespace libsignal.state.impl
+namespace Libsignal.State.Impl
 {
 	/// <summary>
 	/// In-memory / testing implementation of IdentityKeyStore
 	/// </summary>
-	public class InMemoryIdentityKeyStore : IdentityKeyStore
+	public class InMemoryIdentityKeyStore : IDentityKeyStore
 	{
 
-		private readonly IDictionary<SignalProtocolAddress, IdentityKey> trustedKeys = new Dictionary<SignalProtocolAddress, IdentityKey>();
+		private readonly IDictionary<SignalProtocolAddress, IdentityKey> _trustedKeys = new Dictionary<SignalProtocolAddress, IdentityKey>();
 
-		private readonly IdentityKeyPair identityKeyPair;
-		private readonly uint localRegistrationId;
+		private readonly IdentityKeyPair _identityKeyPair;
+		private readonly uint _localRegistrationId;
 
 		/// <summary>
 		/// .ctor
 		/// </summary>
 		public InMemoryIdentityKeyStore(IdentityKeyPair identityKeyPair, uint localRegistrationId)
 		{
-			this.identityKeyPair = identityKeyPair;
-			this.localRegistrationId = localRegistrationId;
+			_identityKeyPair = identityKeyPair;
+			_localRegistrationId = localRegistrationId;
 		}
 
 		public IdentityKeyPair GetIdentityKeyPair()
 		{
-			return identityKeyPair;
+			return _identityKeyPair;
 		}
 
 
 		public uint GetLocalRegistrationId()
 		{
-			return localRegistrationId;
+			return _localRegistrationId;
 		}
 
 		public bool SaveIdentity(SignalProtocolAddress address, IdentityKey identityKey)
 		{
-			trustedKeys[address] = identityKey; //put
+			_trustedKeys[address] = identityKey; //put
 			return true;
 		}
 
 		public bool IsTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey)
 		{
 			IdentityKey trusted;
-			trustedKeys.TryGetValue(address, out trusted); // get(name)
+			_trustedKeys.TryGetValue(address, out trusted); // get(name)
 			return (trusted == null || trusted.Equals(identityKey));
 		}
 	}

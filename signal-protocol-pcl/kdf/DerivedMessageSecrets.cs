@@ -15,31 +15,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.util;
+using Libsignal.Util;
 
-namespace libsignal.kdf
+namespace Libsignal.Kdf
 {
     public class DerivedMessageSecrets
     {
 
-        public static readonly int SIZE = 80;
-        private static readonly int CIPHER_KEY_LENGTH = 32;
-        private static readonly int MAC_KEY_LENGTH = 32;
-        private static readonly int IV_LENGTH = 16;
+        public static readonly int Size = 80;
+        private static readonly int CipherKeyLength = 32;
+        private static readonly int MacKeyLength = 32;
+        private static readonly int IvLength = 16;
 
-        private readonly byte[] cipherKey;
-        private readonly byte[] macKey;
-        private readonly byte[] iv;
+        private readonly byte[] _cipherKey;
+        private readonly byte[] _macKey;
+        private readonly byte[] _iv;
 
         public DerivedMessageSecrets(byte[] okm)
         {
             //try
             //{
-            byte[][] keys = ByteUtil.split(okm, CIPHER_KEY_LENGTH, MAC_KEY_LENGTH, IV_LENGTH);
+            byte[][] keys = ByteUtil.Split(okm, CipherKeyLength, MacKeyLength, IvLength);
 
-            this.cipherKey = keys[0];
-            this.macKey = keys[1];
-            this.iv = keys[2];
+            _cipherKey = keys[0];
+            _macKey = keys[1];
+            _iv = keys[2];
             /*}
             catch (ParseException e)
             {
@@ -47,19 +47,19 @@ namespace libsignal.kdf
             }*/
         }
 
-        public byte[] getCipherKey()
+        public byte[] GetCipherKey()
         {
-            return cipherKey;
+            return _cipherKey;
         }
 
-        public byte[] getMacKey()
+        public byte[] GetMacKey()
         {
-            return macKey;
+            return _macKey;
         }
 
-        public byte[] getIv()
+        public byte[] GetIv()
         {
-            return iv;
+            return _iv;
         }
     }
 }

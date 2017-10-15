@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
- namespace libsignal.ecc.impl
+ namespace Libsignal.Ecc.impl
 {
 	/// <summary>
 	/// If you want to expose an implementation of Curve25519 to this class library,
@@ -23,13 +23,13 @@
 	/// </summary>
 	public interface ICurve25519Provider
 	{
-		byte[] calculateAgreement(byte[] ourPrivate, byte[] theirPublic);
-		byte[] calculateSignature(byte[] random, byte[] privateKey, byte[] message);
-		byte[] generatePrivateKey(byte[] random);
-		byte[] generatePublicKey(byte[] privateKey);
-		bool isNative();
-		bool verifySignature(byte[] publicKey, byte[] message, byte[] signature);
-        byte[] calculateVrfSignature(byte[] privateKey, byte[] message);
-        byte[] verifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature);
+		byte[] CalculateAgreement(byte[] ourPrivate, byte[] theirPublic);
+		byte[] CalculateSignature(byte[] random, byte[] privateKey, byte[] message);
+		byte[] GeneratePrivateKey(byte[] random);
+		byte[] GeneratePublicKey(byte[] privateKey);
+		bool IsNative();
+		bool VerifySignature(byte[] publicKey, byte[] message, byte[] signature);
+        byte[] CalculateVrfSignature(byte[] privateKey, byte[] message);
+        byte[] VerifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature);
 	}
 }

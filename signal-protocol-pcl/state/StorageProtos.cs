@@ -6,7 +6,7 @@ using pb = global::Google.ProtocolBuffers;
 using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
 using scg = global::System.Collections.Generic;
-namespace libsignal.state {
+namespace Libsignal.State {
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class StorageProtos {
@@ -17,35 +17,35 @@ namespace libsignal.state {
     #endregion
     #region Static variables
     private static pbd::MessageDescriptor internal__static_textsecure_SessionStructure__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure, global::libsignal.state.StorageProtos.SessionStructure.Builder> internal__static_textsecure_SessionStructure__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure, global::Libsignal.State.StorageProtos.SessionStructure.Builder> internal__static_textsecure_SessionStructure__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SessionStructure_Chain__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Builder> internal__static_textsecure_SessionStructure_Chain__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Builder> internal__static_textsecure_SessionStructure_Chain__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SessionStructure_Chain_ChainKey__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder> internal__static_textsecure_SessionStructure_Chain_ChainKey__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder> internal__static_textsecure_SessionStructure_Chain_ChainKey__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SessionStructure_Chain_MessageKey__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder> internal__static_textsecure_SessionStructure_Chain_MessageKey__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder> internal__static_textsecure_SessionStructure_Chain_MessageKey__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SessionStructure_PendingKeyExchange__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange, global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder> internal__static_textsecure_SessionStructure_PendingKeyExchange__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange, global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder> internal__static_textsecure_SessionStructure_PendingKeyExchange__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SessionStructure_PendingPreKey__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey, global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.Builder> internal__static_textsecure_SessionStructure_PendingPreKey__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey, global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.Builder> internal__static_textsecure_SessionStructure_PendingPreKey__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_RecordStructure__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.RecordStructure, global::libsignal.state.StorageProtos.RecordStructure.Builder> internal__static_textsecure_RecordStructure__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.RecordStructure, global::Libsignal.State.StorageProtos.RecordStructure.Builder> internal__static_textsecure_RecordStructure__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_PreKeyRecordStructure__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.PreKeyRecordStructure, global::libsignal.state.StorageProtos.PreKeyRecordStructure.Builder> internal__static_textsecure_PreKeyRecordStructure__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.PreKeyRecordStructure, global::Libsignal.State.StorageProtos.PreKeyRecordStructure.Builder> internal__static_textsecure_PreKeyRecordStructure__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SignedPreKeyRecordStructure__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SignedPreKeyRecordStructure, global::libsignal.state.StorageProtos.SignedPreKeyRecordStructure.Builder> internal__static_textsecure_SignedPreKeyRecordStructure__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SignedPreKeyRecordStructure, global::Libsignal.State.StorageProtos.SignedPreKeyRecordStructure.Builder> internal__static_textsecure_SignedPreKeyRecordStructure__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_IdentityKeyPairStructure__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.IdentityKeyPairStructure, global::libsignal.state.StorageProtos.IdentityKeyPairStructure.Builder> internal__static_textsecure_IdentityKeyPairStructure__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.IdentityKeyPairStructure, global::Libsignal.State.StorageProtos.IdentityKeyPairStructure.Builder> internal__static_textsecure_IdentityKeyPairStructure__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SenderKeyStateStructure__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Builder> internal__static_textsecure_SenderKeyStateStructure__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Builder> internal__static_textsecure_SenderKeyStateStructure__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder> internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder> internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder> internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder> internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder> internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder> internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_textsecure_SenderKeyRecordStructure__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyRecordStructure, global::libsignal.state.StorageProtos.SenderKeyRecordStructure.Builder> internal__static_textsecure_SenderKeyRecordStructure__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyRecordStructure, global::Libsignal.State.StorageProtos.SenderKeyRecordStructure.Builder> internal__static_textsecure_SenderKeyRecordStructure__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -107,63 +107,63 @@ namespace libsignal.state {
         descriptor = root;
         internal__static_textsecure_SessionStructure__Descriptor = Descriptor.MessageTypes[0];
         internal__static_textsecure_SessionStructure__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure, global::libsignal.state.StorageProtos.SessionStructure.Builder>(internal__static_textsecure_SessionStructure__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure, global::Libsignal.State.StorageProtos.SessionStructure.Builder>(internal__static_textsecure_SessionStructure__Descriptor,
                 new string[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", "NeedsRefresh", "AliceBaseKey", });
         internal__static_textsecure_SessionStructure_Chain__Descriptor = internal__static_textsecure_SessionStructure__Descriptor.NestedTypes[0];
         internal__static_textsecure_SessionStructure_Chain__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Builder>(internal__static_textsecure_SessionStructure_Chain__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Builder>(internal__static_textsecure_SessionStructure_Chain__Descriptor,
                 new string[] { "SenderRatchetKey", "SenderRatchetKeyPrivate", "ChainKey", "MessageKeys", });
         internal__static_textsecure_SessionStructure_Chain_ChainKey__Descriptor = internal__static_textsecure_SessionStructure_Chain__Descriptor.NestedTypes[0];
         internal__static_textsecure_SessionStructure_Chain_ChainKey__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder>(internal__static_textsecure_SessionStructure_Chain_ChainKey__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder>(internal__static_textsecure_SessionStructure_Chain_ChainKey__Descriptor,
                 new string[] { "Index", "Key", });
         internal__static_textsecure_SessionStructure_Chain_MessageKey__Descriptor = internal__static_textsecure_SessionStructure_Chain__Descriptor.NestedTypes[1];
         internal__static_textsecure_SessionStructure_Chain_MessageKey__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder>(internal__static_textsecure_SessionStructure_Chain_MessageKey__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder>(internal__static_textsecure_SessionStructure_Chain_MessageKey__Descriptor,
                 new string[] { "Index", "CipherKey", "MacKey", "Iv", });
         internal__static_textsecure_SessionStructure_PendingKeyExchange__Descriptor = internal__static_textsecure_SessionStructure__Descriptor.NestedTypes[1];
         internal__static_textsecure_SessionStructure_PendingKeyExchange__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange, global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder>(internal__static_textsecure_SessionStructure_PendingKeyExchange__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange, global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder>(internal__static_textsecure_SessionStructure_PendingKeyExchange__Descriptor,
                 new string[] { "Sequence", "LocalBaseKey", "LocalBaseKeyPrivate", "LocalRatchetKey", "LocalRatchetKeyPrivate", "LocalIdentityKey", "LocalIdentityKeyPrivate", });
         internal__static_textsecure_SessionStructure_PendingPreKey__Descriptor = internal__static_textsecure_SessionStructure__Descriptor.NestedTypes[2];
         internal__static_textsecure_SessionStructure_PendingPreKey__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey, global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.Builder>(internal__static_textsecure_SessionStructure_PendingPreKey__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey, global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.Builder>(internal__static_textsecure_SessionStructure_PendingPreKey__Descriptor,
                 new string[] { "PreKeyId", "SignedPreKeyId", "BaseKey", });
         internal__static_textsecure_RecordStructure__Descriptor = Descriptor.MessageTypes[1];
         internal__static_textsecure_RecordStructure__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.RecordStructure, global::libsignal.state.StorageProtos.RecordStructure.Builder>(internal__static_textsecure_RecordStructure__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.RecordStructure, global::Libsignal.State.StorageProtos.RecordStructure.Builder>(internal__static_textsecure_RecordStructure__Descriptor,
                 new string[] { "CurrentSession", "PreviousSessions", });
         internal__static_textsecure_PreKeyRecordStructure__Descriptor = Descriptor.MessageTypes[2];
         internal__static_textsecure_PreKeyRecordStructure__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.PreKeyRecordStructure, global::libsignal.state.StorageProtos.PreKeyRecordStructure.Builder>(internal__static_textsecure_PreKeyRecordStructure__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.PreKeyRecordStructure, global::Libsignal.State.StorageProtos.PreKeyRecordStructure.Builder>(internal__static_textsecure_PreKeyRecordStructure__Descriptor,
                 new string[] { "Id", "PublicKey", "PrivateKey", });
         internal__static_textsecure_SignedPreKeyRecordStructure__Descriptor = Descriptor.MessageTypes[3];
         internal__static_textsecure_SignedPreKeyRecordStructure__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SignedPreKeyRecordStructure, global::libsignal.state.StorageProtos.SignedPreKeyRecordStructure.Builder>(internal__static_textsecure_SignedPreKeyRecordStructure__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SignedPreKeyRecordStructure, global::Libsignal.State.StorageProtos.SignedPreKeyRecordStructure.Builder>(internal__static_textsecure_SignedPreKeyRecordStructure__Descriptor,
                 new string[] { "Id", "PublicKey", "PrivateKey", "Signature", "Timestamp", });
         internal__static_textsecure_IdentityKeyPairStructure__Descriptor = Descriptor.MessageTypes[4];
         internal__static_textsecure_IdentityKeyPairStructure__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.IdentityKeyPairStructure, global::libsignal.state.StorageProtos.IdentityKeyPairStructure.Builder>(internal__static_textsecure_IdentityKeyPairStructure__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.IdentityKeyPairStructure, global::Libsignal.State.StorageProtos.IdentityKeyPairStructure.Builder>(internal__static_textsecure_IdentityKeyPairStructure__Descriptor,
                 new string[] { "PublicKey", "PrivateKey", });
         internal__static_textsecure_SenderKeyStateStructure__Descriptor = Descriptor.MessageTypes[5];
         internal__static_textsecure_SenderKeyStateStructure__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Builder>(internal__static_textsecure_SenderKeyStateStructure__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Builder>(internal__static_textsecure_SenderKeyStateStructure__Descriptor,
                 new string[] { "SenderKeyId", "SenderChainKey", "SenderSigningKey", "SenderMessageKeys", });
         internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__Descriptor = internal__static_textsecure_SenderKeyStateStructure__Descriptor.NestedTypes[0];
         internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder>(internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder>(internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__Descriptor,
                 new string[] { "Iteration", "Seed", });
         internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__Descriptor = internal__static_textsecure_SenderKeyStateStructure__Descriptor.NestedTypes[1];
         internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder>(internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder>(internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__Descriptor,
                 new string[] { "Iteration", "Seed", });
         internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__Descriptor = internal__static_textsecure_SenderKeyStateStructure__Descriptor.NestedTypes[2];
         internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder>(internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder>(internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__Descriptor,
                 new string[] { "Public", "Private", });
         internal__static_textsecure_SenderKeyRecordStructure__Descriptor = Descriptor.MessageTypes[6];
         internal__static_textsecure_SenderKeyRecordStructure__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.state.StorageProtos.SenderKeyRecordStructure, global::libsignal.state.StorageProtos.SenderKeyRecordStructure.Builder>(internal__static_textsecure_SenderKeyRecordStructure__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.State.StorageProtos.SenderKeyRecordStructure, global::Libsignal.State.StorageProtos.SenderKeyRecordStructure.Builder>(internal__static_textsecure_SenderKeyRecordStructure__Descriptor,
                 new string[] { "SenderKeyStates", });
         return null;
       };
@@ -193,11 +193,11 @@ namespace libsignal.state {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure__Descriptor; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<SessionStructure, SessionStructure.Builder> InternalFieldAccessors {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure__FieldAccessorTable; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure__FieldAccessorTable; }
       }
       
       #region Nested types
@@ -222,11 +222,11 @@ namespace libsignal.state {
           }
           
           public static pbd::MessageDescriptor Descriptor {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_Chain__Descriptor; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_Chain__Descriptor; }
           }
           
           protected override pb::FieldAccess.FieldAccessorTable<Chain, Chain.Builder> InternalFieldAccessors {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_Chain__FieldAccessorTable; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_Chain__FieldAccessorTable; }
           }
           
           #region Nested types
@@ -251,11 +251,11 @@ namespace libsignal.state {
               }
               
               public static pbd::MessageDescriptor Descriptor {
-                get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_Chain_ChainKey__Descriptor; }
+                get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_Chain_ChainKey__Descriptor; }
               }
               
               protected override pb::FieldAccess.FieldAccessorTable<ChainKey, ChainKey.Builder> InternalFieldAccessors {
-                get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_Chain_ChainKey__FieldAccessorTable; }
+                get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_Chain_ChainKey__FieldAccessorTable; }
               }
               
               public const int IndexFieldNumber = 1;
@@ -412,11 +412,11 @@ namespace libsignal.state {
                 }
                 
                 public override pbd::MessageDescriptor DescriptorForType {
-                  get { return global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Descriptor; }
+                  get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Descriptor; }
                 }
                 
                 public override ChainKey DefaultInstanceForType {
-                  get { return global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance; }
+                  get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance; }
                 }
                 
                 public override ChainKey BuildPartial() {
@@ -437,7 +437,7 @@ namespace libsignal.state {
                 }
                 
                 public override Builder MergeFrom(ChainKey other) {
-                  if (other == global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance) return this;
+                  if (other == global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance) return this;
                   PrepareBuilder();
                   if (other.HasIndex) {
                     Index = other.Index;
@@ -550,7 +550,7 @@ namespace libsignal.state {
                 }
               }
               static ChainKey() {
-                object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+                object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
               }
             }
             
@@ -573,11 +573,11 @@ namespace libsignal.state {
               }
               
               public static pbd::MessageDescriptor Descriptor {
-                get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_Chain_MessageKey__Descriptor; }
+                get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_Chain_MessageKey__Descriptor; }
               }
               
               protected override pb::FieldAccess.FieldAccessorTable<MessageKey, MessageKey.Builder> InternalFieldAccessors {
-                get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_Chain_MessageKey__FieldAccessorTable; }
+                get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_Chain_MessageKey__FieldAccessorTable; }
               }
               
               public const int IndexFieldNumber = 1;
@@ -766,11 +766,11 @@ namespace libsignal.state {
                 }
                 
                 public override pbd::MessageDescriptor DescriptorForType {
-                  get { return global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Descriptor; }
+                  get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Descriptor; }
                 }
                 
                 public override MessageKey DefaultInstanceForType {
-                  get { return global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.DefaultInstance; }
+                  get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.DefaultInstance; }
                 }
                 
                 public override MessageKey BuildPartial() {
@@ -791,7 +791,7 @@ namespace libsignal.state {
                 }
                 
                 public override Builder MergeFrom(MessageKey other) {
-                  if (other == global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.DefaultInstance) return this;
+                  if (other == global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.DefaultInstance) return this;
                   PrepareBuilder();
                   if (other.HasIndex) {
                     Index = other.Index;
@@ -960,7 +960,7 @@ namespace libsignal.state {
                 }
               }
               static MessageKey() {
-                object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+                object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
               }
             }
             
@@ -989,23 +989,23 @@ namespace libsignal.state {
           
           public const int ChainKeyFieldNumber = 3;
           private bool hasChainKey;
-          private global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKey_;
+          private global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKey_;
           public bool HasChainKey {
             get { return hasChainKey; }
           }
-          public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey ChainKey {
-            get { return chainKey_ ?? global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance; }
+          public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey ChainKey {
+            get { return chainKey_ ?? global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance; }
           }
           
           public const int MessageKeysFieldNumber = 4;
-          private pbc::PopsicleList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> messageKeys_ = new pbc::PopsicleList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey>();
-          public scg::IList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> MessageKeysList {
+          private pbc::PopsicleList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> messageKeys_ = new pbc::PopsicleList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey>();
+          public scg::IList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> MessageKeysList {
             get { return messageKeys_; }
           }
           public int MessageKeysCount {
             get { return messageKeys_.Count; }
           }
-          public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey GetMessageKeys(int index) {
+          public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey GetMessageKeys(int index) {
             return messageKeys_[index];
           }
           
@@ -1056,7 +1056,7 @@ namespace libsignal.state {
             if (hasChainKey) {
               size += pb::CodedOutputStream.ComputeMessageSize(3, ChainKey);
             }
-            foreach (global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey element in MessageKeysList) {
+            foreach (global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey element in MessageKeysList) {
               size += pb::CodedOutputStream.ComputeMessageSize(4, element);
             }
             size += UnknownFields.SerializedSize;
@@ -1155,11 +1155,11 @@ namespace libsignal.state {
             }
             
             public override pbd::MessageDescriptor DescriptorForType {
-              get { return global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Descriptor; }
+              get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Descriptor; }
             }
             
             public override Chain DefaultInstanceForType {
-              get { return global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.DefaultInstance; }
+              get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.DefaultInstance; }
             }
             
             public override Chain BuildPartial() {
@@ -1180,7 +1180,7 @@ namespace libsignal.state {
             }
             
             public override Builder MergeFrom(Chain other) {
-              if (other == global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.DefaultInstance) return this;
+              if (other == global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.DefaultInstance) return this;
               PrepareBuilder();
               if (other.HasSenderRatchetKey) {
                 SenderRatchetKey = other.SenderRatchetKey;
@@ -1246,7 +1246,7 @@ namespace libsignal.state {
                     break;
                   }
                   case 26: {
-                    global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder subBuilder = global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder();
+                    global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder subBuilder = global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder();
                     if (result.hasChainKey) {
                       subBuilder.MergeFrom(ChainKey);
                     }
@@ -1255,7 +1255,7 @@ namespace libsignal.state {
                     break;
                   }
                   case 34: {
-                    input.ReadMessageArray(tag, field_name, result.messageKeys_, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.DefaultInstance, extensionRegistry);
+                    input.ReadMessageArray(tag, field_name, result.messageKeys_, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.DefaultInstance, extensionRegistry);
                     break;
                   }
                 }
@@ -1313,30 +1313,30 @@ namespace libsignal.state {
             public bool HasChainKey {
              get { return result.hasChainKey; }
             }
-            public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey ChainKey {
+            public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey ChainKey {
               get { return result.ChainKey; }
               set { SetChainKey(value); }
             }
-            public Builder SetChainKey(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey value) {
+            public Builder SetChainKey(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey value) {
               pb::ThrowHelper.ThrowIfNull(value, "value");
               PrepareBuilder();
               result.hasChainKey = true;
               result.chainKey_ = value;
               return this;
             }
-            public Builder SetChainKey(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder builderForValue) {
+            public Builder SetChainKey(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.Builder builderForValue) {
               pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
               PrepareBuilder();
               result.hasChainKey = true;
               result.chainKey_ = builderForValue.Build();
               return this;
             }
-            public Builder MergeChainKey(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey value) {
+            public Builder MergeChainKey(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey value) {
               pb::ThrowHelper.ThrowIfNull(value, "value");
               PrepareBuilder();
               if (result.hasChainKey &&
-                  result.chainKey_ != global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance) {
-                  result.chainKey_ = global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder(result.chainKey_).MergeFrom(value).BuildPartial();
+                  result.chainKey_ != global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.DefaultInstance) {
+                  result.chainKey_ = global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder(result.chainKey_).MergeFrom(value).BuildPartial();
               } else {
                 result.chainKey_ = value;
               }
@@ -1350,40 +1350,40 @@ namespace libsignal.state {
               return this;
             }
             
-            public pbc::IPopsicleList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> MessageKeysList {
+            public pbc::IPopsicleList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> MessageKeysList {
               get { return PrepareBuilder().messageKeys_; }
             }
             public int MessageKeysCount {
               get { return result.MessageKeysCount; }
             }
-            public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey GetMessageKeys(int index) {
+            public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey GetMessageKeys(int index) {
               return result.GetMessageKeys(index);
             }
-            public Builder SetMessageKeys(int index, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey value) {
+            public Builder SetMessageKeys(int index, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey value) {
               pb::ThrowHelper.ThrowIfNull(value, "value");
               PrepareBuilder();
               result.messageKeys_[index] = value;
               return this;
             }
-            public Builder SetMessageKeys(int index, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder builderForValue) {
+            public Builder SetMessageKeys(int index, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder builderForValue) {
               pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
               PrepareBuilder();
               result.messageKeys_[index] = builderForValue.Build();
               return this;
             }
-            public Builder AddMessageKeys(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey value) {
+            public Builder AddMessageKeys(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey value) {
               pb::ThrowHelper.ThrowIfNull(value, "value");
               PrepareBuilder();
               result.messageKeys_.Add(value);
               return this;
             }
-            public Builder AddMessageKeys(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder builderForValue) {
+            public Builder AddMessageKeys(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.Builder builderForValue) {
               pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
               PrepareBuilder();
               result.messageKeys_.Add(builderForValue.Build());
               return this;
             }
-            public Builder AddRangeMessageKeys(scg::IEnumerable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> values) {
+            public Builder AddRangeMessageKeys(scg::IEnumerable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> values) {
               PrepareBuilder();
               result.messageKeys_.Add(values);
               return this;
@@ -1395,7 +1395,7 @@ namespace libsignal.state {
             }
           }
           static Chain() {
-            object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+            object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
         
@@ -1418,11 +1418,11 @@ namespace libsignal.state {
           }
           
           public static pbd::MessageDescriptor Descriptor {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_PendingKeyExchange__Descriptor; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_PendingKeyExchange__Descriptor; }
           }
           
           protected override pb::FieldAccess.FieldAccessorTable<PendingKeyExchange, PendingKeyExchange.Builder> InternalFieldAccessors {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_PendingKeyExchange__FieldAccessorTable; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_PendingKeyExchange__FieldAccessorTable; }
           }
           
           public const int SequenceFieldNumber = 1;
@@ -1659,11 +1659,11 @@ namespace libsignal.state {
             }
             
             public override pbd::MessageDescriptor DescriptorForType {
-              get { return global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.Descriptor; }
+              get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.Descriptor; }
             }
             
             public override PendingKeyExchange DefaultInstanceForType {
-              get { return global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance; }
+              get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance; }
             }
             
             public override PendingKeyExchange BuildPartial() {
@@ -1684,7 +1684,7 @@ namespace libsignal.state {
             }
             
             public override Builder MergeFrom(PendingKeyExchange other) {
-              if (other == global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance) return this;
+              if (other == global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance) return this;
               PrepareBuilder();
               if (other.HasSequence) {
                 Sequence = other.Sequence;
@@ -1937,7 +1937,7 @@ namespace libsignal.state {
             }
           }
           static PendingKeyExchange() {
-            object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+            object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
         
@@ -1960,11 +1960,11 @@ namespace libsignal.state {
           }
           
           public static pbd::MessageDescriptor Descriptor {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_PendingPreKey__Descriptor; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_PendingPreKey__Descriptor; }
           }
           
           protected override pb::FieldAccess.FieldAccessorTable<PendingPreKey, PendingPreKey.Builder> InternalFieldAccessors {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SessionStructure_PendingPreKey__FieldAccessorTable; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SessionStructure_PendingPreKey__FieldAccessorTable; }
           }
           
           public const int PreKeyIdFieldNumber = 1;
@@ -2137,11 +2137,11 @@ namespace libsignal.state {
             }
             
             public override pbd::MessageDescriptor DescriptorForType {
-              get { return global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.Descriptor; }
+              get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.Descriptor; }
             }
             
             public override PendingPreKey DefaultInstanceForType {
-              get { return global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance; }
+              get { return global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance; }
             }
             
             public override PendingPreKey BuildPartial() {
@@ -2162,7 +2162,7 @@ namespace libsignal.state {
             }
             
             public override Builder MergeFrom(PendingPreKey other) {
-              if (other == global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance) return this;
+              if (other == global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance) return this;
               PrepareBuilder();
               if (other.HasPreKeyId) {
                 PreKeyId = other.PreKeyId;
@@ -2302,7 +2302,7 @@ namespace libsignal.state {
             }
           }
           static PendingPreKey() {
-            object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+            object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
         
@@ -2363,44 +2363,44 @@ namespace libsignal.state {
       
       public const int SenderChainFieldNumber = 6;
       private bool hasSenderChain;
-      private global::libsignal.state.StorageProtos.SessionStructure.Types.Chain senderChain_;
+      private global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain senderChain_;
       public bool HasSenderChain {
         get { return hasSenderChain; }
       }
-      public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain SenderChain {
-        get { return senderChain_ ?? global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.DefaultInstance; }
+      public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain SenderChain {
+        get { return senderChain_ ?? global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.DefaultInstance; }
       }
       
       public const int ReceiverChainsFieldNumber = 7;
-      private pbc::PopsicleList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain> receiverChains_ = new pbc::PopsicleList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain>();
-      public scg::IList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain> ReceiverChainsList {
+      private pbc::PopsicleList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain> receiverChains_ = new pbc::PopsicleList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain>();
+      public scg::IList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain> ReceiverChainsList {
         get { return receiverChains_; }
       }
       public int ReceiverChainsCount {
         get { return receiverChains_.Count; }
       }
-      public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain GetReceiverChains(int index) {
+      public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain GetReceiverChains(int index) {
         return receiverChains_[index];
       }
       
       public const int PendingKeyExchangeFieldNumber = 8;
       private bool hasPendingKeyExchange;
-      private global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange pendingKeyExchange_;
+      private global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange pendingKeyExchange_;
       public bool HasPendingKeyExchange {
         get { return hasPendingKeyExchange; }
       }
-      public global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange PendingKeyExchange {
-        get { return pendingKeyExchange_ ?? global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance; }
+      public global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange PendingKeyExchange {
+        get { return pendingKeyExchange_ ?? global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance; }
       }
       
       public const int PendingPreKeyFieldNumber = 9;
       private bool hasPendingPreKey;
-      private global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey pendingPreKey_;
+      private global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey pendingPreKey_;
       public bool HasPendingPreKey {
         get { return hasPendingPreKey; }
       }
-      public global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey PendingPreKey {
-        get { return pendingPreKey_ ?? global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance; }
+      public global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey PendingPreKey {
+        get { return pendingPreKey_ ?? global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance; }
       }
       
       public const int RemoteRegistrationIdFieldNumber = 10;
@@ -2528,7 +2528,7 @@ namespace libsignal.state {
         if (hasSenderChain) {
           size += pb::CodedOutputStream.ComputeMessageSize(6, SenderChain);
         }
-        foreach (global::libsignal.state.StorageProtos.SessionStructure.Types.Chain element in ReceiverChainsList) {
+        foreach (global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain element in ReceiverChainsList) {
           size += pb::CodedOutputStream.ComputeMessageSize(7, element);
         }
         if (hasPendingKeyExchange) {
@@ -2645,11 +2645,11 @@ namespace libsignal.state {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.state.StorageProtos.SessionStructure.Descriptor; }
+          get { return global::Libsignal.State.StorageProtos.SessionStructure.Descriptor; }
         }
         
         public override SessionStructure DefaultInstanceForType {
-          get { return global::libsignal.state.StorageProtos.SessionStructure.DefaultInstance; }
+          get { return global::Libsignal.State.StorageProtos.SessionStructure.DefaultInstance; }
         }
         
         public override SessionStructure BuildPartial() {
@@ -2670,7 +2670,7 @@ namespace libsignal.state {
         }
         
         public override Builder MergeFrom(SessionStructure other) {
-          if (other == global::libsignal.state.StorageProtos.SessionStructure.DefaultInstance) return this;
+          if (other == global::Libsignal.State.StorageProtos.SessionStructure.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasSessionVersion) {
             SessionVersion = other.SessionVersion;
@@ -2775,7 +2775,7 @@ namespace libsignal.state {
                 break;
               }
               case 50: {
-                global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Builder subBuilder = global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.CreateBuilder();
+                global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Builder subBuilder = global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.CreateBuilder();
                 if (result.hasSenderChain) {
                   subBuilder.MergeFrom(SenderChain);
                 }
@@ -2784,11 +2784,11 @@ namespace libsignal.state {
                 break;
               }
               case 58: {
-                input.ReadMessageArray(tag, field_name, result.receiverChains_, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.DefaultInstance, extensionRegistry);
+                input.ReadMessageArray(tag, field_name, result.receiverChains_, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.DefaultInstance, extensionRegistry);
                 break;
               }
               case 66: {
-                global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder subBuilder = global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.CreateBuilder();
+                global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder subBuilder = global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.CreateBuilder();
                 if (result.hasPendingKeyExchange) {
                   subBuilder.MergeFrom(PendingKeyExchange);
                 }
@@ -2797,7 +2797,7 @@ namespace libsignal.state {
                 break;
               }
               case 74: {
-                global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.Builder subBuilder = global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.CreateBuilder();
+                global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.Builder subBuilder = global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.CreateBuilder();
                 if (result.hasPendingPreKey) {
                   subBuilder.MergeFrom(PendingPreKey);
                 }
@@ -2941,30 +2941,30 @@ namespace libsignal.state {
         public bool HasSenderChain {
          get { return result.hasSenderChain; }
         }
-        public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain SenderChain {
+        public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain SenderChain {
           get { return result.SenderChain; }
           set { SetSenderChain(value); }
         }
-        public Builder SetSenderChain(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain value) {
+        public Builder SetSenderChain(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasSenderChain = true;
           result.senderChain_ = value;
           return this;
         }
-        public Builder SetSenderChain(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Builder builderForValue) {
+        public Builder SetSenderChain(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasSenderChain = true;
           result.senderChain_ = builderForValue.Build();
           return this;
         }
-        public Builder MergeSenderChain(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain value) {
+        public Builder MergeSenderChain(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasSenderChain &&
-              result.senderChain_ != global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.DefaultInstance) {
-              result.senderChain_ = global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.CreateBuilder(result.senderChain_).MergeFrom(value).BuildPartial();
+              result.senderChain_ != global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.DefaultInstance) {
+              result.senderChain_ = global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.CreateBuilder(result.senderChain_).MergeFrom(value).BuildPartial();
           } else {
             result.senderChain_ = value;
           }
@@ -2978,40 +2978,40 @@ namespace libsignal.state {
           return this;
         }
         
-        public pbc::IPopsicleList<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain> ReceiverChainsList {
+        public pbc::IPopsicleList<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain> ReceiverChainsList {
           get { return PrepareBuilder().receiverChains_; }
         }
         public int ReceiverChainsCount {
           get { return result.ReceiverChainsCount; }
         }
-        public global::libsignal.state.StorageProtos.SessionStructure.Types.Chain GetReceiverChains(int index) {
+        public global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain GetReceiverChains(int index) {
           return result.GetReceiverChains(index);
         }
-        public Builder SetReceiverChains(int index, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain value) {
+        public Builder SetReceiverChains(int index, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.receiverChains_[index] = value;
           return this;
         }
-        public Builder SetReceiverChains(int index, global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Builder builderForValue) {
+        public Builder SetReceiverChains(int index, global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.receiverChains_[index] = builderForValue.Build();
           return this;
         }
-        public Builder AddReceiverChains(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain value) {
+        public Builder AddReceiverChains(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.receiverChains_.Add(value);
           return this;
         }
-        public Builder AddReceiverChains(global::libsignal.state.StorageProtos.SessionStructure.Types.Chain.Builder builderForValue) {
+        public Builder AddReceiverChains(global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.receiverChains_.Add(builderForValue.Build());
           return this;
         }
-        public Builder AddRangeReceiverChains(scg::IEnumerable<global::libsignal.state.StorageProtos.SessionStructure.Types.Chain> values) {
+        public Builder AddRangeReceiverChains(scg::IEnumerable<global::Libsignal.State.StorageProtos.SessionStructure.Types.Chain> values) {
           PrepareBuilder();
           result.receiverChains_.Add(values);
           return this;
@@ -3025,30 +3025,30 @@ namespace libsignal.state {
         public bool HasPendingKeyExchange {
          get { return result.hasPendingKeyExchange; }
         }
-        public global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange PendingKeyExchange {
+        public global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange PendingKeyExchange {
           get { return result.PendingKeyExchange; }
           set { SetPendingKeyExchange(value); }
         }
-        public Builder SetPendingKeyExchange(global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange value) {
+        public Builder SetPendingKeyExchange(global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasPendingKeyExchange = true;
           result.pendingKeyExchange_ = value;
           return this;
         }
-        public Builder SetPendingKeyExchange(global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder builderForValue) {
+        public Builder SetPendingKeyExchange(global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasPendingKeyExchange = true;
           result.pendingKeyExchange_ = builderForValue.Build();
           return this;
         }
-        public Builder MergePendingKeyExchange(global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange value) {
+        public Builder MergePendingKeyExchange(global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasPendingKeyExchange &&
-              result.pendingKeyExchange_ != global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance) {
-              result.pendingKeyExchange_ = global::libsignal.state.StorageProtos.SessionStructure.Types.PendingKeyExchange.CreateBuilder(result.pendingKeyExchange_).MergeFrom(value).BuildPartial();
+              result.pendingKeyExchange_ != global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.DefaultInstance) {
+              result.pendingKeyExchange_ = global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingKeyExchange.CreateBuilder(result.pendingKeyExchange_).MergeFrom(value).BuildPartial();
           } else {
             result.pendingKeyExchange_ = value;
           }
@@ -3065,30 +3065,30 @@ namespace libsignal.state {
         public bool HasPendingPreKey {
          get { return result.hasPendingPreKey; }
         }
-        public global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey PendingPreKey {
+        public global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey PendingPreKey {
           get { return result.PendingPreKey; }
           set { SetPendingPreKey(value); }
         }
-        public Builder SetPendingPreKey(global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey value) {
+        public Builder SetPendingPreKey(global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasPendingPreKey = true;
           result.pendingPreKey_ = value;
           return this;
         }
-        public Builder SetPendingPreKey(global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.Builder builderForValue) {
+        public Builder SetPendingPreKey(global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasPendingPreKey = true;
           result.pendingPreKey_ = builderForValue.Build();
           return this;
         }
-        public Builder MergePendingPreKey(global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey value) {
+        public Builder MergePendingPreKey(global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasPendingPreKey &&
-              result.pendingPreKey_ != global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance) {
-              result.pendingPreKey_ = global::libsignal.state.StorageProtos.SessionStructure.Types.PendingPreKey.CreateBuilder(result.pendingPreKey_).MergeFrom(value).BuildPartial();
+              result.pendingPreKey_ != global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.DefaultInstance) {
+              result.pendingPreKey_ = global::Libsignal.State.StorageProtos.SessionStructure.Types.PendingPreKey.CreateBuilder(result.pendingPreKey_).MergeFrom(value).BuildPartial();
           } else {
             result.pendingPreKey_ = value;
           }
@@ -3188,7 +3188,7 @@ namespace libsignal.state {
         }
       }
       static SessionStructure() {
-        object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
       }
     }
     
@@ -3211,32 +3211,32 @@ namespace libsignal.state {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_RecordStructure__Descriptor; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_RecordStructure__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<RecordStructure, RecordStructure.Builder> InternalFieldAccessors {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_RecordStructure__FieldAccessorTable; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_RecordStructure__FieldAccessorTable; }
       }
       
       public const int CurrentSessionFieldNumber = 1;
       private bool hasCurrentSession;
-      private global::libsignal.state.StorageProtos.SessionStructure currentSession_;
+      private global::Libsignal.State.StorageProtos.SessionStructure currentSession_;
       public bool HasCurrentSession {
         get { return hasCurrentSession; }
       }
-      public global::libsignal.state.StorageProtos.SessionStructure CurrentSession {
-        get { return currentSession_ ?? global::libsignal.state.StorageProtos.SessionStructure.DefaultInstance; }
+      public global::Libsignal.State.StorageProtos.SessionStructure CurrentSession {
+        get { return currentSession_ ?? global::Libsignal.State.StorageProtos.SessionStructure.DefaultInstance; }
       }
       
       public const int PreviousSessionsFieldNumber = 2;
-      private pbc::PopsicleList<global::libsignal.state.StorageProtos.SessionStructure> previousSessions_ = new pbc::PopsicleList<global::libsignal.state.StorageProtos.SessionStructure>();
-      public scg::IList<global::libsignal.state.StorageProtos.SessionStructure> PreviousSessionsList {
+      private pbc::PopsicleList<global::Libsignal.State.StorageProtos.SessionStructure> previousSessions_ = new pbc::PopsicleList<global::Libsignal.State.StorageProtos.SessionStructure>();
+      public scg::IList<global::Libsignal.State.StorageProtos.SessionStructure> PreviousSessionsList {
         get { return previousSessions_; }
       }
       public int PreviousSessionsCount {
         get { return previousSessions_.Count; }
       }
-      public global::libsignal.state.StorageProtos.SessionStructure GetPreviousSessions(int index) {
+      public global::Libsignal.State.StorageProtos.SessionStructure GetPreviousSessions(int index) {
         return previousSessions_[index];
       }
       
@@ -3275,7 +3275,7 @@ namespace libsignal.state {
         if (hasCurrentSession) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, CurrentSession);
         }
-        foreach (global::libsignal.state.StorageProtos.SessionStructure element in PreviousSessionsList) {
+        foreach (global::Libsignal.State.StorageProtos.SessionStructure element in PreviousSessionsList) {
           size += pb::CodedOutputStream.ComputeMessageSize(2, element);
         }
         size += UnknownFields.SerializedSize;
@@ -3374,11 +3374,11 @@ namespace libsignal.state {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.state.StorageProtos.RecordStructure.Descriptor; }
+          get { return global::Libsignal.State.StorageProtos.RecordStructure.Descriptor; }
         }
         
         public override RecordStructure DefaultInstanceForType {
-          get { return global::libsignal.state.StorageProtos.RecordStructure.DefaultInstance; }
+          get { return global::Libsignal.State.StorageProtos.RecordStructure.DefaultInstance; }
         }
         
         public override RecordStructure BuildPartial() {
@@ -3399,7 +3399,7 @@ namespace libsignal.state {
         }
         
         public override Builder MergeFrom(RecordStructure other) {
-          if (other == global::libsignal.state.StorageProtos.RecordStructure.DefaultInstance) return this;
+          if (other == global::Libsignal.State.StorageProtos.RecordStructure.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasCurrentSession) {
             MergeCurrentSession(other.CurrentSession);
@@ -3451,7 +3451,7 @@ namespace libsignal.state {
                 break;
               }
               case 10: {
-                global::libsignal.state.StorageProtos.SessionStructure.Builder subBuilder = global::libsignal.state.StorageProtos.SessionStructure.CreateBuilder();
+                global::Libsignal.State.StorageProtos.SessionStructure.Builder subBuilder = global::Libsignal.State.StorageProtos.SessionStructure.CreateBuilder();
                 if (result.hasCurrentSession) {
                   subBuilder.MergeFrom(CurrentSession);
                 }
@@ -3460,7 +3460,7 @@ namespace libsignal.state {
                 break;
               }
               case 18: {
-                input.ReadMessageArray(tag, field_name, result.previousSessions_, global::libsignal.state.StorageProtos.SessionStructure.DefaultInstance, extensionRegistry);
+                input.ReadMessageArray(tag, field_name, result.previousSessions_, global::Libsignal.State.StorageProtos.SessionStructure.DefaultInstance, extensionRegistry);
                 break;
               }
             }
@@ -3476,30 +3476,30 @@ namespace libsignal.state {
         public bool HasCurrentSession {
          get { return result.hasCurrentSession; }
         }
-        public global::libsignal.state.StorageProtos.SessionStructure CurrentSession {
+        public global::Libsignal.State.StorageProtos.SessionStructure CurrentSession {
           get { return result.CurrentSession; }
           set { SetCurrentSession(value); }
         }
-        public Builder SetCurrentSession(global::libsignal.state.StorageProtos.SessionStructure value) {
+        public Builder SetCurrentSession(global::Libsignal.State.StorageProtos.SessionStructure value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasCurrentSession = true;
           result.currentSession_ = value;
           return this;
         }
-        public Builder SetCurrentSession(global::libsignal.state.StorageProtos.SessionStructure.Builder builderForValue) {
+        public Builder SetCurrentSession(global::Libsignal.State.StorageProtos.SessionStructure.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasCurrentSession = true;
           result.currentSession_ = builderForValue.Build();
           return this;
         }
-        public Builder MergeCurrentSession(global::libsignal.state.StorageProtos.SessionStructure value) {
+        public Builder MergeCurrentSession(global::Libsignal.State.StorageProtos.SessionStructure value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasCurrentSession &&
-              result.currentSession_ != global::libsignal.state.StorageProtos.SessionStructure.DefaultInstance) {
-              result.currentSession_ = global::libsignal.state.StorageProtos.SessionStructure.CreateBuilder(result.currentSession_).MergeFrom(value).BuildPartial();
+              result.currentSession_ != global::Libsignal.State.StorageProtos.SessionStructure.DefaultInstance) {
+              result.currentSession_ = global::Libsignal.State.StorageProtos.SessionStructure.CreateBuilder(result.currentSession_).MergeFrom(value).BuildPartial();
           } else {
             result.currentSession_ = value;
           }
@@ -3513,40 +3513,40 @@ namespace libsignal.state {
           return this;
         }
         
-        public pbc::IPopsicleList<global::libsignal.state.StorageProtos.SessionStructure> PreviousSessionsList {
+        public pbc::IPopsicleList<global::Libsignal.State.StorageProtos.SessionStructure> PreviousSessionsList {
           get { return PrepareBuilder().previousSessions_; }
         }
         public int PreviousSessionsCount {
           get { return result.PreviousSessionsCount; }
         }
-        public global::libsignal.state.StorageProtos.SessionStructure GetPreviousSessions(int index) {
+        public global::Libsignal.State.StorageProtos.SessionStructure GetPreviousSessions(int index) {
           return result.GetPreviousSessions(index);
         }
-        public Builder SetPreviousSessions(int index, global::libsignal.state.StorageProtos.SessionStructure value) {
+        public Builder SetPreviousSessions(int index, global::Libsignal.State.StorageProtos.SessionStructure value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.previousSessions_[index] = value;
           return this;
         }
-        public Builder SetPreviousSessions(int index, global::libsignal.state.StorageProtos.SessionStructure.Builder builderForValue) {
+        public Builder SetPreviousSessions(int index, global::Libsignal.State.StorageProtos.SessionStructure.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.previousSessions_[index] = builderForValue.Build();
           return this;
         }
-        public Builder AddPreviousSessions(global::libsignal.state.StorageProtos.SessionStructure value) {
+        public Builder AddPreviousSessions(global::Libsignal.State.StorageProtos.SessionStructure value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.previousSessions_.Add(value);
           return this;
         }
-        public Builder AddPreviousSessions(global::libsignal.state.StorageProtos.SessionStructure.Builder builderForValue) {
+        public Builder AddPreviousSessions(global::Libsignal.State.StorageProtos.SessionStructure.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.previousSessions_.Add(builderForValue.Build());
           return this;
         }
-        public Builder AddRangePreviousSessions(scg::IEnumerable<global::libsignal.state.StorageProtos.SessionStructure> values) {
+        public Builder AddRangePreviousSessions(scg::IEnumerable<global::Libsignal.State.StorageProtos.SessionStructure> values) {
           PrepareBuilder();
           result.previousSessions_.Add(values);
           return this;
@@ -3558,7 +3558,7 @@ namespace libsignal.state {
         }
       }
       static RecordStructure() {
-        object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
       }
     }
     
@@ -3581,11 +3581,11 @@ namespace libsignal.state {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_PreKeyRecordStructure__Descriptor; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_PreKeyRecordStructure__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<PreKeyRecordStructure, PreKeyRecordStructure.Builder> InternalFieldAccessors {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_PreKeyRecordStructure__FieldAccessorTable; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_PreKeyRecordStructure__FieldAccessorTable; }
       }
       
       public const int IdFieldNumber = 1;
@@ -3758,11 +3758,11 @@ namespace libsignal.state {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.state.StorageProtos.PreKeyRecordStructure.Descriptor; }
+          get { return global::Libsignal.State.StorageProtos.PreKeyRecordStructure.Descriptor; }
         }
         
         public override PreKeyRecordStructure DefaultInstanceForType {
-          get { return global::libsignal.state.StorageProtos.PreKeyRecordStructure.DefaultInstance; }
+          get { return global::Libsignal.State.StorageProtos.PreKeyRecordStructure.DefaultInstance; }
         }
         
         public override PreKeyRecordStructure BuildPartial() {
@@ -3783,7 +3783,7 @@ namespace libsignal.state {
         }
         
         public override Builder MergeFrom(PreKeyRecordStructure other) {
-          if (other == global::libsignal.state.StorageProtos.PreKeyRecordStructure.DefaultInstance) return this;
+          if (other == global::Libsignal.State.StorageProtos.PreKeyRecordStructure.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasId) {
             Id = other.Id;
@@ -3924,7 +3924,7 @@ namespace libsignal.state {
         }
       }
       static PreKeyRecordStructure() {
-        object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
       }
     }
     
@@ -3947,11 +3947,11 @@ namespace libsignal.state {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SignedPreKeyRecordStructure__Descriptor; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SignedPreKeyRecordStructure__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<SignedPreKeyRecordStructure, SignedPreKeyRecordStructure.Builder> InternalFieldAccessors {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SignedPreKeyRecordStructure__FieldAccessorTable; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SignedPreKeyRecordStructure__FieldAccessorTable; }
       }
       
       public const int IdFieldNumber = 1;
@@ -4157,11 +4157,11 @@ namespace libsignal.state {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.state.StorageProtos.SignedPreKeyRecordStructure.Descriptor; }
+          get { return global::Libsignal.State.StorageProtos.SignedPreKeyRecordStructure.Descriptor; }
         }
         
         public override SignedPreKeyRecordStructure DefaultInstanceForType {
-          get { return global::libsignal.state.StorageProtos.SignedPreKeyRecordStructure.DefaultInstance; }
+          get { return global::Libsignal.State.StorageProtos.SignedPreKeyRecordStructure.DefaultInstance; }
         }
         
         public override SignedPreKeyRecordStructure BuildPartial() {
@@ -4182,7 +4182,7 @@ namespace libsignal.state {
         }
         
         public override Builder MergeFrom(SignedPreKeyRecordStructure other) {
-          if (other == global::libsignal.state.StorageProtos.SignedPreKeyRecordStructure.DefaultInstance) return this;
+          if (other == global::Libsignal.State.StorageProtos.SignedPreKeyRecordStructure.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasId) {
             Id = other.Id;
@@ -4380,7 +4380,7 @@ namespace libsignal.state {
         }
       }
       static SignedPreKeyRecordStructure() {
-        object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
       }
     }
     
@@ -4403,11 +4403,11 @@ namespace libsignal.state {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_IdentityKeyPairStructure__Descriptor; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_IdentityKeyPairStructure__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<IdentityKeyPairStructure, IdentityKeyPairStructure.Builder> InternalFieldAccessors {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_IdentityKeyPairStructure__FieldAccessorTable; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_IdentityKeyPairStructure__FieldAccessorTable; }
       }
       
       public const int PublicKeyFieldNumber = 1;
@@ -4563,11 +4563,11 @@ namespace libsignal.state {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.state.StorageProtos.IdentityKeyPairStructure.Descriptor; }
+          get { return global::Libsignal.State.StorageProtos.IdentityKeyPairStructure.Descriptor; }
         }
         
         public override IdentityKeyPairStructure DefaultInstanceForType {
-          get { return global::libsignal.state.StorageProtos.IdentityKeyPairStructure.DefaultInstance; }
+          get { return global::Libsignal.State.StorageProtos.IdentityKeyPairStructure.DefaultInstance; }
         }
         
         public override IdentityKeyPairStructure BuildPartial() {
@@ -4588,7 +4588,7 @@ namespace libsignal.state {
         }
         
         public override Builder MergeFrom(IdentityKeyPairStructure other) {
-          if (other == global::libsignal.state.StorageProtos.IdentityKeyPairStructure.DefaultInstance) return this;
+          if (other == global::Libsignal.State.StorageProtos.IdentityKeyPairStructure.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasPublicKey) {
             PublicKey = other.PublicKey;
@@ -4700,7 +4700,7 @@ namespace libsignal.state {
         }
       }
       static IdentityKeyPairStructure() {
-        object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
       }
     }
     
@@ -4723,11 +4723,11 @@ namespace libsignal.state {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure__Descriptor; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<SenderKeyStateStructure, SenderKeyStateStructure.Builder> InternalFieldAccessors {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure__FieldAccessorTable; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure__FieldAccessorTable; }
       }
       
       #region Nested types
@@ -4752,11 +4752,11 @@ namespace libsignal.state {
           }
           
           public static pbd::MessageDescriptor Descriptor {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__Descriptor; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__Descriptor; }
           }
           
           protected override pb::FieldAccess.FieldAccessorTable<SenderChainKey, SenderChainKey.Builder> InternalFieldAccessors {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__FieldAccessorTable; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderChainKey__FieldAccessorTable; }
           }
           
           public const int IterationFieldNumber = 1;
@@ -4913,11 +4913,11 @@ namespace libsignal.state {
             }
             
             public override pbd::MessageDescriptor DescriptorForType {
-              get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Descriptor; }
+              get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Descriptor; }
             }
             
             public override SenderChainKey DefaultInstanceForType {
-              get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance; }
+              get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance; }
             }
             
             public override SenderChainKey BuildPartial() {
@@ -4938,7 +4938,7 @@ namespace libsignal.state {
             }
             
             public override Builder MergeFrom(SenderChainKey other) {
-              if (other == global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance) return this;
+              if (other == global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance) return this;
               PrepareBuilder();
               if (other.HasIteration) {
                 Iteration = other.Iteration;
@@ -5051,7 +5051,7 @@ namespace libsignal.state {
             }
           }
           static SenderChainKey() {
-            object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+            object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
         
@@ -5074,11 +5074,11 @@ namespace libsignal.state {
           }
           
           public static pbd::MessageDescriptor Descriptor {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__Descriptor; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__Descriptor; }
           }
           
           protected override pb::FieldAccess.FieldAccessorTable<SenderMessageKey, SenderMessageKey.Builder> InternalFieldAccessors {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__FieldAccessorTable; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderMessageKey__FieldAccessorTable; }
           }
           
           public const int IterationFieldNumber = 1;
@@ -5235,11 +5235,11 @@ namespace libsignal.state {
             }
             
             public override pbd::MessageDescriptor DescriptorForType {
-              get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Descriptor; }
+              get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Descriptor; }
             }
             
             public override SenderMessageKey DefaultInstanceForType {
-              get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.DefaultInstance; }
+              get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.DefaultInstance; }
             }
             
             public override SenderMessageKey BuildPartial() {
@@ -5260,7 +5260,7 @@ namespace libsignal.state {
             }
             
             public override Builder MergeFrom(SenderMessageKey other) {
-              if (other == global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.DefaultInstance) return this;
+              if (other == global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.DefaultInstance) return this;
               PrepareBuilder();
               if (other.HasIteration) {
                 Iteration = other.Iteration;
@@ -5373,7 +5373,7 @@ namespace libsignal.state {
             }
           }
           static SenderMessageKey() {
-            object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+            object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
         
@@ -5396,11 +5396,11 @@ namespace libsignal.state {
           }
           
           public static pbd::MessageDescriptor Descriptor {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__Descriptor; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__Descriptor; }
           }
           
           protected override pb::FieldAccess.FieldAccessorTable<SenderSigningKey, SenderSigningKey.Builder> InternalFieldAccessors {
-            get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__FieldAccessorTable; }
+            get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyStateStructure_SenderSigningKey__FieldAccessorTable; }
           }
           
           public const int PublicFieldNumber = 1;
@@ -5556,11 +5556,11 @@ namespace libsignal.state {
             }
             
             public override pbd::MessageDescriptor DescriptorForType {
-              get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Descriptor; }
+              get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Descriptor; }
             }
             
             public override SenderSigningKey DefaultInstanceForType {
-              get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance; }
+              get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance; }
             }
             
             public override SenderSigningKey BuildPartial() {
@@ -5581,7 +5581,7 @@ namespace libsignal.state {
             }
             
             public override Builder MergeFrom(SenderSigningKey other) {
-              if (other == global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance) return this;
+              if (other == global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance) return this;
               PrepareBuilder();
               if (other.HasPublic) {
                 Public = other.Public;
@@ -5693,7 +5693,7 @@ namespace libsignal.state {
             }
           }
           static SenderSigningKey() {
-            object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+            object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
           }
         }
         
@@ -5713,33 +5713,33 @@ namespace libsignal.state {
       
       public const int SenderChainKeyFieldNumber = 2;
       private bool hasSenderChainKey;
-      private global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey senderChainKey_;
+      private global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey senderChainKey_;
       public bool HasSenderChainKey {
         get { return hasSenderChainKey; }
       }
-      public global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey SenderChainKey {
-        get { return senderChainKey_ ?? global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance; }
+      public global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey SenderChainKey {
+        get { return senderChainKey_ ?? global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance; }
       }
       
       public const int SenderSigningKeyFieldNumber = 3;
       private bool hasSenderSigningKey;
-      private global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey senderSigningKey_;
+      private global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey senderSigningKey_;
       public bool HasSenderSigningKey {
         get { return hasSenderSigningKey; }
       }
-      public global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey SenderSigningKey {
-        get { return senderSigningKey_ ?? global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance; }
+      public global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey SenderSigningKey {
+        get { return senderSigningKey_ ?? global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance; }
       }
       
       public const int SenderMessageKeysFieldNumber = 4;
-      private pbc::PopsicleList<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> senderMessageKeys_ = new pbc::PopsicleList<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey>();
-      public scg::IList<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> SenderMessageKeysList {
+      private pbc::PopsicleList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> senderMessageKeys_ = new pbc::PopsicleList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey>();
+      public scg::IList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> SenderMessageKeysList {
         get { return senderMessageKeys_; }
       }
       public int SenderMessageKeysCount {
         get { return senderMessageKeys_.Count; }
       }
-      public global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey GetSenderMessageKeys(int index) {
+      public global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey GetSenderMessageKeys(int index) {
         return senderMessageKeys_[index];
       }
       
@@ -5790,7 +5790,7 @@ namespace libsignal.state {
         if (hasSenderSigningKey) {
           size += pb::CodedOutputStream.ComputeMessageSize(3, SenderSigningKey);
         }
-        foreach (global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey element in SenderMessageKeysList) {
+        foreach (global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey element in SenderMessageKeysList) {
           size += pb::CodedOutputStream.ComputeMessageSize(4, element);
         }
         size += UnknownFields.SerializedSize;
@@ -5889,11 +5889,11 @@ namespace libsignal.state {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.Descriptor; }
+          get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Descriptor; }
         }
         
         public override SenderKeyStateStructure DefaultInstanceForType {
-          get { return global::libsignal.state.StorageProtos.SenderKeyStateStructure.DefaultInstance; }
+          get { return global::Libsignal.State.StorageProtos.SenderKeyStateStructure.DefaultInstance; }
         }
         
         public override SenderKeyStateStructure BuildPartial() {
@@ -5914,7 +5914,7 @@ namespace libsignal.state {
         }
         
         public override Builder MergeFrom(SenderKeyStateStructure other) {
-          if (other == global::libsignal.state.StorageProtos.SenderKeyStateStructure.DefaultInstance) return this;
+          if (other == global::Libsignal.State.StorageProtos.SenderKeyStateStructure.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasSenderKeyId) {
             SenderKeyId = other.SenderKeyId;
@@ -5976,7 +5976,7 @@ namespace libsignal.state {
                 break;
               }
               case 18: {
-                global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder subBuilder = global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder();
+                global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder subBuilder = global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder();
                 if (result.hasSenderChainKey) {
                   subBuilder.MergeFrom(SenderChainKey);
                 }
@@ -5985,7 +5985,7 @@ namespace libsignal.state {
                 break;
               }
               case 26: {
-                global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder subBuilder = global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.CreateBuilder();
+                global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder subBuilder = global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.CreateBuilder();
                 if (result.hasSenderSigningKey) {
                   subBuilder.MergeFrom(SenderSigningKey);
                 }
@@ -5994,7 +5994,7 @@ namespace libsignal.state {
                 break;
               }
               case 34: {
-                input.ReadMessageArray(tag, field_name, result.senderMessageKeys_, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.DefaultInstance, extensionRegistry);
+                input.ReadMessageArray(tag, field_name, result.senderMessageKeys_, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.DefaultInstance, extensionRegistry);
                 break;
               }
             }
@@ -6032,30 +6032,30 @@ namespace libsignal.state {
         public bool HasSenderChainKey {
          get { return result.hasSenderChainKey; }
         }
-        public global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey SenderChainKey {
+        public global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey SenderChainKey {
           get { return result.SenderChainKey; }
           set { SetSenderChainKey(value); }
         }
-        public Builder SetSenderChainKey(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey value) {
+        public Builder SetSenderChainKey(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasSenderChainKey = true;
           result.senderChainKey_ = value;
           return this;
         }
-        public Builder SetSenderChainKey(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder builderForValue) {
+        public Builder SetSenderChainKey(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasSenderChainKey = true;
           result.senderChainKey_ = builderForValue.Build();
           return this;
         }
-        public Builder MergeSenderChainKey(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey value) {
+        public Builder MergeSenderChainKey(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasSenderChainKey &&
-              result.senderChainKey_ != global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance) {
-              result.senderChainKey_ = global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder(result.senderChainKey_).MergeFrom(value).BuildPartial();
+              result.senderChainKey_ != global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.DefaultInstance) {
+              result.senderChainKey_ = global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder(result.senderChainKey_).MergeFrom(value).BuildPartial();
           } else {
             result.senderChainKey_ = value;
           }
@@ -6072,30 +6072,30 @@ namespace libsignal.state {
         public bool HasSenderSigningKey {
          get { return result.hasSenderSigningKey; }
         }
-        public global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey SenderSigningKey {
+        public global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey SenderSigningKey {
           get { return result.SenderSigningKey; }
           set { SetSenderSigningKey(value); }
         }
-        public Builder SetSenderSigningKey(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey value) {
+        public Builder SetSenderSigningKey(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasSenderSigningKey = true;
           result.senderSigningKey_ = value;
           return this;
         }
-        public Builder SetSenderSigningKey(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder builderForValue) {
+        public Builder SetSenderSigningKey(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasSenderSigningKey = true;
           result.senderSigningKey_ = builderForValue.Build();
           return this;
         }
-        public Builder MergeSenderSigningKey(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey value) {
+        public Builder MergeSenderSigningKey(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasSenderSigningKey &&
-              result.senderSigningKey_ != global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance) {
-              result.senderSigningKey_ = global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.CreateBuilder(result.senderSigningKey_).MergeFrom(value).BuildPartial();
+              result.senderSigningKey_ != global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.DefaultInstance) {
+              result.senderSigningKey_ = global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.CreateBuilder(result.senderSigningKey_).MergeFrom(value).BuildPartial();
           } else {
             result.senderSigningKey_ = value;
           }
@@ -6109,40 +6109,40 @@ namespace libsignal.state {
           return this;
         }
         
-        public pbc::IPopsicleList<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> SenderMessageKeysList {
+        public pbc::IPopsicleList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> SenderMessageKeysList {
           get { return PrepareBuilder().senderMessageKeys_; }
         }
         public int SenderMessageKeysCount {
           get { return result.SenderMessageKeysCount; }
         }
-        public global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey GetSenderMessageKeys(int index) {
+        public global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey GetSenderMessageKeys(int index) {
           return result.GetSenderMessageKeys(index);
         }
-        public Builder SetSenderMessageKeys(int index, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey value) {
+        public Builder SetSenderMessageKeys(int index, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.senderMessageKeys_[index] = value;
           return this;
         }
-        public Builder SetSenderMessageKeys(int index, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder builderForValue) {
+        public Builder SetSenderMessageKeys(int index, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.senderMessageKeys_[index] = builderForValue.Build();
           return this;
         }
-        public Builder AddSenderMessageKeys(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey value) {
+        public Builder AddSenderMessageKeys(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.senderMessageKeys_.Add(value);
           return this;
         }
-        public Builder AddSenderMessageKeys(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder builderForValue) {
+        public Builder AddSenderMessageKeys(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.senderMessageKeys_.Add(builderForValue.Build());
           return this;
         }
-        public Builder AddRangeSenderMessageKeys(scg::IEnumerable<global::libsignal.state.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> values) {
+        public Builder AddRangeSenderMessageKeys(scg::IEnumerable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> values) {
           PrepareBuilder();
           result.senderMessageKeys_.Add(values);
           return this;
@@ -6154,7 +6154,7 @@ namespace libsignal.state {
         }
       }
       static SenderKeyStateStructure() {
-        object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
       }
     }
     
@@ -6177,22 +6177,22 @@ namespace libsignal.state {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyRecordStructure__Descriptor; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyRecordStructure__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<SenderKeyRecordStructure, SenderKeyRecordStructure.Builder> InternalFieldAccessors {
-        get { return global::libsignal.state.StorageProtos.internal__static_textsecure_SenderKeyRecordStructure__FieldAccessorTable; }
+        get { return global::Libsignal.State.StorageProtos.internal__static_textsecure_SenderKeyRecordStructure__FieldAccessorTable; }
       }
       
       public const int SenderKeyStatesFieldNumber = 1;
-      private pbc::PopsicleList<global::libsignal.state.StorageProtos.SenderKeyStateStructure> senderKeyStates_ = new pbc::PopsicleList<global::libsignal.state.StorageProtos.SenderKeyStateStructure>();
-      public scg::IList<global::libsignal.state.StorageProtos.SenderKeyStateStructure> SenderKeyStatesList {
+      private pbc::PopsicleList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure> senderKeyStates_ = new pbc::PopsicleList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure>();
+      public scg::IList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure> SenderKeyStatesList {
         get { return senderKeyStates_; }
       }
       public int SenderKeyStatesCount {
         get { return senderKeyStates_.Count; }
       }
-      public global::libsignal.state.StorageProtos.SenderKeyStateStructure GetSenderKeyStates(int index) {
+      public global::Libsignal.State.StorageProtos.SenderKeyStateStructure GetSenderKeyStates(int index) {
         return senderKeyStates_[index];
       }
       
@@ -6225,7 +6225,7 @@ namespace libsignal.state {
         if (size != -1) return size;
         
         size = 0;
-        foreach (global::libsignal.state.StorageProtos.SenderKeyStateStructure element in SenderKeyStatesList) {
+        foreach (global::Libsignal.State.StorageProtos.SenderKeyStateStructure element in SenderKeyStatesList) {
           size += pb::CodedOutputStream.ComputeMessageSize(1, element);
         }
         size += UnknownFields.SerializedSize;
@@ -6324,11 +6324,11 @@ namespace libsignal.state {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.state.StorageProtos.SenderKeyRecordStructure.Descriptor; }
+          get { return global::Libsignal.State.StorageProtos.SenderKeyRecordStructure.Descriptor; }
         }
         
         public override SenderKeyRecordStructure DefaultInstanceForType {
-          get { return global::libsignal.state.StorageProtos.SenderKeyRecordStructure.DefaultInstance; }
+          get { return global::Libsignal.State.StorageProtos.SenderKeyRecordStructure.DefaultInstance; }
         }
         
         public override SenderKeyRecordStructure BuildPartial() {
@@ -6349,7 +6349,7 @@ namespace libsignal.state {
         }
         
         public override Builder MergeFrom(SenderKeyRecordStructure other) {
-          if (other == global::libsignal.state.StorageProtos.SenderKeyRecordStructure.DefaultInstance) return this;
+          if (other == global::Libsignal.State.StorageProtos.SenderKeyRecordStructure.DefaultInstance) return this;
           PrepareBuilder();
           if (other.senderKeyStates_.Count != 0) {
             result.senderKeyStates_.Add(other.senderKeyStates_);
@@ -6398,7 +6398,7 @@ namespace libsignal.state {
                 break;
               }
               case 10: {
-                input.ReadMessageArray(tag, field_name, result.senderKeyStates_, global::libsignal.state.StorageProtos.SenderKeyStateStructure.DefaultInstance, extensionRegistry);
+                input.ReadMessageArray(tag, field_name, result.senderKeyStates_, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.DefaultInstance, extensionRegistry);
                 break;
               }
             }
@@ -6411,40 +6411,40 @@ namespace libsignal.state {
         }
         
         
-        public pbc::IPopsicleList<global::libsignal.state.StorageProtos.SenderKeyStateStructure> SenderKeyStatesList {
+        public pbc::IPopsicleList<global::Libsignal.State.StorageProtos.SenderKeyStateStructure> SenderKeyStatesList {
           get { return PrepareBuilder().senderKeyStates_; }
         }
         public int SenderKeyStatesCount {
           get { return result.SenderKeyStatesCount; }
         }
-        public global::libsignal.state.StorageProtos.SenderKeyStateStructure GetSenderKeyStates(int index) {
+        public global::Libsignal.State.StorageProtos.SenderKeyStateStructure GetSenderKeyStates(int index) {
           return result.GetSenderKeyStates(index);
         }
-        public Builder SetSenderKeyStates(int index, global::libsignal.state.StorageProtos.SenderKeyStateStructure value) {
+        public Builder SetSenderKeyStates(int index, global::Libsignal.State.StorageProtos.SenderKeyStateStructure value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.senderKeyStates_[index] = value;
           return this;
         }
-        public Builder SetSenderKeyStates(int index, global::libsignal.state.StorageProtos.SenderKeyStateStructure.Builder builderForValue) {
+        public Builder SetSenderKeyStates(int index, global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.senderKeyStates_[index] = builderForValue.Build();
           return this;
         }
-        public Builder AddSenderKeyStates(global::libsignal.state.StorageProtos.SenderKeyStateStructure value) {
+        public Builder AddSenderKeyStates(global::Libsignal.State.StorageProtos.SenderKeyStateStructure value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.senderKeyStates_.Add(value);
           return this;
         }
-        public Builder AddSenderKeyStates(global::libsignal.state.StorageProtos.SenderKeyStateStructure.Builder builderForValue) {
+        public Builder AddSenderKeyStates(global::Libsignal.State.StorageProtos.SenderKeyStateStructure.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.senderKeyStates_.Add(builderForValue.Build());
           return this;
         }
-        public Builder AddRangeSenderKeyStates(scg::IEnumerable<global::libsignal.state.StorageProtos.SenderKeyStateStructure> values) {
+        public Builder AddRangeSenderKeyStates(scg::IEnumerable<global::Libsignal.State.StorageProtos.SenderKeyStateStructure> values) {
           PrepareBuilder();
           result.senderKeyStates_.Add(values);
           return this;
@@ -6456,7 +6456,7 @@ namespace libsignal.state {
         }
       }
       static SenderKeyRecordStructure() {
-        object.ReferenceEquals(global::libsignal.state.StorageProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.State.StorageProtos.Descriptor, null);
       }
     }
     

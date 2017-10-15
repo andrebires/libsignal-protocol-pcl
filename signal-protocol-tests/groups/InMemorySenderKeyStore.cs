@@ -15,29 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.groups;
-using libsignal.groups.state;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Libsignal.Groups;
+using Libsignal.Groups.state;
 
-namespace libsignal_test.groups
+namespace Libsignal.Tests.Groups
 {
-    class InMemorySenderKeyStore : SenderKeyStore
+    class InMemorySenderKeyStore : ISenderKeyStore
     {
-        private readonly Dictionary<SenderKeyName, SenderKeyRecord> store = new Dictionary<SenderKeyName, SenderKeyRecord>();
+        private readonly Dictionary<SenderKeyName, SenderKeyRecord> _store = new Dictionary<SenderKeyName, SenderKeyRecord>();
 
-        public void storeSenderKey(SenderKeyName senderKeyName, SenderKeyRecord record)
+        public void StoreSenderKey(SenderKeyName senderKeyName, SenderKeyRecord record)
         {
-            store[senderKeyName] = record;
+            _store[senderKeyName] = record;
         }
 
-        public SenderKeyRecord loadSenderKey(SenderKeyName senderKeyName)
+        public SenderKeyRecord LoadSenderKey(SenderKeyName senderKeyName)
         {
             try
             {
                 SenderKeyRecord record;
-                store.TryGetValue(senderKeyName, out record);
+                _store.TryGetValue(senderKeyName, out record);
 
                 if (record == null)
                 {
@@ -45,7 +45,7 @@ namespace libsignal_test.groups
                 }
                 else
                 {
-                    return new SenderKeyRecord(record.serialize());
+                    return new SenderKeyRecord(record.Serialize());
                 }
             }
             catch (IOException e)

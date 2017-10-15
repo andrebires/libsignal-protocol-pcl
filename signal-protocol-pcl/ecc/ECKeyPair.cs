@@ -15,28 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.ecc
+namespace Libsignal.Ecc
 {
-    public class ECKeyPair
+    public class EcKeyPair
     {
 
-        private readonly ECPublicKey publicKey;
-        private readonly ECPrivateKey privateKey;
+        private readonly IEcPublicKey _publicKey;
+        private readonly IEcPrivateKey _privateKey;
 
-        public ECKeyPair(ECPublicKey publicKey, ECPrivateKey privateKey)
+        public EcKeyPair(IEcPublicKey publicKey, IEcPrivateKey privateKey)
         {
-            this.publicKey = publicKey;
-            this.privateKey = privateKey;
+            _publicKey = publicKey;
+            _privateKey = privateKey;
         }
 
-        public ECPublicKey getPublicKey()
+        public IEcPublicKey GetPublicKey()
         {
-            return publicKey;
+            return _publicKey;
         }
 
-        public ECPrivateKey getPrivateKey()
+        public IEcPrivateKey GetPrivateKey()
         {
-            return privateKey;
+            return _privateKey;
         }
     }
 }

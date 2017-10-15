@@ -15,42 +15,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.ratchet
+namespace Libsignal.Ratchet
 {
     public class MessageKeys
     {
 
-        private readonly byte[] cipherKey;
-        private readonly byte[] macKey;
-        private readonly byte[] iv;
-        private readonly uint counter;
+        private readonly byte[] _cipherKey;
+        private readonly byte[] _macKey;
+        private readonly byte[] _iv;
+        private readonly uint _counter;
 
         public MessageKeys(byte[] cipherKey, byte[] macKey, byte[] iv, uint counter)
         {
-            this.cipherKey = cipherKey;
-            this.macKey = macKey;
-            this.iv = iv;
-            this.counter = counter;
+            _cipherKey = cipherKey;
+            _macKey = macKey;
+            _iv = iv;
+            _counter = counter;
         }
 
-        public byte[] getCipherKey()
+        public byte[] GetCipherKey()
         {
-            return cipherKey;
+            return _cipherKey;
         }
 
-        public byte[] getMacKey()
+        public byte[] GetMacKey()
         {
-            return macKey;
+            return _macKey;
         }
 
-        public byte[] getIv()
+        public byte[] GetIv()
         {
-            return iv;
+            return _iv;
         }
 
-        public uint getCounter()
+        public uint GetCounter()
         {
-            return counter;
+            return _counter;
         }
     }
 }

@@ -15,61 +15,61 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Google.ProtocolBuffers;
-using libsignal.ecc;
-using libsignal.util;
 using System;
 using System.IO;
 using System.Linq;
+using Google.ProtocolBuffers;
+using Libsignal.Ecc;
+using Libsignal.Util;
 
-namespace libsignal.protocol
+namespace Libsignal.Protocol
 {
     public partial class SignalMessage : CiphertextMessage
     {
 
-        private static readonly int MAC_LENGTH = 8;
+        private static readonly int MacLength = 8;
 
-        private readonly uint messageVersion;
-        private readonly ECPublicKey senderRatchetKey;
-        private readonly uint counter;
-        private readonly uint previousCounter;
-        private readonly byte[] ciphertext;
-        private readonly byte[] serialized;
+        private readonly uint _messageVersion;
+        private readonly IEcPublicKey _senderRatchetKey;
+        private readonly uint _counter;
+        private readonly uint _previousCounter;
+        private readonly byte[] _ciphertext;
+        private readonly byte[] _serialized;
 
         public SignalMessage(byte[] serialized)
         {
             try
             {
-                byte[][] messageParts = ByteUtil.split(serialized, 1, serialized.Length - 1 - MAC_LENGTH, MAC_LENGTH);
+                byte[][] messageParts = ByteUtil.Split(serialized, 1, serialized.Length - 1 - MacLength, MacLength);
                 byte version = messageParts[0][0];
                 byte[] message = messageParts[1];
                 byte[] mac = messageParts[2];
 
-                if (ByteUtil.highBitsToInt(version) <= CiphertextMessage.UNSUPPORTED_VERSION)
+                if (ByteUtil.HighBitsToInt(version) <= UnsupportedVersion)
                 {
-                    throw new LegacyMessageException("Legacy message: " + ByteUtil.highBitsToInt(version));
+                    throw new LegacyMessageException("Legacy message: " + ByteUtil.HighBitsToInt(version));
                 }
 
-                if (ByteUtil.highBitsToInt(version) > CURRENT_VERSION)
+                if (ByteUtil.HighBitsToInt(version) > CurrentVersion)
                 {
-                    throw new InvalidMessageException("Unknown version: " + ByteUtil.highBitsToInt(version));
+                    throw new InvalidMessageException("Unknown version: " + ByteUtil.HighBitsToInt(version));
                 }
 
-                WhisperProtos.SignalMessage SignalMessage = WhisperProtos.SignalMessage.ParseFrom(message);
+                WhisperProtos.SignalMessage signalMessage = WhisperProtos.SignalMessage.ParseFrom(message);
 
-                if (!SignalMessage.HasCiphertext ||
-                    !SignalMessage.HasCounter ||
-                    !SignalMessage.HasRatchetKey)
+                if (!signalMessage.HasCiphertext ||
+                    !signalMessage.HasCounter ||
+                    !signalMessage.HasRatchetKey)
                 {
                     throw new InvalidMessageException("Incomplete message.");
                 }
 
-                this.serialized = serialized;
-                this.senderRatchetKey = Curve.decodePoint(SignalMessage.RatchetKey.ToByteArray(), 0);
-                this.messageVersion = (uint)ByteUtil.highBitsToInt(version);
-                this.counter = SignalMessage.Counter;
-                this.previousCounter = SignalMessage.PreviousCounter;
-                this.ciphertext = SignalMessage.Ciphertext.ToByteArray();
+                _serialized = serialized;
+                _senderRatchetKey = Curve.DecodePoint(signalMessage.RatchetKey.ToByteArray(), 0);
+                _messageVersion = (uint)ByteUtil.HighBitsToInt(version);
+                _counter = signalMessage.Counter;
+                _previousCounter = signalMessage.PreviousCounter;
+                _ciphertext = signalMessage.Ciphertext.ToByteArray();
             }
             catch (/*InvalidProtocolBufferException | InvalidKeyException | Parse*/Exception e)
             {
@@ -77,55 +77,55 @@ namespace libsignal.protocol
             }
         }
 
-        public SignalMessage(uint messageVersion, byte[] macKey, ECPublicKey senderRatchetKey,
+        public SignalMessage(uint messageVersion, byte[] macKey, IEcPublicKey senderRatchetKey,
                               uint counter, uint previousCounter, byte[] ciphertext,
                               IdentityKey senderIdentityKey,
                               IdentityKey receiverIdentityKey)
         {
-            byte[] version = { ByteUtil.intsToByteHighAndLow((int)messageVersion, (int)CURRENT_VERSION) };
+            byte[] version = { ByteUtil.IntsToByteHighAndLow((int)messageVersion, (int)CurrentVersion) };
             byte[] message = WhisperProtos.SignalMessage.CreateBuilder()
-                                           .SetRatchetKey(ByteString.CopyFrom(senderRatchetKey.serialize()))
+                                           .SetRatchetKey(ByteString.CopyFrom(senderRatchetKey.Serialize()))
                                            .SetCounter(counter)
                                            .SetPreviousCounter(previousCounter)
                                            .SetCiphertext(ByteString.CopyFrom(ciphertext))
                                            .Build().ToByteArray();
 
-            byte[] mac = getMac(messageVersion, senderIdentityKey, receiverIdentityKey, macKey,
-                                    ByteUtil.combine(version, message));
+            byte[] mac = GetMac(messageVersion, senderIdentityKey, receiverIdentityKey, macKey,
+                                    ByteUtil.Combine(version, message));
 
-            this.serialized = ByteUtil.combine(version, message, mac);
-            this.senderRatchetKey = senderRatchetKey;
-            this.counter = counter;
-            this.previousCounter = previousCounter;
-            this.ciphertext = ciphertext;
-            this.messageVersion = messageVersion;
+            _serialized = ByteUtil.Combine(version, message, mac);
+            _senderRatchetKey = senderRatchetKey;
+            _counter = counter;
+            _previousCounter = previousCounter;
+            _ciphertext = ciphertext;
+            _messageVersion = messageVersion;
         }
 
-        public ECPublicKey getSenderRatchetKey()
+        public IEcPublicKey GetSenderRatchetKey()
         {
-            return senderRatchetKey;
+            return _senderRatchetKey;
         }
 
-        public uint getMessageVersion()
+        public uint GetMessageVersion()
         {
-            return messageVersion;
+            return _messageVersion;
         }
 
-        public uint getCounter()
+        public uint GetCounter()
         {
-            return counter;
+            return _counter;
         }
 
-        public byte[] getBody()
+        public byte[] GetBody()
         {
-            return ciphertext;
+            return _ciphertext;
         }
 
-        public void verifyMac(uint messageVersion, IdentityKey senderIdentityKey,
+        public void VerifyMac(uint messageVersion, IdentityKey senderIdentityKey,
                         IdentityKey receiverIdentityKey, byte[] macKey)
         {
-            byte[][] parts = ByteUtil.split(serialized, serialized.Length - MAC_LENGTH, MAC_LENGTH);
-            byte[] ourMac = getMac(messageVersion, senderIdentityKey, receiverIdentityKey, macKey, parts[0]);
+            byte[][] parts = ByteUtil.Split(_serialized, _serialized.Length - MacLength, MacLength);
+            byte[] ourMac = GetMac(messageVersion, senderIdentityKey, receiverIdentityKey, macKey, parts[0]);
             byte[] theirMac = parts[1];
 
             if (!Enumerable.SequenceEqual(ourMac, theirMac))
@@ -134,7 +134,7 @@ namespace libsignal.protocol
             }
         }
 
-        private byte[] getMac(uint messageVersion,
+        private byte[] GetMac(uint messageVersion,
                         IdentityKey senderIdentityKey,
                         IdentityKey receiverIdentityKey,
                         byte[] macKey, byte[] serialized)
@@ -144,15 +144,15 @@ namespace libsignal.protocol
                 MemoryStream stream = new MemoryStream();
                 if (messageVersion >= 3)
                 {
-                    byte[] sik = senderIdentityKey.getPublicKey().serialize();
+                    byte[] sik = senderIdentityKey.GetPublicKey().Serialize();
                     stream.Write(sik, 0, sik.Length);
-                    byte[] rik = receiverIdentityKey.getPublicKey().serialize();
+                    byte[] rik = receiverIdentityKey.GetPublicKey().Serialize();
                     stream.Write(rik, 0, rik.Length);
                 }
 
                 stream.Write(serialized, 0, serialized.Length);
-                byte[] fullMac = Sign.sha256sum(macKey, stream.ToArray());
-                return ByteUtil.trim(fullMac, MAC_LENGTH);
+                byte[] fullMac = Sign.Sha256Sum(macKey, stream.ToArray());
+                return ByteUtil.Trim(fullMac, MacLength);
             }
             catch (/*NoSuchAlgorithmException | java.security.InvalidKey*/Exception e)
             {
@@ -160,20 +160,20 @@ namespace libsignal.protocol
             }
         }
 
-        public override byte[] serialize()
+        public override byte[] Serialize()
         {
-            return serialized;
+            return _serialized;
         }
 
-        public override uint getType()
+        public override uint GetMessageType()
         {
-            return CiphertextMessage.WHISPER_TYPE;
+            return WhisperType;
         }
 
-        public static bool isLegacy(byte[] message)
+        public static bool IsLegacy(byte[] message)
         {
             return message != null && message.Length >= 1 &&
-                ByteUtil.highBitsToInt(message[0]) <= CiphertextMessage.UNSUPPORTED_VERSION;
+                ByteUtil.HighBitsToInt(message[0]) <= UnsupportedVersion;
         }
 
     }

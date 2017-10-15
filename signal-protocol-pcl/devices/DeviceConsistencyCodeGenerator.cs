@@ -18,40 +18,39 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using libsignal.util;
+using Libsignal.Util;
 using PCLCrypto;
-using static PCLCrypto.WinRTCrypto;
 
-namespace libsignal.devices
+namespace Libsignal.Devices
 {
     public class DeviceConsistencyCodeGenerator
     {
-        public const int CODE_VERSION = 0;
+        public const int CodeVersion = 0;
         
-        public static string generateFor(DeviceConsistencyCommitment commitment, List<DeviceConsistencySignature> signatures)
+        public static string GenerateFor(DeviceConsistencyCommitment commitment, List<DeviceConsistencySignature> signatures)
         {
             try
             {
                 List<DeviceConsistencySignature> sortedSignatures = new List<DeviceConsistencySignature>(signatures);
                 sortedSignatures.Sort(new SignatureComparator());
 
-                IHashAlgorithmProvider messageDigest = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha512);
-                byte[] hash = messageDigest.HashData(ByteUtil.combine(new byte[][]
+                IHashAlgorithmProvider messageDigest = WinRTCrypto.HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha512);
+                byte[] hash = messageDigest.HashData(ByteUtil.Combine(new byte[][]
                 {
-                    ByteUtil.shortToByteArray(CODE_VERSION),
-                    commitment.toByteArray()
+                    ByteUtil.ShortToByteArray(CodeVersion),
+                    commitment.ToByteArray()
                 }));
 
                 foreach (DeviceConsistencySignature signature in sortedSignatures)
                 {
-                    hash = messageDigest.HashData(ByteUtil.combine(new byte[][]
+                    hash = messageDigest.HashData(ByteUtil.Combine(new byte[][]
                         {
                             hash,
-                            signature.getVrfOutput()
+                            signature.GetVrfOutput()
                         }));
                 }
 
-                string digits = getEncodedChunk(hash, 0) + getEncodedChunk(hash, 5);
+                string digits = GetEncodedChunk(hash, 0) + GetEncodedChunk(hash, 5);
                 return digits.Substring(0, 6);
             }
             catch (Exception e)
@@ -61,9 +60,9 @@ namespace libsignal.devices
             }
         }
 
-        private static string getEncodedChunk(byte[] hash, int offset)
+        private static string GetEncodedChunk(byte[] hash, int offset)
         {
-            long chunk = ByteUtil.byteArray5ToLong(hash, offset) % 100000;
+            long chunk = ByteUtil.ByteArray5ToLong(hash, offset) % 100000;
             return string.Format("{0:d5}", chunk);
         }
     }
@@ -72,7 +71,7 @@ namespace libsignal.devices
     {
         public int Compare(DeviceConsistencySignature first, DeviceConsistencySignature second)
         {
-            return compare(first.getSignature(), second.getSignature());
+            return Compare(first.GetSignature(), second.GetSignature());
         }
     }
 }

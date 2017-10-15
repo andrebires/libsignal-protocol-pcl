@@ -15,30 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal;
-using libsignal.ecc;
-using libsignal.state.impl;
-using libsignal.util;
+using Libsignal.Ecc;
+using Libsignal.State.Impl;
+using Libsignal.Util;
 
-namespace libsignal_test
+namespace Libsignal.Tests
 {
     class TestInMemoryIdentityKeyStore : InMemoryIdentityKeyStore
     {
         public TestInMemoryIdentityKeyStore()
-            : base(generateIdentityKeyPair(), generateRegistrationId())
+            : base(GenerateIdentityKeyPair(), GenerateRegistrationId())
         { }
 
-        private static IdentityKeyPair generateIdentityKeyPair()
+        private static IdentityKeyPair GenerateIdentityKeyPair()
         {
-            ECKeyPair identityKeyPairKeys = Curve.generateKeyPair();
+            EcKeyPair identityKeyPairKeys = Curve.GenerateKeyPair();
 
-            return new IdentityKeyPair(new IdentityKey(identityKeyPairKeys.getPublicKey()),
-                                       identityKeyPairKeys.getPrivateKey());
+            return new IdentityKeyPair(new IdentityKey(identityKeyPairKeys.GetPublicKey()),
+                                       identityKeyPairKeys.GetPrivateKey());
         }
 
-        private static uint generateRegistrationId()
+        private static uint GenerateRegistrationId()
         {
-            return KeyHelper.generateRegistrationId(false);
+            return KeyHelper.GenerateRegistrationId(false);
         }
     }
 }

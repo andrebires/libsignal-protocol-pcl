@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Google.ProtocolBuffers;
-using libsignal.ecc;
-using libsignal.groups.ratchet;
-using Strilanc.Value;
 using System.Collections.Generic;
-using static libsignal.state.StorageProtos;
+using Google.ProtocolBuffers;
+using Libsignal.Ecc;
+using Libsignal.Groups.ratchet;
+using Libsignal.State;
+using Strilanc.Value;
 
-namespace libsignal.groups.state
+namespace Libsignal.Groups.state
 {
     /**
      * Represents the state of an individual SenderKey ratchet.
@@ -31,88 +31,88 @@ namespace libsignal.groups.state
      */
     public class SenderKeyState
 	{
-		private static readonly int MAX_MESSAGE_KEYS = 2000;
+		private static readonly int MaxMessageKeys = 2000;
 
-		private SenderKeyStateStructure senderKeyStateStructure;
+		private StorageProtos.SenderKeyStateStructure _senderKeyStateStructure;
 
-		public SenderKeyState(uint id, uint iteration, byte[] chainKey, ECPublicKey signatureKey)
-			: this(id, iteration, chainKey, signatureKey, May<ECPrivateKey>.NoValue)
+		public SenderKeyState(uint id, uint iteration, byte[] chainKey, IEcPublicKey signatureKey)
+			: this(id, iteration, chainKey, signatureKey, May<IEcPrivateKey>.NoValue)
 		{
 		}
 
-		public SenderKeyState(uint id, uint iteration, byte[] chainKey, ECKeyPair signatureKey)
-		: this(id, iteration, chainKey, signatureKey.getPublicKey(), new May<ECPrivateKey>(signatureKey.getPrivateKey()))
+		public SenderKeyState(uint id, uint iteration, byte[] chainKey, EcKeyPair signatureKey)
+		: this(id, iteration, chainKey, signatureKey.GetPublicKey(), new May<IEcPrivateKey>(signatureKey.GetPrivateKey()))
 		{
 		}
 
 		private SenderKeyState(uint id, uint iteration, byte[] chainKey,
-							  ECPublicKey signatureKeyPublic,
-							  May<ECPrivateKey> signatureKeyPrivate)
+							  IEcPublicKey signatureKeyPublic,
+							  May<IEcPrivateKey> signatureKeyPrivate)
 		{
-			SenderKeyStateStructure.Types.SenderChainKey senderChainKeyStructure =
-				SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder()
+			StorageProtos.SenderKeyStateStructure.Types.SenderChainKey senderChainKeyStructure =
+				StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder()
 													  .SetIteration(iteration)
 													  .SetSeed(ByteString.CopyFrom(chainKey))
 													  .Build();
 
-			SenderKeyStateStructure.Types.SenderSigningKey.Builder signingKeyStructure =
-				SenderKeyStateStructure.Types.SenderSigningKey.CreateBuilder()
-														.SetPublic(ByteString.CopyFrom(signatureKeyPublic.serialize()));
+			StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.Builder signingKeyStructure =
+				StorageProtos.SenderKeyStateStructure.Types.SenderSigningKey.CreateBuilder()
+														.SetPublic(ByteString.CopyFrom(signatureKeyPublic.Serialize()));
 
 			if (signatureKeyPrivate.HasValue)
 			{
-				signingKeyStructure.SetPrivate(ByteString.CopyFrom(signatureKeyPrivate.ForceGetValue().serialize()));
+				signingKeyStructure.SetPrivate(ByteString.CopyFrom(signatureKeyPrivate.ForceGetValue().Serialize()));
 			}
 
-			this.senderKeyStateStructure = SenderKeyStateStructure.CreateBuilder()
+			_senderKeyStateStructure = StorageProtos.SenderKeyStateStructure.CreateBuilder()
 																  .SetSenderKeyId(id)
 																  .SetSenderChainKey(senderChainKeyStructure)
 																  .SetSenderSigningKey(signingKeyStructure)
 																  .Build();
 		}
 
-		public SenderKeyState(SenderKeyStateStructure senderKeyStateStructure)
+		public SenderKeyState(StorageProtos.SenderKeyStateStructure senderKeyStateStructure)
 		{
-			this.senderKeyStateStructure = senderKeyStateStructure;
+			_senderKeyStateStructure = senderKeyStateStructure;
 		}
 
-		public uint getKeyId()
+		public uint GetKeyId()
 		{
-			return senderKeyStateStructure.SenderKeyId;
+			return _senderKeyStateStructure.SenderKeyId;
 		}
 
-		public SenderChainKey getSenderChainKey()
+		public SenderChainKey GetSenderChainKey()
 		{
-			return new SenderChainKey(senderKeyStateStructure.SenderChainKey.Iteration,
-									  senderKeyStateStructure.SenderChainKey.Seed.ToByteArray());
+			return new SenderChainKey(_senderKeyStateStructure.SenderChainKey.Iteration,
+									  _senderKeyStateStructure.SenderChainKey.Seed.ToByteArray());
 		}
 
-		public void setSenderChainKey(SenderChainKey chainKey)
+		public void SetSenderChainKey(SenderChainKey chainKey)
 		{
-			SenderKeyStateStructure.Types.SenderChainKey senderChainKeyStructure =
-				SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder()
-													  .SetIteration(chainKey.getIteration())
-													  .SetSeed(ByteString.CopyFrom(chainKey.getSeed()))
+			StorageProtos.SenderKeyStateStructure.Types.SenderChainKey senderChainKeyStructure =
+				StorageProtos.SenderKeyStateStructure.Types.SenderChainKey.CreateBuilder()
+													  .SetIteration(chainKey.GetIteration())
+													  .SetSeed(ByteString.CopyFrom(chainKey.GetSeed()))
 													  .Build();
 
-			this.senderKeyStateStructure = senderKeyStateStructure.ToBuilder()
+			_senderKeyStateStructure = _senderKeyStateStructure.ToBuilder()
 																  .SetSenderChainKey(senderChainKeyStructure)
 																  .Build();
 		}
 
-		public ECPublicKey getSigningKeyPublic()
+		public IEcPublicKey GetSigningKeyPublic()
 		{
-			return Curve.decodePoint(senderKeyStateStructure.SenderSigningKey.Public.ToByteArray(), 0);
+			return Curve.DecodePoint(_senderKeyStateStructure.SenderSigningKey.Public.ToByteArray(), 0);
 		}
 
-		public ECPrivateKey getSigningKeyPrivate()
+		public IEcPrivateKey GetSigningKeyPrivate()
 		{
-			return Curve.decodePrivatePoint(senderKeyStateStructure.SenderSigningKey.Private.ToByteArray());
+			return Curve.DecodePrivatePoint(_senderKeyStateStructure.SenderSigningKey.Private.ToByteArray());
 		}
 
-		public bool hasSenderMessageKey(uint iteration)
+		public bool HasSenderMessageKey(uint iteration)
 		{
-			foreach (SenderKeyStateStructure.Types.SenderMessageKey senderMessageKey in senderKeyStateStructure.SenderMessageKeysList)
+			foreach (StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey senderMessageKey in _senderKeyStateStructure.SenderMessageKeysList)
 			{
 				if (senderMessageKey.Iteration == iteration) return true;
 			}
@@ -120,34 +120,34 @@ namespace libsignal.groups.state
 			return false;
 		}
 
-		public void addSenderMessageKey(SenderMessageKey senderMessageKey)
+		public void AddSenderMessageKey(SenderMessageKey senderMessageKey)
 		{
-			SenderKeyStateStructure.Types.SenderMessageKey senderMessageKeyStructure =
-				SenderKeyStateStructure.Types.SenderMessageKey.CreateBuilder()
-														.SetIteration(senderMessageKey.getIteration())
-														.SetSeed(ByteString.CopyFrom(senderMessageKey.getSeed()))
+			StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey senderMessageKeyStructure =
+				StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey.CreateBuilder()
+														.SetIteration(senderMessageKey.GetIteration())
+														.SetSeed(ByteString.CopyFrom(senderMessageKey.GetSeed()))
 														.Build();
 
-			SenderKeyStateStructure.Builder builder = this.senderKeyStateStructure.ToBuilder();
+			StorageProtos.SenderKeyStateStructure.Builder builder = _senderKeyStateStructure.ToBuilder();
 			builder.AddSenderMessageKeys(senderMessageKeyStructure);
 
-			if (builder.SenderMessageKeysList.Count > MAX_MESSAGE_KEYS)
+			if (builder.SenderMessageKeysList.Count > MaxMessageKeys)
 			{
 				builder.SenderMessageKeysList.RemoveAt(0);
 			}
-			this.senderKeyStateStructure = builder.Build();
+			_senderKeyStateStructure = builder.Build();
 		}
 
-		public SenderMessageKey removeSenderMessageKey(uint iteration)
+		public SenderMessageKey RemoveSenderMessageKey(uint iteration)
 		{
-			LinkedList<SenderKeyStateStructure.Types.SenderMessageKey> keys = new LinkedList<SenderKeyStateStructure.Types.SenderMessageKey>(senderKeyStateStructure.SenderMessageKeysList);
-			IEnumerator<SenderKeyStateStructure.Types.SenderMessageKey> iterator = keys.GetEnumerator(); // iterator();
+			LinkedList<StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> keys = new LinkedList<StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey>(_senderKeyStateStructure.SenderMessageKeysList);
+			IEnumerator<StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey> iterator = keys.GetEnumerator(); // iterator();
 
-			SenderKeyStateStructure.Types.SenderMessageKey result = null;
+			StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey result = null;
 
 			while (iterator.MoveNext()) // hastNext
 			{
-				SenderKeyStateStructure.Types.SenderMessageKey senderMessageKey = iterator.Current; // next();
+				StorageProtos.SenderKeyStateStructure.Types.SenderMessageKey senderMessageKey = iterator.Current; // next();
 
 				if (senderMessageKey.Iteration == iteration) //senderMessageKey.getIteration()
 				{
@@ -157,7 +157,7 @@ namespace libsignal.groups.state
 				}
 			}
 
-			this.senderKeyStateStructure = this.senderKeyStateStructure.ToBuilder()
+			_senderKeyStateStructure = _senderKeyStateStructure.ToBuilder()
 																	   .ClearSenderMessageKeys()
 																	   //.AddAllSenderMessageKeys(keys)
 																	   .AddRangeSenderMessageKeys(keys)
@@ -173,9 +173,9 @@ namespace libsignal.groups.state
 			}
 		}
 
-		public SenderKeyStateStructure getStructure()
+		public StorageProtos.SenderKeyStateStructure GetStructure()
 		{
-			return senderKeyStateStructure;
+			return _senderKeyStateStructure;
 		}
 	}
 }

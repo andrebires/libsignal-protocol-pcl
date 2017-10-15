@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.groups.state;
-using libsignal.protocol;
-using libsignal.util;
 using System;
+using Libsignal.Groups.state;
+using Libsignal.Protocol;
+using Libsignal.Util;
 
-namespace libsignal.groups
+namespace Libsignal.Groups
 {
     /**
      * GroupSessionBuilder is responsible for setting up group SenderKey encrypted sessions.
@@ -41,11 +41,11 @@ namespace libsignal.groups
     public class GroupSessionBuilder
     {
 
-        private readonly SenderKeyStore senderKeyStore;
+        private readonly ISenderKeyStore _senderKeyStore;
 
-        public GroupSessionBuilder(SenderKeyStore senderKeyStore)
+        public GroupSessionBuilder(ISenderKeyStore senderKeyStore)
         {
-            this.senderKeyStore = senderKeyStore;
+            _senderKeyStore = senderKeyStore;
         }
 
         /**
@@ -54,16 +54,16 @@ namespace libsignal.groups
          * @param senderKeyName The (groupId, senderId, deviceId) tuple associated with the SenderKeyDistributionMessage.
          * @param senderKeyDistributionMessage A received SenderKeyDistributionMessage.
          */
-        public void process(SenderKeyName senderKeyName, SenderKeyDistributionMessage senderKeyDistributionMessage)
+        public void Process(SenderKeyName senderKeyName, SenderKeyDistributionMessage senderKeyDistributionMessage)
         {
-            lock (GroupCipher.LOCK)
+            lock (GroupCipher.Lock)
             {
-                SenderKeyRecord senderKeyRecord = senderKeyStore.loadSenderKey(senderKeyName);
-                senderKeyRecord.addSenderKeyState(senderKeyDistributionMessage.getId(),
-                                                  senderKeyDistributionMessage.getIteration(),
-                                                  senderKeyDistributionMessage.getChainKey(),
-                                                  senderKeyDistributionMessage.getSignatureKey());
-                senderKeyStore.storeSenderKey(senderKeyName, senderKeyRecord);
+                SenderKeyRecord senderKeyRecord = _senderKeyStore.LoadSenderKey(senderKeyName);
+                senderKeyRecord.AddSenderKeyState(senderKeyDistributionMessage.GetId(),
+                                                  senderKeyDistributionMessage.GetIteration(),
+                                                  senderKeyDistributionMessage.GetChainKey(),
+                                                  senderKeyDistributionMessage.GetSignatureKey());
+                _senderKeyStore.StoreSenderKey(senderKeyName, senderKeyRecord);
             }
         }
 
@@ -73,29 +73,29 @@ namespace libsignal.groups
          * @param senderKeyName The (groupId, senderId, deviceId) tuple.  In this case, 'senderId' should be the caller.
          * @return A SenderKeyDistributionMessage that is individually distributed to each member of the group.
          */
-        public SenderKeyDistributionMessage create(SenderKeyName senderKeyName)
+        public SenderKeyDistributionMessage Create(SenderKeyName senderKeyName)
         {
-            lock (GroupCipher.LOCK)
+            lock (GroupCipher.Lock)
             {
                 try
                 {
-                    SenderKeyRecord senderKeyRecord = senderKeyStore.loadSenderKey(senderKeyName);
+                    SenderKeyRecord senderKeyRecord = _senderKeyStore.LoadSenderKey(senderKeyName);
 
-                    if (senderKeyRecord.isEmpty())
+                    if (senderKeyRecord.IsEmpty())
                     {
-                        senderKeyRecord.setSenderKeyState(KeyHelper.generateSenderKeyId(),
+                        senderKeyRecord.SetSenderKeyState(KeyHelper.GenerateSenderKeyId(),
                                                           0,
-                                                          KeyHelper.generateSenderKey(),
-                                                          KeyHelper.generateSenderSigningKey());
-                        senderKeyStore.storeSenderKey(senderKeyName, senderKeyRecord);
+                                                          KeyHelper.GenerateSenderKey(),
+                                                          KeyHelper.GenerateSenderSigningKey());
+                        _senderKeyStore.StoreSenderKey(senderKeyName, senderKeyRecord);
                     }
 
-                    SenderKeyState state = senderKeyRecord.getSenderKeyState();
+                    SenderKeyState state = senderKeyRecord.GetSenderKeyState();
 
-                    return new SenderKeyDistributionMessage(state.getKeyId(),
-                                                            state.getSenderChainKey().getIteration(),
-                                                            state.getSenderChainKey().getSeed(),
-                                                            state.getSigningKeyPublic());
+                    return new SenderKeyDistributionMessage(state.GetKeyId(),
+                                                            state.GetSenderChainKey().GetIteration(),
+                                                            state.GetSenderChainKey().GetSeed(),
+                                                            state.GetSigningKeyPublic());
 
                 }
                 catch (Exception e) when (e is InvalidKeyIdException || e is InvalidKeyException)

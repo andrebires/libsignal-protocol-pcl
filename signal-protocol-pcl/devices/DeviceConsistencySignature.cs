@@ -15,27 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.devices
+namespace Libsignal.Devices
 {
     public class DeviceConsistencySignature
     {
-        private readonly byte[] signature;
-        private readonly byte[] vrfOutput;
+        private readonly byte[] _signature;
+        private readonly byte[] _vrfOutput;
 
         public DeviceConsistencySignature(byte[] signature, byte[] vrfOutput)
         {
-            this.signature = signature;
-            this.vrfOutput = vrfOutput;
+            _signature = signature;
+            _vrfOutput = vrfOutput;
         }
 
-        public byte[] getVrfOutput()
+        public byte[] GetVrfOutput()
         {
-            return vrfOutput;
+            return _vrfOutput;
         }
 
-        public byte[] getSignature()
+        public byte[] GetSignature()
         {
-            return signature;
+            return _signature;
         }
     }
 }

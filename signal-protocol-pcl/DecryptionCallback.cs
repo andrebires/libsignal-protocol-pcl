@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal
+namespace Libsignal
 {
-    public interface DecryptionCallback
+    public interface IDecryptionCallback
     {
-        void handlePlaintext(byte[] plaintext);
+        void HandlePlaintext(byte[] plaintext);
     }
 }

@@ -15,92 +15,92 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
-using libsignal.kdf;
-using libsignal.protocol;
-using libsignal.state;
-using libsignal.util;
-using Strilanc.Value;
 using System;
 using System.IO;
 using System.Text;
+using Libsignal.Ecc;
+using Libsignal.Kdf;
+using Libsignal.Protocol;
+using Libsignal.State;
+using Libsignal.Util;
+using Strilanc.Value;
 
-namespace libsignal.ratchet
+namespace Libsignal.Ratchet
 {
     public class RatchetingSession
     {
 
-        public static void initializeSession(SessionState sessionState,
+        public static void InitializeSession(SessionState sessionState,
                                              SymmetricSignalProtocolParameters parameters)
         {
-            if (isAlice(parameters.getOurBaseKey().getPublicKey(), parameters.getTheirBaseKey()))
+            if (IsAlice(parameters.GetOurBaseKey().GetPublicKey(), parameters.GetTheirBaseKey()))
             {
-                AliceSignalProtocolParameters.Builder aliceParameters = AliceSignalProtocolParameters.newBuilder();
+                AliceSignalProtocolParameters.Builder aliceParameters = AliceSignalProtocolParameters.NewBuilder();
 
-                aliceParameters.setOurBaseKey(parameters.getOurBaseKey())
-                               .setOurIdentityKey(parameters.getOurIdentityKey())
-                               .setTheirRatchetKey(parameters.getTheirRatchetKey())
-                               .setTheirIdentityKey(parameters.getTheirIdentityKey())
-                               .setTheirSignedPreKey(parameters.getTheirBaseKey())
-                               .setTheirOneTimePreKey(May<ECPublicKey>.NoValue);
+                aliceParameters.SetOurBaseKey(parameters.GetOurBaseKey())
+                               .SetOurIdentityKey(parameters.GetOurIdentityKey())
+                               .SetTheirRatchetKey(parameters.GetTheirRatchetKey())
+                               .SetTheirIdentityKey(parameters.GetTheirIdentityKey())
+                               .SetTheirSignedPreKey(parameters.GetTheirBaseKey())
+                               .SetTheirOneTimePreKey(May<IEcPublicKey>.NoValue);
 
-                RatchetingSession.initializeSession(sessionState, aliceParameters.create());
+                InitializeSession(sessionState, aliceParameters.Create());
             }
             else
             {
-                BobSignalProtocolParameters.Builder bobParameters = BobSignalProtocolParameters.newBuilder();
+                BobSignalProtocolParameters.Builder bobParameters = BobSignalProtocolParameters.NewBuilder();
 
-                bobParameters.setOurIdentityKey(parameters.getOurIdentityKey())
-                             .setOurRatchetKey(parameters.getOurRatchetKey())
-                             .setOurSignedPreKey(parameters.getOurBaseKey())
-                             .setOurOneTimePreKey(May<ECKeyPair>.NoValue)
-                             .setTheirBaseKey(parameters.getTheirBaseKey())
-                             .setTheirIdentityKey(parameters.getTheirIdentityKey());
+                bobParameters.SetOurIdentityKey(parameters.GetOurIdentityKey())
+                             .SetOurRatchetKey(parameters.GetOurRatchetKey())
+                             .SetOurSignedPreKey(parameters.GetOurBaseKey())
+                             .SetOurOneTimePreKey(May<EcKeyPair>.NoValue)
+                             .SetTheirBaseKey(parameters.GetTheirBaseKey())
+                             .SetTheirIdentityKey(parameters.GetTheirIdentityKey());
 
-                RatchetingSession.initializeSession(sessionState, bobParameters.create());
+                InitializeSession(sessionState, bobParameters.Create());
             }
         }
 
-        public static void initializeSession(SessionState sessionState, AliceSignalProtocolParameters parameters)
+        public static void InitializeSession(SessionState sessionState, AliceSignalProtocolParameters parameters)
 
         {
             try
             {
-                sessionState.setSessionVersion(CiphertextMessage.CURRENT_VERSION);
-                sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
-                sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
+                sessionState.SetSessionVersion(CiphertextMessage.CurrentVersion);
+                sessionState.SetRemoteIdentityKey(parameters.GetTheirIdentityKey());
+                sessionState.SetLocalIdentityKey(parameters.GetOurIdentityKey().GetPublicKey());
 
-                ECKeyPair sendingRatchetKey = Curve.generateKeyPair();
+                EcKeyPair sendingRatchetKey = Curve.GenerateKeyPair();
                 MemoryStream secrets = new MemoryStream();
 
-                byte[] discontinuityBytes = getDiscontinuityBytes();
+                byte[] discontinuityBytes = GetDiscontinuityBytes();
                 secrets.Write(discontinuityBytes, 0, discontinuityBytes.Length);
 
-                byte[] agree1 = Curve.calculateAgreement(parameters.getTheirSignedPreKey(),
-                                                       parameters.getOurIdentityKey().getPrivateKey());
-                byte[] agree2 = Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
-                                                        parameters.getOurBaseKey().getPrivateKey());
-                byte[] agree3 = Curve.calculateAgreement(parameters.getTheirSignedPreKey(),
-                                                       parameters.getOurBaseKey().getPrivateKey());
+                byte[] agree1 = Curve.CalculateAgreement(parameters.GetTheirSignedPreKey(),
+                                                       parameters.GetOurIdentityKey().GetPrivateKey());
+                byte[] agree2 = Curve.CalculateAgreement(parameters.GetTheirIdentityKey().GetPublicKey(),
+                                                        parameters.GetOurBaseKey().GetPrivateKey());
+                byte[] agree3 = Curve.CalculateAgreement(parameters.GetTheirSignedPreKey(),
+                                                       parameters.GetOurBaseKey().GetPrivateKey());
 
                 secrets.Write(agree1, 0, agree1.Length);
                 secrets.Write(agree2, 0, agree2.Length);
                 secrets.Write(agree3, 0, agree3.Length);
 
 
-                if (parameters.getTheirOneTimePreKey().HasValue)
+                if (parameters.GetTheirOneTimePreKey().HasValue)
                 {
-                    byte[] otAgree = Curve.calculateAgreement(parameters.getTheirOneTimePreKey().ForceGetValue(),
-                                                           parameters.getOurBaseKey().getPrivateKey());
+                    byte[] otAgree = Curve.CalculateAgreement(parameters.GetTheirOneTimePreKey().ForceGetValue(),
+                                                           parameters.GetOurBaseKey().GetPrivateKey());
                     secrets.Write(otAgree, 0, otAgree.Length);
                 }
 
-                DerivedKeys derivedKeys = calculateDerivedKeys(secrets.ToArray());
-                Pair<RootKey, ChainKey> sendingChain = derivedKeys.getRootKey().createChain(parameters.getTheirRatchetKey(), sendingRatchetKey);
+                DerivedKeys derivedKeys = CalculateDerivedKeys(secrets.ToArray());
+                Pair<RootKey, ChainKey> sendingChain = derivedKeys.GetRootKey().CreateChain(parameters.GetTheirRatchetKey(), sendingRatchetKey);
 
-                sessionState.addReceiverChain(parameters.getTheirRatchetKey(), derivedKeys.getChainKey());
-                sessionState.setSenderChain(sendingRatchetKey, sendingChain.second());
-                sessionState.setRootKey(sendingChain.first());
+                sessionState.AddReceiverChain(parameters.GetTheirRatchetKey(), derivedKeys.GetChainKey());
+                sessionState.SetSenderChain(sendingRatchetKey, sendingChain.Second());
+                sessionState.SetRootKey(sendingChain.First());
             }
             catch (IOException e)
             {
@@ -108,42 +108,42 @@ namespace libsignal.ratchet
             }
         }
 
-        public static void initializeSession(SessionState sessionState,
+        public static void InitializeSession(SessionState sessionState,
                                              BobSignalProtocolParameters parameters)
         {
 
             try
             {
-                sessionState.setSessionVersion(CiphertextMessage.CURRENT_VERSION);
-                sessionState.setRemoteIdentityKey(parameters.getTheirIdentityKey());
-                sessionState.setLocalIdentityKey(parameters.getOurIdentityKey().getPublicKey());
+                sessionState.SetSessionVersion(CiphertextMessage.CurrentVersion);
+                sessionState.SetRemoteIdentityKey(parameters.GetTheirIdentityKey());
+                sessionState.SetLocalIdentityKey(parameters.GetOurIdentityKey().GetPublicKey());
 
                 MemoryStream secrets = new MemoryStream();
 
-                byte[] discontinuityBytes = getDiscontinuityBytes();
+                byte[] discontinuityBytes = GetDiscontinuityBytes();
                 secrets.Write(discontinuityBytes, 0, discontinuityBytes.Length);
 
-                byte[] agree1 = Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
-                                                       parameters.getOurSignedPreKey().getPrivateKey());
-                byte[] agree2 = Curve.calculateAgreement(parameters.getTheirBaseKey(),
-                                                       parameters.getOurIdentityKey().getPrivateKey());
-                byte[] agree3 = Curve.calculateAgreement(parameters.getTheirBaseKey(),
-                                                       parameters.getOurSignedPreKey().getPrivateKey());
+                byte[] agree1 = Curve.CalculateAgreement(parameters.GetTheirIdentityKey().GetPublicKey(),
+                                                       parameters.GetOurSignedPreKey().GetPrivateKey());
+                byte[] agree2 = Curve.CalculateAgreement(parameters.GetTheirBaseKey(),
+                                                       parameters.GetOurIdentityKey().GetPrivateKey());
+                byte[] agree3 = Curve.CalculateAgreement(parameters.GetTheirBaseKey(),
+                                                       parameters.GetOurSignedPreKey().GetPrivateKey());
                 secrets.Write(agree1, 0, agree1.Length);
                 secrets.Write(agree2, 0, agree2.Length);
                 secrets.Write(agree3, 0, agree3.Length);
 
-                if (parameters.getOurOneTimePreKey().HasValue)
+                if (parameters.GetOurOneTimePreKey().HasValue)
                 {
-                    byte[] otAgree = Curve.calculateAgreement(parameters.getTheirBaseKey(),
-                                                           parameters.getOurOneTimePreKey().ForceGetValue().getPrivateKey());
+                    byte[] otAgree = Curve.CalculateAgreement(parameters.GetTheirBaseKey(),
+                                                           parameters.GetOurOneTimePreKey().ForceGetValue().GetPrivateKey());
                     secrets.Write(otAgree, 0, otAgree.Length);
                 }
 
-                DerivedKeys derivedKeys = calculateDerivedKeys(secrets.ToArray());
+                DerivedKeys derivedKeys = CalculateDerivedKeys(secrets.ToArray());
 
-                sessionState.setSenderChain(parameters.getOurRatchetKey(), derivedKeys.getChainKey());
-                sessionState.setRootKey(derivedKeys.getRootKey());
+                sessionState.SetSenderChain(parameters.GetOurRatchetKey(), derivedKeys.GetChainKey());
+                sessionState.SetRootKey(derivedKeys.GetRootKey());
             }
             catch (IOException e)
             {
@@ -151,7 +151,7 @@ namespace libsignal.ratchet
             }
         }
 
-        private static byte[] getDiscontinuityBytes()
+        private static byte[] GetDiscontinuityBytes()
         {
             byte[] discontinuity = new byte[32];
             //Arrays.fill(discontinuity, (byte)0xFF);
@@ -162,40 +162,40 @@ namespace libsignal.ratchet
             return discontinuity;
         }
 
-        private static DerivedKeys calculateDerivedKeys(byte[] masterSecret)
+        private static DerivedKeys CalculateDerivedKeys(byte[] masterSecret)
         {
-            HKDF kdf = new HKDFv3();
-            byte[] derivedSecretBytes = kdf.deriveSecrets(masterSecret, Encoding.UTF8.GetBytes("WhisperText"), 64);
-            byte[][] derivedSecrets = ByteUtil.split(derivedSecretBytes, 32, 32);
+            Hkdf kdf = new HkdFv3();
+            byte[] derivedSecretBytes = kdf.DeriveSecrets(masterSecret, Encoding.UTF8.GetBytes("WhisperText"), 64);
+            byte[][] derivedSecrets = ByteUtil.Split(derivedSecretBytes, 32, 32);
 
             return new DerivedKeys(new RootKey(kdf, derivedSecrets[0]),
                                    new ChainKey(kdf, derivedSecrets[1], 0));
         }
 
-        private static bool isAlice(ECPublicKey ourKey, ECPublicKey theirKey)
+        private static bool IsAlice(IEcPublicKey ourKey, IEcPublicKey theirKey)
         {
             return ourKey.CompareTo(theirKey) < 0;
         }
 
         public class DerivedKeys
         {
-            private readonly RootKey rootKey;
-            private readonly ChainKey chainKey;
+            private readonly RootKey _rootKey;
+            private readonly ChainKey _chainKey;
 
             internal DerivedKeys(RootKey rootKey, ChainKey chainKey)
             {
-                this.rootKey = rootKey;
-                this.chainKey = chainKey;
+                _rootKey = rootKey;
+                _chainKey = chainKey;
             }
 
-            public RootKey getRootKey()
+            public RootKey GetRootKey()
             {
-                return rootKey;
+                return _rootKey;
             }
 
-            public ChainKey getChainKey()
+            public ChainKey GetChainKey()
             {
-                return chainKey;
+                return _chainKey;
             }
         }
     }

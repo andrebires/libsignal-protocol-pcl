@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc.impl;
-using static PCLCrypto.WinRTCrypto;
+using Libsignal.Ecc.impl;
+using PCLCrypto;
 
-namespace libsignal.ecc
+namespace Libsignal.Ecc
 {
 	/// <summary>
 	/// Choose between various implementations of Curve25519 (native, managed, etc).
@@ -28,17 +28,17 @@ namespace libsignal.ecc
 		/// <summary>
 		/// Attempt to provide a native implementation. If one is not available, error out (TODO, break apart managed and native implementations in NuGet packages where we can dynamically use what is best based on the current environment).
 		/// </summary>
-		BEST = 0x05,
+		Best = 0x05,
 		/// <summary>
 		/// Explicitly use the native implementation
 		/// </summary>
-		NATIVE
+		Native
 	}
 
 	class Curve25519
 	{
-		private static Curve25519 instance;
-		private ICurve25519Provider provider;
+		private static Curve25519 _instance;
+		private ICurve25519Provider _provider;
 
 		private Curve25519() { }
 
@@ -47,47 +47,47 @@ namespace libsignal.ecc
 		/// </summary>
 		/// <param name="type">Type of provider requested.</param>
 		/// <returns>Provider</returns>
-		public static Curve25519 getInstance(Curve25519ProviderType type)
+		public static Curve25519 GetInstance(Curve25519ProviderType type)
 		{
-			if (instance == null)
+			if (_instance == null)
             {
-                instance = new Curve25519();
+                _instance = new Curve25519();
                 switch (type)
                 {
-                    case Curve25519ProviderType.NATIVE:
+                    case Curve25519ProviderType.Native:
                         {
-                            instance.provider = (ICurve25519Provider)new Curve25519NativeProvider();
+                            _instance._provider = (ICurve25519Provider)new Curve25519NativeProvider();
                             break;
                         }
-                    case Curve25519ProviderType.BEST:
+                    case Curve25519ProviderType.Best:
                         {
-                            instance.provider = (ICurve25519Provider)new Curve25519ManagedProvider(
+                            _instance._provider = (ICurve25519Provider)new Curve25519ManagedProvider(
                                 org.whispersystems.curve25519.Curve25519.BEST);
                             break;
                         }
                 }
 			}
-			return instance;
+			return _instance;
 		}
 
 		/// <summary>
 		/// <see cref="Curve25519" /> is backed by a WinRT implementation of curve25519. Returns true for native.
 		/// </summary>
 		/// <returns>True. Backed by a native provider.</returns>
-		public bool isNative()
+		public bool IsNative()
 		{
-			return provider.isNative();
+			return _provider.IsNative();
 		}
 
 		/// <summary>
 		/// Generates a Curve25519 keypair.
 		/// </summary>
 		/// <returns>A randomly generated Curve25519 keypair.</returns>
-		public Curve25519KeyPair generateKeyPair()
+		public Curve25519KeyPair GenerateKeyPair()
 		{
-            byte[] random = CryptographicBuffer.GenerateRandom(32);
-			byte[] privateKey = provider.generatePrivateKey(random);
-			byte[] publicKey = provider.generatePublicKey(privateKey);
+            byte[] random = WinRTCrypto.CryptographicBuffer.GenerateRandom(32);
+			byte[] privateKey = _provider.GeneratePrivateKey(random);
+			byte[] publicKey = _provider.GeneratePublicKey(privateKey);
 
 			return new Curve25519KeyPair(publicKey, privateKey);
 		}
@@ -98,9 +98,9 @@ namespace libsignal.ecc
 		/// <param name="publicKey">The Curve25519 (typically remote party's) public key.</param>
 		/// <param name="privateKey">The Curve25519 (typically yours) private key.</param>
 		/// <returns>A 32-byte shared secret.</returns>
-		public byte[] calculateAgreement(byte[] publicKey, byte[] privateKey)
+		public byte[] CalculateAgreement(byte[] publicKey, byte[] privateKey)
 		{
-			return provider.calculateAgreement(privateKey, publicKey);
+			return _provider.CalculateAgreement(privateKey, publicKey);
 		}
 
 		/// <summary>
@@ -109,11 +109,11 @@ namespace libsignal.ecc
 		/// <param name="privateKey">The private Curve25519 key to create the signature with.</param>
 		/// <param name="message">The message to sign.</param>
 		/// <returns>64 byte signature</returns>
-		public byte[] calculateSignature(byte[] privateKey, byte[] message)
+		public byte[] CalculateSignature(byte[] privateKey, byte[] message)
 		{
 
-            byte[] random = CryptographicBuffer.GenerateRandom(64);
-			return provider.calculateSignature(random, privateKey, message);
+            byte[] random = WinRTCrypto.CryptographicBuffer.GenerateRandom(64);
+			return _provider.CalculateSignature(random, privateKey, message);
 		}
 
 		/// <summary>
@@ -123,58 +123,19 @@ namespace libsignal.ecc
 		/// <param name="message">The message that was signed.</param>
 		/// <param name="signature">The signature to verify.</param>
 		/// <returns>Boolean for if valid</returns>
-		public bool verifySignature(byte[] publicKey, byte[] message, byte[] signature)
+		public bool VerifySignature(byte[] publicKey, byte[] message, byte[] signature)
 		{
-			return provider.verifySignature(publicKey, message, signature);
+			return _provider.VerifySignature(publicKey, message, signature);
 		}
 
-        public byte[] calculateVrfSignature(byte[] privateKey, byte[] message)
+        public byte[] CalculateVrfSignature(byte[] privateKey, byte[] message)
         {
-            return provider.calculateVrfSignature(privateKey, message);
+            return _provider.CalculateVrfSignature(privateKey, message);
         }
 
-        public byte[] verifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature)
+        public byte[] VerifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature)
         {
-            return provider.verifyVrfSignature(publicKey, message, signature);
+            return _provider.VerifyVrfSignature(publicKey, message, signature);
         }
-	}
-
-	/// <summary>
-	/// Curve25519 public and private key stored together.
-	/// </summary>
-	public class Curve25519KeyPair
-	{
-
-		private readonly byte[] publicKey;
-		private readonly byte[] privateKey;
-
-		/// <summary>
-		/// Create a curve 25519 keypair from a public and private keys.
-		/// </summary>
-		/// <param name="publicKey">32 byte public key</param>
-		/// <param name="privateKey">32 byte private key</param>
-		public Curve25519KeyPair(byte[] publicKey, byte[] privateKey)
-		{
-			this.publicKey = publicKey;
-			this.privateKey = privateKey;
-		}
-
-		/// <summary>
-		/// Curve25519 public key
-		/// </summary>
-		/// <returns></returns>
-		public byte[] getPublicKey()
-		{
-			return publicKey;
-		}
-
-		/// <summary>
-		/// Curve25519 private key
-		/// </summary>
-		/// <returns></returns>
-		public byte[] getPrivateKey()
-		{
-			return privateKey;
-		}
 	}
 }

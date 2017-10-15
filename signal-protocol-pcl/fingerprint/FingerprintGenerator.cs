@@ -16,15 +16,14 @@
 */
 
 using System.Collections.Generic;
-using libsignal;
 
-namespace org.whispersystems.libsignal.fingerprint
+namespace Libsignal.Fingerprint
 {
-    public interface FingerprintGenerator {
-        Fingerprint createFor(string localStableIdentifier, IdentityKey localIdentityKey,
+    public interface IFingerprintGenerator {
+        Fingerprint CreateFor(string localStableIdentifier, IdentityKey localIdentityKey,
                                      string remoteStableIdentifier, IdentityKey remoteIdentityKey);
 
-        Fingerprint createFor(string localStableIdentifier, List<IdentityKey> localIdentityKey,
+        Fingerprint CreateFor(string localStableIdentifier, List<IdentityKey> localIdentityKey,
             string remoteStableIdentifier, List<IdentityKey> remoteIdentityKey);
     }
 }

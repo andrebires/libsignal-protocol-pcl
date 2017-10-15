@@ -17,27 +17,27 @@
 
 using System;
 
-namespace libsignal.exceptions
+namespace Libsignal
 {
     public class UntrustedIdentityException : Exception
     {
-        private readonly String name;
-        private readonly IdentityKey key;
+        private readonly String _name;
+        private readonly IdentityKey _key;
 
         public UntrustedIdentityException(String name, IdentityKey key)
         {
-            this.name = name;
-            this.key = key;
+            _name = name;
+            _key = key;
         }
 
-        public IdentityKey getUntrustedIdentity()
+        public IdentityKey GetUntrustedIdentity()
         {
-            return key;
+            return _key;
         }
 
-        public String getName()
+        public String GetName()
         {
-            return name;
+            return _name;
         }
     }
 }

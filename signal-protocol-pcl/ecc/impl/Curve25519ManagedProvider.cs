@@ -15,58 +15,58 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace libsignal.ecc.impl
+namespace Libsignal.Ecc.impl
 {
     class Curve25519ManagedProvider : ICurve25519Provider
     {
-        private org.whispersystems.curve25519.Curve25519 curve;
+        private org.whispersystems.curve25519.Curve25519 _curve;
         /// <summary>
         /// ctor
         /// </summary>
         /// <param name="type">Such as Curve25519.CSHARP or Curve25519.BEST</param>
         public Curve25519ManagedProvider(string type)
         {
-            curve = org.whispersystems.curve25519.Curve25519.getInstance(type);
+            _curve = org.whispersystems.curve25519.Curve25519.getInstance(type);
         }
 
-        public byte[] calculateAgreement(byte[] ourPrivate, byte[] theirPublic)
+        public byte[] CalculateAgreement(byte[] ourPrivate, byte[] theirPublic)
         {
-            return curve.calculateAgreement(theirPublic, ourPrivate);
+            return _curve.calculateAgreement(theirPublic, ourPrivate);
         }
 
-        public byte[] calculateSignature(byte[] random, byte[] privateKey, byte[] message)
+        public byte[] CalculateSignature(byte[] random, byte[] privateKey, byte[] message)
         {
-            return curve.calculateSignature(random, privateKey, message);
+            return _curve.calculateSignature(random, privateKey, message);
         }
 
-        public byte[] calculateVrfSignature(byte[] privateKey, byte[] message)
+        public byte[] CalculateVrfSignature(byte[] privateKey, byte[] message)
         {
-            return curve.calculateVrfSignature(privateKey, message);
+            return _curve.calculateVrfSignature(privateKey, message);
         }
 
-        public byte[] generatePrivateKey(byte[] random)
+        public byte[] GeneratePrivateKey(byte[] random)
         {
-            return curve.generatePrivateKey(random);
+            return _curve.generatePrivateKey(random);
         }
 
-        public byte[] generatePublicKey(byte[] privateKey)
+        public byte[] GeneratePublicKey(byte[] privateKey)
         {
-            return curve.generatePublicKey(privateKey);
+            return _curve.generatePublicKey(privateKey);
         }
 
-        public bool isNative()
+        public bool IsNative()
         {
-            return curve.isNative();
+            return _curve.isNative();
         }
 
-        public bool verifySignature(byte[] publicKey, byte[] message, byte[] signature)
+        public bool VerifySignature(byte[] publicKey, byte[] message, byte[] signature)
         {
-            return curve.verifySignature(publicKey, message, signature);
+            return _curve.verifySignature(publicKey, message, signature);
         }
 
-        public byte[] verifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature)
+        public byte[] VerifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature)
         {
-            return curve.verifyVrfSignature(publicKey, message, signature);
+            return _curve.verifyVrfSignature(publicKey, message, signature);
         }
     }
 }

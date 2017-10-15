@@ -15,24 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal;
-using libsignal.util;
-using PCLCrypto;
 using System;
-using System.Diagnostics;
-using System.Text;
-using static PCLCrypto.WinRTCrypto;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Text;
+using Libsignal.Util;
+using PCLCrypto;
 
-namespace org.whispersystems.libsignal.fingerprint
+namespace Libsignal.Fingerprint
 {
 
-    public class NumericFingerprintGenerator : FingerprintGenerator
+    public class NumericFingerprintGenerator : IFingerprintGenerator
     {
-        private static readonly int FINGERPRINT_VERSION = 0;
+        private static readonly int FingerprintVersion = 0;
 
-        private readonly int iterations;
+        private readonly int _iterations;
 
         /**
          * Construct a fingerprint generator for 60 digit numerics.
@@ -49,7 +47,7 @@ namespace org.whispersystems.libsignal.fingerprint
          */
         public NumericFingerprintGenerator(int iterations)
         {
-            this.iterations = iterations;
+            _iterations = iterations;
         }
 
         public object MessageDigest { get; private set; }
@@ -64,10 +62,10 @@ namespace org.whispersystems.libsignal.fingerprint
          * @return A unique fingerprint for this conversation.
          */
 
-        public Fingerprint createFor(string localStableIdentifier, IdentityKey localIdentityKey,
+        public Fingerprint CreateFor(string localStableIdentifier, IdentityKey localIdentityKey,
                                string remoteStableIdentifier, IdentityKey remoteIdentityKey)
         {
-            return createFor(localStableIdentifier,
+            return CreateFor(localStableIdentifier,
                 new List<IdentityKey>(new[] { localIdentityKey }),
                 remoteStableIdentifier,
                 new List<IdentityKey>(new[] { remoteIdentityKey }));
@@ -86,11 +84,11 @@ namespace org.whispersystems.libsignal.fingerprint
         * @param remoteIdentityKeys The remote party's collection of physical identity key.
         * @return A unique fingerprint for this conversation.
         */
-        public Fingerprint createFor(string localStableIdentifier, List<IdentityKey> localIdentityKeys,
+        public Fingerprint CreateFor(string localStableIdentifier, List<IdentityKey> localIdentityKeys,
             string remoteStableIdentifier, List<IdentityKey> remoteIdentityKeys)
         {
-            byte[] localFingerprint = getFingerprint(iterations, localStableIdentifier, localIdentityKeys);
-            byte[] remoteFingerprint = getFingerprint(iterations, remoteStableIdentifier, remoteIdentityKeys);
+            byte[] localFingerprint = GetFingerprint(_iterations, localStableIdentifier, localIdentityKeys);
+            byte[] remoteFingerprint = GetFingerprint(_iterations, remoteStableIdentifier, remoteIdentityKeys);
 
             DisplayableFingerprint displayableFingerprint = new DisplayableFingerprint(localFingerprint, remoteFingerprint);
 
@@ -99,18 +97,18 @@ namespace org.whispersystems.libsignal.fingerprint
             return new Fingerprint(displayableFingerprint, scannableFingerprint);
         }
 
-        private byte[] getFingerprint(int iterations, string stableIdentifier, List<IdentityKey> unsortedIdentityKeys)
+        private byte[] GetFingerprint(int iterations, string stableIdentifier, List<IdentityKey> unsortedIdentityKeys)
         {
             try
             {
-                IHashAlgorithmProvider digest = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha512);
-                byte[] publicKey = getLogicalKeyBytes(unsortedIdentityKeys);
-                byte[] hash = ByteUtil.combine(ByteUtil.shortToByteArray(FINGERPRINT_VERSION),
+                IHashAlgorithmProvider digest = WinRTCrypto.HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha512);
+                byte[] publicKey = GetLogicalKeyBytes(unsortedIdentityKeys);
+                byte[] hash = ByteUtil.Combine(ByteUtil.ShortToByteArray(FingerprintVersion),
                     publicKey, Encoding.UTF8.GetBytes(stableIdentifier));
 
                 for (int i = 0; i < iterations; i++)
                 {
-                    hash = digest.HashData(ByteUtil.combine(new byte[][]
+                    hash = digest.HashData(ByteUtil.Combine(new byte[][]
                     {
                         hash, publicKey
                     }));
@@ -125,7 +123,7 @@ namespace org.whispersystems.libsignal.fingerprint
             }
         }
 
-        private byte[] getLogicalKeyBytes(List<IdentityKey> identityKeys)
+        private byte[] GetLogicalKeyBytes(List<IdentityKey> identityKeys)
         {
             List<IdentityKey> sortedIdentityKeys = new List<IdentityKey>(identityKeys);
             sortedIdentityKeys.Sort(new IdentityKeyComparator());
@@ -134,7 +132,7 @@ namespace org.whispersystems.libsignal.fingerprint
 
             foreach (IdentityKey identityKey in sortedIdentityKeys)
             {
-                byte[] publicKeyBytes = identityKey.getPublicKey().serialize();
+                byte[] publicKeyBytes = identityKey.GetPublicKey().Serialize();
                 baos.Write(publicKeyBytes, 0, publicKeyBytes.Length);
             }
 

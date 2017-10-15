@@ -17,9 +17,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using static libsignal.state.StorageProtos;
 
-namespace libsignal.state
+namespace Libsignal.State
 {
     /**
  * A SessionRecord encapsulates the state of an ongoing session.
@@ -29,47 +28,47 @@ namespace libsignal.state
     public class SessionRecord
     {
 
-        private static int ARCHIVED_STATES_MAX_LENGTH = 40;
+        private static int _archivedStatesMaxLength = 40;
 
-        private SessionState sessionState = new SessionState();
-        private LinkedList<SessionState> previousStates = new LinkedList<SessionState>();
-        private bool fresh = false;
+        private SessionState _sessionState = new SessionState();
+        private LinkedList<SessionState> _previousStates = new LinkedList<SessionState>();
+        private bool _fresh = false;
 
         public SessionRecord()
         {
-            this.fresh = true;
+            _fresh = true;
         }
 
         public SessionRecord(SessionState sessionState)
         {
-            this.sessionState = sessionState;
-            this.fresh = false;
+            _sessionState = sessionState;
+            _fresh = false;
         }
 
         public SessionRecord(byte[] serialized)
         {
-            RecordStructure record = RecordStructure.ParseFrom(serialized);
-            this.sessionState = new SessionState(record.CurrentSession);
-            this.fresh = false;
+            StorageProtos.RecordStructure record = StorageProtos.RecordStructure.ParseFrom(serialized);
+            _sessionState = new SessionState(record.CurrentSession);
+            _fresh = false;
 
-            foreach (SessionStructure previousStructure in record.PreviousSessionsList)
+            foreach (StorageProtos.SessionStructure previousStructure in record.PreviousSessionsList)
             {
-                previousStates.AddLast(new SessionState(previousStructure)); // add -> AddLast (java)
+                _previousStates.AddLast(new SessionState(previousStructure)); // add -> AddLast (java)
             }
         }
 
-        public bool hasSessionState(uint version, byte[] aliceBaseKey)
+        public bool HasSessionState(uint version, byte[] aliceBaseKey)
         {
-            if (sessionState.getSessionVersion() == version &&
-                Enumerable.SequenceEqual(aliceBaseKey, sessionState.getAliceBaseKey()))
+            if (_sessionState.GetSessionVersion() == version &&
+                Enumerable.SequenceEqual(aliceBaseKey, _sessionState.GetAliceBaseKey()))
             {
                 return true;
             }
 
-            foreach (SessionState state in previousStates)
+            foreach (SessionState state in _previousStates)
             {
-                if (state.getSessionVersion() == version &&
-                    Enumerable.SequenceEqual(aliceBaseKey, state.getAliceBaseKey()))
+                if (state.GetSessionVersion() == version &&
+                    Enumerable.SequenceEqual(aliceBaseKey, state.GetAliceBaseKey()))
                 {
                     return true;
                 }
@@ -78,23 +77,23 @@ namespace libsignal.state
             return false;
         }
 
-        public SessionState getSessionState()
+        public SessionState GetSessionState()
         {
-            return sessionState;
+            return _sessionState;
         }
 
         /**
          * @return the list of all currently maintained "previous" session states.
          */
-        public LinkedList<SessionState> getPreviousSessionStates()
+        public LinkedList<SessionState> GetPreviousSessionStates()
         {
-            return previousStates;
+            return _previousStates;
         }
 
 
-        public bool isFresh()
+        public bool IsFresh()
         {
-            return fresh;
+            return _fresh;
         }
 
         /**
@@ -102,41 +101,41 @@ namespace libsignal.state
          * and replace the current {@link org.whispersystems.libsignal.state.SessionState}
          * with a fresh reset instance.
          */
-        public void archiveCurrentState()
+        public void ArchiveCurrentState()
         {
-            promoteState(new SessionState());
+            PromoteState(new SessionState());
         }
 
-        public void promoteState(SessionState promotedState)
+        public void PromoteState(SessionState promotedState)
         {
-            this.previousStates.AddFirst(sessionState);
-            this.sessionState = promotedState;
+            _previousStates.AddFirst(_sessionState);
+            _sessionState = promotedState;
 
-            if (previousStates.Count > ARCHIVED_STATES_MAX_LENGTH)
+            if (_previousStates.Count > _archivedStatesMaxLength)
             {
-                previousStates.RemoveLast();
+                _previousStates.RemoveLast();
             }
         }
 
-        public void setState(SessionState sessionState)
+        public void SetState(SessionState sessionState)
         {
-            this.sessionState = sessionState;
+            _sessionState = sessionState;
         }
 
         /**
          * @return a serialized version of the current SessionRecord.
          */
-        public byte[] serialize()
+        public byte[] Serialize()
         {
-            List<SessionStructure> previousStructures = new List<SessionStructure>();
+            List<StorageProtos.SessionStructure> previousStructures = new List<StorageProtos.SessionStructure>();
 
-            foreach (SessionState previousState in previousStates)
+            foreach (SessionState previousState in _previousStates)
             {
-                previousStructures.Add(previousState.getStructure());
+                previousStructures.Add(previousState.GetStructure());
             }
 
-            RecordStructure record = RecordStructure.CreateBuilder()
-                                                    .SetCurrentSession(sessionState.getStructure())
+            StorageProtos.RecordStructure record = StorageProtos.RecordStructure.CreateBuilder()
+                                                    .SetCurrentSession(_sessionState.GetStructure())
                                                     .AddRangePreviousSessions(previousStructures)
                                                     /*.AddAllPreviousSessions(previousStructures)*/
                                                     .Build();

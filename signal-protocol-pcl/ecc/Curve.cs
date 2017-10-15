@@ -15,113 +15,113 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.ecc
+namespace Libsignal.Ecc
 {
     public class Curve
     {
-        public const int DJB_TYPE = 0x05;
+        public const int DjbType = 0x05;
 
-        public static bool isNative()
+        public static bool IsNative()
         {
-            return Curve25519.getInstance(Curve25519ProviderType.BEST).isNative();
+            return Curve25519.GetInstance(Curve25519ProviderType.Best).IsNative();
         }
 
-        public static ECKeyPair generateKeyPair()
+        public static EcKeyPair GenerateKeyPair()
         {
-            Curve25519KeyPair keyPair = Curve25519.getInstance(Curve25519ProviderType.BEST).generateKeyPair();
+            Curve25519KeyPair keyPair = Curve25519.GetInstance(Curve25519ProviderType.Best).GenerateKeyPair();
 
-            return new ECKeyPair(new DjbECPublicKey(keyPair.getPublicKey()),
-                                 new DjbECPrivateKey(keyPair.getPrivateKey()));
+            return new EcKeyPair(new DjbEcPublicKey(keyPair.GetPublicKey()),
+                                 new DjbEcPrivateKey(keyPair.GetPrivateKey()));
         }
 
-        public static ECPublicKey decodePoint(byte[] bytes, int offset)
+        public static IEcPublicKey DecodePoint(byte[] bytes, int offset)
         {
             int type = bytes[offset] & 0xFF;
 
             switch (type)
             {
-                case Curve.DJB_TYPE:
+                case DjbType:
                     byte[] keyBytes = new byte[32];
                     System.Buffer.BlockCopy(bytes, offset + 1, keyBytes, 0, keyBytes.Length);
-                    return new DjbECPublicKey(keyBytes);
+                    return new DjbEcPublicKey(keyBytes);
                 default:
                     throw new InvalidKeyException("Bad key type: " + type);
             }
         }
 
-        public static ECPrivateKey decodePrivatePoint(byte[] bytes)
+        public static IEcPrivateKey DecodePrivatePoint(byte[] bytes)
         {
-            return new DjbECPrivateKey(bytes);
+            return new DjbEcPrivateKey(bytes);
         }
 
-        public static byte[] calculateAgreement(ECPublicKey publicKey, ECPrivateKey privateKey)
+        public static byte[] CalculateAgreement(IEcPublicKey publicKey, IEcPrivateKey privateKey)
         {
-            if (publicKey.getType() != privateKey.getType())
+            if (publicKey.GetKeyType() != privateKey.GetKeyType())
             {
                 throw new InvalidKeyException("Public and private keys must be of the same type!");
             }
 
-            if (publicKey.getType() == DJB_TYPE)
+            if (publicKey.GetKeyType() == DjbType)
             {
-                return Curve25519.getInstance(Curve25519ProviderType.BEST)
-                                 .calculateAgreement(((DjbECPublicKey)publicKey).getPublicKey(),
-                                                     ((DjbECPrivateKey)privateKey).getPrivateKey());
+                return Curve25519.GetInstance(Curve25519ProviderType.Best)
+                                 .CalculateAgreement(((DjbEcPublicKey)publicKey).GetPublicKey(),
+                                                     ((DjbEcPrivateKey)privateKey).GetPrivateKey());
             }
             else
             {
-                throw new InvalidKeyException("Unknown type: " + publicKey.getType());
+                throw new InvalidKeyException("Unknown type: " + publicKey.GetKeyType());
             }
         }
 
-        public static bool verifySignature(ECPublicKey signingKey, byte[] message, byte[] signature)
+        public static bool VerifySignature(IEcPublicKey signingKey, byte[] message, byte[] signature)
         {
-            if (signingKey.getType() == DJB_TYPE)
+            if (signingKey.GetKeyType() == DjbType)
             {
-                return Curve25519.getInstance(Curve25519ProviderType.BEST)
-                                 .verifySignature(((DjbECPublicKey)signingKey).getPublicKey(), message, signature);
+                return Curve25519.GetInstance(Curve25519ProviderType.Best)
+                                 .VerifySignature(((DjbEcPublicKey)signingKey).GetPublicKey(), message, signature);
             }
             else
             {
-                throw new InvalidKeyException("Unknown type: " + signingKey.getType());
+                throw new InvalidKeyException("Unknown type: " + signingKey.GetKeyType());
             }
         }
 
-        public static byte[] calculateSignature(ECPrivateKey signingKey, byte[] message)
+        public static byte[] CalculateSignature(IEcPrivateKey signingKey, byte[] message)
         {
-            if (signingKey.getType() == DJB_TYPE)
+            if (signingKey.GetKeyType() == DjbType)
             {
-                return Curve25519.getInstance(Curve25519ProviderType.BEST)
-                                 .calculateSignature(((DjbECPrivateKey)signingKey).getPrivateKey(), message);
+                return Curve25519.GetInstance(Curve25519ProviderType.Best)
+                                 .CalculateSignature(((DjbEcPrivateKey)signingKey).GetPrivateKey(), message);
             }
             else
             {
-                throw new InvalidKeyException("Unknown type: " + signingKey.getType());
+                throw new InvalidKeyException("Unknown type: " + signingKey.GetKeyType());
             }
         }
 
-        public static byte[] calculateVrfSignature(ECPrivateKey signingKey, byte[] message)
+        public static byte[] CalculateVrfSignature(IEcPrivateKey signingKey, byte[] message)
         {
-            if (signingKey.getType() == DJB_TYPE)
+            if (signingKey.GetKeyType() == DjbType)
             {
-                return Curve25519.getInstance(Curve25519ProviderType.BEST)
-                    .calculateVrfSignature(((DjbECPrivateKey)signingKey).getPrivateKey(), message);
+                return Curve25519.GetInstance(Curve25519ProviderType.Best)
+                    .CalculateVrfSignature(((DjbEcPrivateKey)signingKey).GetPrivateKey(), message);
             }
             else
             {
-                throw new InvalidKeyException("Unknown type: " + signingKey.getType());
+                throw new InvalidKeyException("Unknown type: " + signingKey.GetKeyType());
             }
         }
 
-        public static byte[] verifyVrfSignature(ECPublicKey signingKey, byte[] message, byte[] signature)
+        public static byte[] VerifyVrfSignature(IEcPublicKey signingKey, byte[] message, byte[] signature)
         {
-            if (signingKey.getType() == DJB_TYPE)
+            if (signingKey.GetKeyType() == DjbType)
             {
-                return Curve25519.getInstance(Curve25519ProviderType.BEST)
-                    .verifyVrfSignature(((DjbECPublicKey)signingKey).getPublicKey(), message, signature);
+                return Curve25519.GetInstance(Curve25519ProviderType.Best)
+                    .VerifyVrfSignature(((DjbEcPublicKey)signingKey).GetPublicKey(), message, signature);
             }
             else
             {
-                throw new InvalidKeyException("Unknown type: " + signingKey.getType());
+                throw new InvalidKeyException("Unknown type: " + signingKey.GetKeyType());
             }
         }
     }

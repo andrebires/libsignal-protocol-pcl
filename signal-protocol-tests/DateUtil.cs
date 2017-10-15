@@ -17,16 +17,16 @@
 
 using System;
 
-namespace libsignal_test
+namespace Libsignal.Tests
 {
     class DateUtil
     {
-        private static readonly DateTime Jan1st1970 = new DateTime
+        private static readonly DateTime Jan1St1970 = new DateTime
             (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public static ulong currentTimeMillis()
+        public static ulong CurrentTimeMillis()
         {
-            return (ulong)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
+            return (ulong)(DateTime.UtcNow - Jan1St1970).TotalMilliseconds;
         }
     }
 }

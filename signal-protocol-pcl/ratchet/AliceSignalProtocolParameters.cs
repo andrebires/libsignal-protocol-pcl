@@ -15,33 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
-using Strilanc.Value;
 using System;
+using Libsignal.Ecc;
+using Strilanc.Value;
 
-namespace libsignal.ratchet
+namespace Libsignal.Ratchet
 {
     public class AliceSignalProtocolParameters
     {
 
-        private readonly IdentityKeyPair ourIdentityKey;
-        private readonly ECKeyPair ourBaseKey;
+        private readonly IdentityKeyPair _ourIdentityKey;
+        private readonly EcKeyPair _ourBaseKey;
 
-        private readonly IdentityKey theirIdentityKey;
-        private readonly ECPublicKey theirSignedPreKey;
-        private readonly May<ECPublicKey> theirOneTimePreKey;
-        private readonly ECPublicKey theirRatchetKey;
+        private readonly IdentityKey _theirIdentityKey;
+        private readonly IEcPublicKey _theirSignedPreKey;
+        private readonly May<IEcPublicKey> _theirOneTimePreKey;
+        private readonly IEcPublicKey _theirRatchetKey;
 
-        private AliceSignalProtocolParameters(IdentityKeyPair ourIdentityKey, ECKeyPair ourBaseKey,
-                                       IdentityKey theirIdentityKey, ECPublicKey theirSignedPreKey,
-                                       ECPublicKey theirRatchetKey, May<ECPublicKey> theirOneTimePreKey)
+        private AliceSignalProtocolParameters(IdentityKeyPair ourIdentityKey, EcKeyPair ourBaseKey,
+                                       IdentityKey theirIdentityKey, IEcPublicKey theirSignedPreKey,
+                                       IEcPublicKey theirRatchetKey, May<IEcPublicKey> theirOneTimePreKey)
         {
-            this.ourIdentityKey = ourIdentityKey;
-            this.ourBaseKey = ourBaseKey;
-            this.theirIdentityKey = theirIdentityKey;
-            this.theirSignedPreKey = theirSignedPreKey;
-            this.theirRatchetKey = theirRatchetKey;
-            this.theirOneTimePreKey = theirOneTimePreKey;
+            _ourIdentityKey = ourIdentityKey;
+            _ourBaseKey = ourBaseKey;
+            _theirIdentityKey = theirIdentityKey;
+            _theirSignedPreKey = theirSignedPreKey;
+            _theirRatchetKey = theirRatchetKey;
+            _theirOneTimePreKey = theirOneTimePreKey;
 
             if (ourIdentityKey == null || ourBaseKey == null || theirIdentityKey == null ||
                 theirSignedPreKey == null || theirRatchetKey == null || theirOneTimePreKey == null)
@@ -50,91 +50,91 @@ namespace libsignal.ratchet
             }
         }
 
-        public IdentityKeyPair getOurIdentityKey()
+        public IdentityKeyPair GetOurIdentityKey()
         {
-            return ourIdentityKey;
+            return _ourIdentityKey;
         }
 
-        public ECKeyPair getOurBaseKey()
+        public EcKeyPair GetOurBaseKey()
         {
-            return ourBaseKey;
+            return _ourBaseKey;
         }
 
-        public IdentityKey getTheirIdentityKey()
+        public IdentityKey GetTheirIdentityKey()
         {
-            return theirIdentityKey;
+            return _theirIdentityKey;
         }
 
-        public ECPublicKey getTheirSignedPreKey()
+        public IEcPublicKey GetTheirSignedPreKey()
         {
-            return theirSignedPreKey;
+            return _theirSignedPreKey;
         }
 
-        public May<ECPublicKey> getTheirOneTimePreKey()
+        public May<IEcPublicKey> GetTheirOneTimePreKey()
         {
-            return theirOneTimePreKey;
+            return _theirOneTimePreKey;
         }
 
-        public static Builder newBuilder()
+        public static Builder NewBuilder()
         {
             return new Builder();
         }
 
-        public ECPublicKey getTheirRatchetKey()
+        public IEcPublicKey GetTheirRatchetKey()
         {
-            return theirRatchetKey;
+            return _theirRatchetKey;
         }
 
         public class Builder
         {
-            private IdentityKeyPair ourIdentityKey;
-            private ECKeyPair ourBaseKey;
+            private IdentityKeyPair _ourIdentityKey;
+            private EcKeyPair _ourBaseKey;
 
-            private IdentityKey theirIdentityKey;
-            private ECPublicKey theirSignedPreKey;
-            private ECPublicKey theirRatchetKey;
-            private May<ECPublicKey> theirOneTimePreKey;
+            private IdentityKey _theirIdentityKey;
+            private IEcPublicKey _theirSignedPreKey;
+            private IEcPublicKey _theirRatchetKey;
+            private May<IEcPublicKey> _theirOneTimePreKey;
 
-            public Builder setOurIdentityKey(IdentityKeyPair ourIdentityKey)
+            public Builder SetOurIdentityKey(IdentityKeyPair ourIdentityKey)
             {
-                this.ourIdentityKey = ourIdentityKey;
+                _ourIdentityKey = ourIdentityKey;
                 return this;
             }
 
-            public Builder setOurBaseKey(ECKeyPair ourBaseKey)
+            public Builder SetOurBaseKey(EcKeyPair ourBaseKey)
             {
-                this.ourBaseKey = ourBaseKey;
+                _ourBaseKey = ourBaseKey;
                 return this;
             }
 
-            public Builder setTheirRatchetKey(ECPublicKey theirRatchetKey)
+            public Builder SetTheirRatchetKey(IEcPublicKey theirRatchetKey)
             {
-                this.theirRatchetKey = theirRatchetKey;
+                _theirRatchetKey = theirRatchetKey;
                 return this;
             }
 
-            public Builder setTheirIdentityKey(IdentityKey theirIdentityKey)
+            public Builder SetTheirIdentityKey(IdentityKey theirIdentityKey)
             {
-                this.theirIdentityKey = theirIdentityKey;
+                _theirIdentityKey = theirIdentityKey;
                 return this;
             }
 
-            public Builder setTheirSignedPreKey(ECPublicKey theirSignedPreKey)
+            public Builder SetTheirSignedPreKey(IEcPublicKey theirSignedPreKey)
             {
-                this.theirSignedPreKey = theirSignedPreKey;
+                _theirSignedPreKey = theirSignedPreKey;
                 return this;
             }
 
-            public Builder setTheirOneTimePreKey(May<ECPublicKey> theirOneTimePreKey)
+            public Builder SetTheirOneTimePreKey(May<IEcPublicKey> theirOneTimePreKey)
             {
-                this.theirOneTimePreKey = theirOneTimePreKey;
+                _theirOneTimePreKey = theirOneTimePreKey;
                 return this;
             }
 
-            public AliceSignalProtocolParameters create()
+            public AliceSignalProtocolParameters Create()
             {
-                return new AliceSignalProtocolParameters(ourIdentityKey, ourBaseKey, theirIdentityKey,
-                                                  theirSignedPreKey, theirRatchetKey, theirOneTimePreKey);
+                return new AliceSignalProtocolParameters(_ourIdentityKey, _ourBaseKey, _theirIdentityKey,
+                                                  _theirSignedPreKey, _theirRatchetKey, _theirOneTimePreKey);
             }
         }
     }

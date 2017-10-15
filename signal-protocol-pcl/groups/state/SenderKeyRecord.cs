@@ -15,13 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
-using libsignal.groups.state;
-using libsignal.state;
 using System.Collections.Generic;
-using static libsignal.state.StorageProtos;
+using Libsignal.Ecc;
+using Libsignal.State;
 
-namespace libsignal.groups
+namespace Libsignal.Groups.state
 {
     /**
      * A durable representation of a set of SenderKeyStates for a specific
@@ -31,32 +29,32 @@ namespace libsignal.groups
      */
     public class SenderKeyRecord
     {
-        private static readonly int MAX_STATES = 5;
+        private static readonly int MaxStates = 5;
 
-        private LinkedList<SenderKeyState> senderKeyStates = new LinkedList<SenderKeyState>();
+        private LinkedList<SenderKeyState> _senderKeyStates = new LinkedList<SenderKeyState>();
 
         public SenderKeyRecord() { }
 
         public SenderKeyRecord(byte[] serialized)
         {
-            SenderKeyRecordStructure senderKeyRecordStructure = SenderKeyRecordStructure.ParseFrom(serialized);
+            StorageProtos.SenderKeyRecordStructure senderKeyRecordStructure = StorageProtos.SenderKeyRecordStructure.ParseFrom(serialized);
 
             foreach (StorageProtos.SenderKeyStateStructure structure in senderKeyRecordStructure.SenderKeyStatesList)
             {
-                this.senderKeyStates.AddFirst(new SenderKeyState(structure));
+                _senderKeyStates.AddFirst(new SenderKeyState(structure));
             }
         }
 
-        public bool isEmpty()
+        public bool IsEmpty()
         {
-            return senderKeyStates.Count == 0;
+            return _senderKeyStates.Count == 0;
         }
 
-        public SenderKeyState getSenderKeyState()
+        public SenderKeyState GetSenderKeyState()
         {
-            if (!isEmpty())
+            if (!IsEmpty())
             {
-                return senderKeyStates.First.Value;
+                return _senderKeyStates.First.Value;
             }
             else
             {
@@ -64,11 +62,11 @@ namespace libsignal.groups
             }
         }
 
-        public SenderKeyState getSenderKeyState(uint keyId)
+        public SenderKeyState GetSenderKeyState(uint keyId)
         {
-            foreach (SenderKeyState state in senderKeyStates)
+            foreach (SenderKeyState state in _senderKeyStates)
             {
-                if (state.getKeyId() == keyId)
+                if (state.GetKeyId() == keyId)
                 {
                     return state;
                 }
@@ -77,29 +75,29 @@ namespace libsignal.groups
             throw new InvalidKeyIdException("No keys for: " + keyId);
         }
 
-        public void addSenderKeyState(uint id, uint iteration, byte[] chainKey, ECPublicKey signatureKey)
+        public void AddSenderKeyState(uint id, uint iteration, byte[] chainKey, IEcPublicKey signatureKey)
         {
-            senderKeyStates.AddFirst(new SenderKeyState(id, iteration, chainKey, signatureKey));
+            _senderKeyStates.AddFirst(new SenderKeyState(id, iteration, chainKey, signatureKey));
 
-            if (senderKeyStates.Count > MAX_STATES)
+            if (_senderKeyStates.Count > MaxStates)
             {
-                senderKeyStates.RemoveLast();
+                _senderKeyStates.RemoveLast();
             }
         }
 
-        public void setSenderKeyState(uint id, uint iteration, byte[] chainKey, ECKeyPair signatureKey)
+        public void SetSenderKeyState(uint id, uint iteration, byte[] chainKey, EcKeyPair signatureKey)
         {
-            senderKeyStates.Clear();
-            senderKeyStates.AddFirst(new SenderKeyState(id, iteration, chainKey, signatureKey));
+            _senderKeyStates.Clear();
+            _senderKeyStates.AddFirst(new SenderKeyState(id, iteration, chainKey, signatureKey));
         }
 
-        public byte[] serialize()
+        public byte[] Serialize()
         {
-            SenderKeyRecordStructure.Builder recordStructure = SenderKeyRecordStructure.CreateBuilder();
+            StorageProtos.SenderKeyRecordStructure.Builder recordStructure = StorageProtos.SenderKeyRecordStructure.CreateBuilder();
 
-            foreach (SenderKeyState senderKeyState in senderKeyStates)
+            foreach (SenderKeyState senderKeyState in _senderKeyStates)
             {
-                recordStructure.AddSenderKeyStates(senderKeyState.getStructure());
+                recordStructure.AddSenderKeyStates(senderKeyState.GetStructure());
             }
 
             return recordStructure.Build().ToByteArray();

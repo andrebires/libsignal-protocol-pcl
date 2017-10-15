@@ -15,13 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.groups.ratchet;
-using libsignal.groups.state;
-using libsignal.protocol;
-using libsignal.util;
 using System;
+using Libsignal.Groups.ratchet;
+using Libsignal.Groups.state;
+using Libsignal.Protocol;
 
-namespace libsignal.groups
+namespace Libsignal.Groups
 {
     /**
      * The main entry point for Signal Protocol group encrypt/decrypt operations.
@@ -36,15 +35,15 @@ namespace libsignal.groups
     public class GroupCipher
     {
 
-        public static readonly Object LOCK = new Object();
+        public static readonly Object Lock = new Object();
 
-        private readonly SenderKeyStore senderKeyStore;
-        private readonly SenderKeyName senderKeyId;
+        private readonly ISenderKeyStore _senderKeyStore;
+        private readonly SenderKeyName _senderKeyId;
 
-        public GroupCipher(SenderKeyStore senderKeyStore, SenderKeyName senderKeyId)
+        public GroupCipher(ISenderKeyStore senderKeyStore, SenderKeyName senderKeyId)
         {
-            this.senderKeyStore = senderKeyStore;
-            this.senderKeyId = senderKeyId;
+            _senderKeyStore = senderKeyStore;
+            _senderKeyId = senderKeyId;
         }
 
         /**
@@ -54,27 +53,27 @@ namespace libsignal.groups
          * @return Ciphertext.
          * @throws NoSessionException
          */
-        public byte[] encrypt(byte[] paddedPlaintext)
+        public byte[] Encrypt(byte[] paddedPlaintext)
         {
-            lock (LOCK)
+            lock (Lock)
             {
                 try
                 {
-                    SenderKeyRecord record = senderKeyStore.loadSenderKey(senderKeyId);
-                    SenderKeyState senderKeyState = record.getSenderKeyState();
-                    SenderMessageKey senderKey = senderKeyState.getSenderChainKey().getSenderMessageKey();
-                    byte[] ciphertext = getCipherText(senderKey.getIv(), senderKey.getCipherKey(), paddedPlaintext);
+                    SenderKeyRecord record = _senderKeyStore.LoadSenderKey(_senderKeyId);
+                    SenderKeyState senderKeyState = record.GetSenderKeyState();
+                    SenderMessageKey senderKey = senderKeyState.GetSenderChainKey().GetSenderMessageKey();
+                    byte[] ciphertext = GetCipherText(senderKey.GetIv(), senderKey.GetCipherKey(), paddedPlaintext);
 
-                    SenderKeyMessage senderKeyMessage = new SenderKeyMessage(senderKeyState.getKeyId(),
-                                                                             senderKey.getIteration(),
+                    SenderKeyMessage senderKeyMessage = new SenderKeyMessage(senderKeyState.GetKeyId(),
+                                                                             senderKey.GetIteration(),
                                                                              ciphertext,
-                                                                             senderKeyState.getSigningKeyPrivate());
+                                                                             senderKeyState.GetSigningKeyPrivate());
 
-                    senderKeyState.setSenderChainKey(senderKeyState.getSenderChainKey().getNext());
+                    senderKeyState.SetSenderChainKey(senderKeyState.GetSenderChainKey().GetNext());
 
-                    senderKeyStore.storeSenderKey(senderKeyId, record);
+                    _senderKeyStore.StoreSenderKey(_senderKeyId, record);
 
-                    return senderKeyMessage.serialize();
+                    return senderKeyMessage.Serialize();
                 }
                 catch (InvalidKeyIdException e)
                 {
@@ -92,9 +91,9 @@ namespace libsignal.groups
          * @throws InvalidMessageException
          * @throws DuplicateMessageException
          */
-        public byte[] decrypt(byte[] senderKeyMessageBytes)
+        public byte[] Decrypt(byte[] senderKeyMessageBytes)
         {
-            return decrypt(senderKeyMessageBytes, new NullDecryptionCallback());
+            return Decrypt(senderKeyMessageBytes, new NullDecryptionCallback());
         }
 
         /**
@@ -112,31 +111,31 @@ namespace libsignal.groups
          * @throws InvalidMessageException
          * @throws DuplicateMessageException
          */
-        public byte[] decrypt(byte[] senderKeyMessageBytes, DecryptionCallback callback)
+        public byte[] Decrypt(byte[] senderKeyMessageBytes, IDecryptionCallback callback)
         {
-            lock (LOCK)
+            lock (Lock)
             {
                 try
                 {
-                    SenderKeyRecord record = senderKeyStore.loadSenderKey(senderKeyId);
+                    SenderKeyRecord record = _senderKeyStore.LoadSenderKey(_senderKeyId);
 
-                    if (record.isEmpty())
+                    if (record.IsEmpty())
                     {
-                        throw new NoSessionException("No sender key for: " + senderKeyId);
+                        throw new NoSessionException("No sender key for: " + _senderKeyId);
                     }
 
                     SenderKeyMessage senderKeyMessage = new SenderKeyMessage(senderKeyMessageBytes);
-                    SenderKeyState senderKeyState = record.getSenderKeyState(senderKeyMessage.getKeyId());
+                    SenderKeyState senderKeyState = record.GetSenderKeyState(senderKeyMessage.GetKeyId());
 
-                    senderKeyMessage.verifySignature(senderKeyState.getSigningKeyPublic());
+                    senderKeyMessage.VerifySignature(senderKeyState.GetSigningKeyPublic());
 
-                    SenderMessageKey senderKey = getSenderKey(senderKeyState, senderKeyMessage.getIteration());
+                    SenderMessageKey senderKey = GetSenderKey(senderKeyState, senderKeyMessage.GetIteration());
 
-                    byte[] plaintext = getPlainText(senderKey.getIv(), senderKey.getCipherKey(), senderKeyMessage.getCipherText());
+                    byte[] plaintext = GetPlainText(senderKey.GetIv(), senderKey.GetCipherKey(), senderKeyMessage.GetCipherText());
 
-                    callback.handlePlaintext(plaintext);
+                    callback.HandlePlaintext(plaintext);
 
-                    senderKeyStore.storeSenderKey(senderKeyId, record);
+                    _senderKeyStore.StoreSenderKey(_senderKeyId, record);
 
                     return plaintext;
                 }
@@ -147,41 +146,41 @@ namespace libsignal.groups
             }
         }
 
-        private SenderMessageKey getSenderKey(SenderKeyState senderKeyState, uint iteration)
+        private SenderMessageKey GetSenderKey(SenderKeyState senderKeyState, uint iteration)
         {
-            SenderChainKey senderChainKey = senderKeyState.getSenderChainKey();
+            SenderChainKey senderChainKey = senderKeyState.GetSenderChainKey();
 
-            if (senderChainKey.getIteration() > iteration)
+            if (senderChainKey.GetIteration() > iteration)
             {
-                if (senderKeyState.hasSenderMessageKey(iteration))
+                if (senderKeyState.HasSenderMessageKey(iteration))
                 {
-                    return senderKeyState.removeSenderMessageKey(iteration);
+                    return senderKeyState.RemoveSenderMessageKey(iteration);
                 }
                 else
                 {
                     throw new DuplicateMessageException("Received message with old counter: " +
-                                                        senderChainKey.getIteration() + " , " + iteration);
+                                                        senderChainKey.GetIteration() + " , " + iteration);
                 }
             }
 
 			//Avoiding a uint overflow
-			uint senderChainKeyIteration = senderChainKey.getIteration();
+			uint senderChainKeyIteration = senderChainKey.GetIteration();
 			if ((iteration > senderChainKeyIteration) && (iteration - senderChainKeyIteration > 2000))
 			{
 				throw new InvalidMessageException("Over 2000 messages into the future!");
 			}
 
-			while (senderChainKey.getIteration() < iteration)
+			while (senderChainKey.GetIteration() < iteration)
 			{
-				senderKeyState.addSenderMessageKey(senderChainKey.getSenderMessageKey());
-				senderChainKey = senderChainKey.getNext();
+				senderKeyState.AddSenderMessageKey(senderChainKey.GetSenderMessageKey());
+				senderChainKey = senderChainKey.GetNext();
 			}
 
-			senderKeyState.setSenderChainKey(senderChainKey.getNext());
-            return senderChainKey.getSenderMessageKey();
+			senderKeyState.SetSenderChainKey(senderChainKey.GetNext());
+            return senderChainKey.GetSenderMessageKey();
         }
 
-        private byte[] getPlainText(byte[] iv, byte[] key, byte[] ciphertext)
+        private byte[] GetPlainText(byte[] iv, byte[] key, byte[] ciphertext)
         {
             try
             {
@@ -190,7 +189,7 @@ namespace libsignal.groups
 
                 cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), ivParameterSpec);*/
 
-                return Decrypt.aesCbcPkcs5(ciphertext, key, iv);
+                return Util.Decrypt.AesCbcPkcs5(ciphertext, key, iv);
             }
             catch (Exception e)
             {
@@ -198,7 +197,7 @@ namespace libsignal.groups
             }
         }
 
-        private byte[] getCipherText(byte[] iv, byte[] key, byte[] plaintext)
+        private byte[] GetCipherText(byte[] iv, byte[] key, byte[] plaintext)
         {
             try
             {
@@ -207,7 +206,7 @@ namespace libsignal.groups
 
                 cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), ivParameterSpec);*/
 
-                return Encrypt.aesCbcPkcs5(plaintext, key, iv);
+                return Util.Encrypt.AesCbcPkcs5(plaintext, key, iv);
             }
             catch (Exception e)
     {
@@ -215,9 +214,9 @@ namespace libsignal.groups
             }
         }
 
-        private  class NullDecryptionCallback : DecryptionCallback
+        private  class NullDecryptionCallback : IDecryptionCallback
         {
-            public void handlePlaintext(byte[] plaintext) { }
+            public void HandlePlaintext(byte[] plaintext) { }
         }
 
     }

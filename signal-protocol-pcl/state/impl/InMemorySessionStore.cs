@@ -18,14 +18,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace libsignal.state.impl
+namespace Libsignal.State.Impl
 {
-    public class InMemorySessionStore : SessionStore
+    public class InMemorySessionStore : ISessionStore
 	{
 
-		static object Lock = new object();
+		static object _lock = new object();
 
-		private IDictionary<SignalProtocolAddress, byte[]> sessions = new Dictionary<SignalProtocolAddress, byte[]>();
+		private IDictionary<SignalProtocolAddress, byte[]> _sessions = new Dictionary<SignalProtocolAddress, byte[]>();
 
 		public InMemorySessionStore() { }
 
@@ -37,7 +37,7 @@ namespace libsignal.state.impl
 				if (ContainsSession(remoteAddress))
 				{
 					byte[] session;
-					sessions.TryGetValue(remoteAddress, out session); // get()
+					_sessions.TryGetValue(remoteAddress, out session); // get()
 
 					return new SessionRecord(session);
 				}
@@ -57,12 +57,12 @@ namespace libsignal.state.impl
 		{
 			List<uint> deviceIds = new List<uint>();
 
-			foreach (SignalProtocolAddress key in sessions.Keys) //keySet()
+			foreach (SignalProtocolAddress key in _sessions.Keys) //keySet()
 			{
-				if (key.getName().Equals(name) &&
-					key.getDeviceId() != 1)
+				if (key.GetName().Equals(name) &&
+					key.GetDeviceId() != 1)
 				{
-					deviceIds.Add(key.getDeviceId());
+					deviceIds.Add(key.GetDeviceId());
 				}
 			}
 
@@ -72,29 +72,29 @@ namespace libsignal.state.impl
 
 		public void StoreSession(SignalProtocolAddress address, SessionRecord record)
 		{
-			sessions[address] = record.serialize();
+			_sessions[address] = record.Serialize();
 		}
 
 
 		public bool ContainsSession(SignalProtocolAddress address)
 		{
-			return sessions.ContainsKey(address);
+			return _sessions.ContainsKey(address);
 		}
 
 
 		public void DeleteSession(SignalProtocolAddress address)
 		{
-			sessions.Remove(address);
+			_sessions.Remove(address);
 		}
 
 
 		public void DeleteAllSessions(String name)
 		{
-			foreach (SignalProtocolAddress key in sessions.Keys) // keySet()
+			foreach (SignalProtocolAddress key in _sessions.Keys) // keySet()
 			{
-				if (key.getName().Equals(name))
+				if (key.GetName().Equals(name))
 				{
-					sessions.Remove(key);
+					_sessions.Remove(key);
 				}
 			}
 		}

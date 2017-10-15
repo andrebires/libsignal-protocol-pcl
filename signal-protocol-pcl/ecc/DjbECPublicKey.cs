@@ -17,60 +17,60 @@
 
 using System;
 using System.Linq;
-using libsignal.util;
+using Libsignal.Util;
 
-namespace libsignal.ecc
+namespace Libsignal.Ecc
 {
-    public class DjbECPublicKey : ECPublicKey
+    public class DjbEcPublicKey : IEcPublicKey
     {
-        private readonly byte[] publicKey;
+        private readonly byte[] _publicKey;
 
-        public DjbECPublicKey(byte[] publicKey)
+        public DjbEcPublicKey(byte[] publicKey)
         {
-            this.publicKey = publicKey;
+            _publicKey = publicKey;
         }
 
 
-        public byte[] serialize()
+        public byte[] Serialize()
         {
-            byte[] type = { (byte)Curve.DJB_TYPE };
-            return ByteUtil.combine(type, publicKey);
+            byte[] type = { (byte)Curve.DjbType };
+            return ByteUtil.Combine(type, _publicKey);
         }
 
 
-        public int getType()
+        public int GetKeyType()
         {
-            return Curve.DJB_TYPE;
+            return Curve.DjbType;
         }
 
 
         public override bool Equals(Object other)
         {
             if (other == null) return false;
-            if (!(other is DjbECPublicKey)) return false;
+            if (!(other is DjbEcPublicKey)) return false;
 
-            DjbECPublicKey that = (DjbECPublicKey)other;
-            return Enumerable.SequenceEqual(this.publicKey, that.publicKey);
+            DjbEcPublicKey that = (DjbEcPublicKey)other;
+            return Enumerable.SequenceEqual(_publicKey, that._publicKey);
         }
 
 
         public override int GetHashCode()
         {
-            return string.Join(",", publicKey).GetHashCode();
+            return string.Join(",", _publicKey).GetHashCode();
         }
 
 
         public int CompareTo(Object another)
         {
-            byte[] theirs = ((DjbECPublicKey)another).publicKey;
+            byte[] theirs = ((DjbEcPublicKey)another)._publicKey;
             String theirString = string.Join(",", theirs.Select(y => y.ToString()));
-            String ourString = string.Join(",", publicKey.Select(y => y.ToString()));
+            String ourString = string.Join(",", _publicKey.Select(y => y.ToString()));
             return ourString.CompareTo(theirString);
         }
 
-        public byte[] getPublicKey()
+        public byte[] GetPublicKey()
         {
-            return publicKey;
+            return _publicKey;
         }
 
     }

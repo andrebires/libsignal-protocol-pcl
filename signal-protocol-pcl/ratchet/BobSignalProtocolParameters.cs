@@ -15,33 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
-using Strilanc.Value;
 using System;
+using Libsignal.Ecc;
+using Strilanc.Value;
 
-namespace libsignal.ratchet
+namespace Libsignal.Ratchet
 {
     public class BobSignalProtocolParameters
     {
 
-        private readonly IdentityKeyPair ourIdentityKey;
-        private readonly ECKeyPair ourSignedPreKey;
-        private readonly May<ECKeyPair> ourOneTimePreKey;
-        private readonly ECKeyPair ourRatchetKey;
+        private readonly IdentityKeyPair _ourIdentityKey;
+        private readonly EcKeyPair _ourSignedPreKey;
+        private readonly May<EcKeyPair> _ourOneTimePreKey;
+        private readonly EcKeyPair _ourRatchetKey;
 
-        private readonly IdentityKey theirIdentityKey;
-        private readonly ECPublicKey theirBaseKey;
+        private readonly IdentityKey _theirIdentityKey;
+        private readonly IEcPublicKey _theirBaseKey;
 
-        BobSignalProtocolParameters(IdentityKeyPair ourIdentityKey, ECKeyPair ourSignedPreKey,
-                             ECKeyPair ourRatchetKey, May<ECKeyPair> ourOneTimePreKey,
-                             IdentityKey theirIdentityKey, ECPublicKey theirBaseKey)
+        BobSignalProtocolParameters(IdentityKeyPair ourIdentityKey, EcKeyPair ourSignedPreKey,
+                             EcKeyPair ourRatchetKey, May<EcKeyPair> ourOneTimePreKey,
+                             IdentityKey theirIdentityKey, IEcPublicKey theirBaseKey)
         {
-            this.ourIdentityKey = ourIdentityKey;
-            this.ourSignedPreKey = ourSignedPreKey;
-            this.ourRatchetKey = ourRatchetKey;
-            this.ourOneTimePreKey = ourOneTimePreKey;
-            this.theirIdentityKey = theirIdentityKey;
-            this.theirBaseKey = theirBaseKey;
+            _ourIdentityKey = ourIdentityKey;
+            _ourSignedPreKey = ourSignedPreKey;
+            _ourRatchetKey = ourRatchetKey;
+            _ourOneTimePreKey = ourOneTimePreKey;
+            _theirIdentityKey = theirIdentityKey;
+            _theirBaseKey = theirBaseKey;
 
             if (ourIdentityKey == null || ourSignedPreKey == null || ourRatchetKey == null ||
                 ourOneTimePreKey == null || theirIdentityKey == null || theirBaseKey == null)
@@ -50,91 +50,91 @@ namespace libsignal.ratchet
             }
         }
 
-        public IdentityKeyPair getOurIdentityKey()
+        public IdentityKeyPair GetOurIdentityKey()
         {
-            return ourIdentityKey;
+            return _ourIdentityKey;
         }
 
-        public ECKeyPair getOurSignedPreKey()
+        public EcKeyPair GetOurSignedPreKey()
         {
-            return ourSignedPreKey;
+            return _ourSignedPreKey;
         }
 
-        public May<ECKeyPair> getOurOneTimePreKey()
+        public May<EcKeyPair> GetOurOneTimePreKey()
         {
-            return ourOneTimePreKey;
+            return _ourOneTimePreKey;
         }
 
-        public IdentityKey getTheirIdentityKey()
+        public IdentityKey GetTheirIdentityKey()
         {
-            return theirIdentityKey;
+            return _theirIdentityKey;
         }
 
-        public ECPublicKey getTheirBaseKey()
+        public IEcPublicKey GetTheirBaseKey()
         {
-            return theirBaseKey;
+            return _theirBaseKey;
         }
 
-        public static Builder newBuilder()
+        public static Builder NewBuilder()
         {
             return new Builder();
         }
 
-        public ECKeyPair getOurRatchetKey()
+        public EcKeyPair GetOurRatchetKey()
         {
-            return ourRatchetKey;
+            return _ourRatchetKey;
         }
 
         public class Builder
         {
-            private IdentityKeyPair ourIdentityKey;
-            private ECKeyPair ourSignedPreKey;
-            private May<ECKeyPair> ourOneTimePreKey;
-            private ECKeyPair ourRatchetKey;
+            private IdentityKeyPair _ourIdentityKey;
+            private EcKeyPair _ourSignedPreKey;
+            private May<EcKeyPair> _ourOneTimePreKey;
+            private EcKeyPair _ourRatchetKey;
 
-            private IdentityKey theirIdentityKey;
-            private ECPublicKey theirBaseKey;
+            private IdentityKey _theirIdentityKey;
+            private IEcPublicKey _theirBaseKey;
 
-            public Builder setOurIdentityKey(IdentityKeyPair ourIdentityKey)
+            public Builder SetOurIdentityKey(IdentityKeyPair ourIdentityKey)
             {
-                this.ourIdentityKey = ourIdentityKey;
+                _ourIdentityKey = ourIdentityKey;
                 return this;
             }
 
-            public Builder setOurSignedPreKey(ECKeyPair ourSignedPreKey)
+            public Builder SetOurSignedPreKey(EcKeyPair ourSignedPreKey)
             {
-                this.ourSignedPreKey = ourSignedPreKey;
+                _ourSignedPreKey = ourSignedPreKey;
                 return this;
             }
 
-            public Builder setOurOneTimePreKey(May<ECKeyPair> ourOneTimePreKey)
+            public Builder SetOurOneTimePreKey(May<EcKeyPair> ourOneTimePreKey)
             {
-                this.ourOneTimePreKey = ourOneTimePreKey;
+                _ourOneTimePreKey = ourOneTimePreKey;
                 return this;
             }
 
-            public Builder setTheirIdentityKey(IdentityKey theirIdentityKey)
+            public Builder SetTheirIdentityKey(IdentityKey theirIdentityKey)
             {
-                this.theirIdentityKey = theirIdentityKey;
+                _theirIdentityKey = theirIdentityKey;
                 return this;
             }
 
-            public Builder setTheirBaseKey(ECPublicKey theirBaseKey)
+            public Builder SetTheirBaseKey(IEcPublicKey theirBaseKey)
             {
-                this.theirBaseKey = theirBaseKey;
+                _theirBaseKey = theirBaseKey;
                 return this;
             }
 
-            public Builder setOurRatchetKey(ECKeyPair ourRatchetKey)
+            public Builder SetOurRatchetKey(EcKeyPair ourRatchetKey)
             {
-                this.ourRatchetKey = ourRatchetKey;
+                _ourRatchetKey = ourRatchetKey;
                 return this;
             }
 
-            public BobSignalProtocolParameters create()
+            public BobSignalProtocolParameters Create()
             {
-                return new BobSignalProtocolParameters(ourIdentityKey, ourSignedPreKey, ourRatchetKey,
-                                                ourOneTimePreKey, theirIdentityKey, theirBaseKey);
+                return new BobSignalProtocolParameters(_ourIdentityKey, _ourSignedPreKey, _ourRatchetKey,
+                                                _ourOneTimePreKey, _theirIdentityKey, _theirBaseKey);
             }
         }
     }

@@ -14,46 +14,46 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
- using System;
 
-namespace org.whispersystems.libsignal.fingerprint
+using System;
+
+namespace Libsignal.Fingerprint
 {
     public class FingerprintIdentifierMismatchException : Exception
     {
 
-        private readonly string localIdentifier;
-        private readonly string remoteIdentifier;
-        private readonly string scannedLocalIdentifier;
-        private readonly string scannedRemoteIdentifier;
+        private readonly string _localIdentifier;
+        private readonly string _remoteIdentifier;
+        private readonly string _scannedLocalIdentifier;
+        private readonly string _scannedRemoteIdentifier;
 
         public FingerprintIdentifierMismatchException(string localIdentifier, string remoteIdentifier,
                                                       string scannedLocalIdentifier, string scannedRemoteIdentifier)
         {
-            this.localIdentifier = localIdentifier;
-            this.remoteIdentifier = remoteIdentifier;
-            this.scannedLocalIdentifier = scannedLocalIdentifier;
-            this.scannedRemoteIdentifier = scannedRemoteIdentifier;
+            _localIdentifier = localIdentifier;
+            _remoteIdentifier = remoteIdentifier;
+            _scannedLocalIdentifier = scannedLocalIdentifier;
+            _scannedRemoteIdentifier = scannedRemoteIdentifier;
         }
 
-        public string getScannedRemoteIdentifier()
+        public string GetScannedRemoteIdentifier()
         {
-            return scannedRemoteIdentifier;
+            return _scannedRemoteIdentifier;
         }
 
-        public string getScannedLocalIdentifier()
+        public string GetScannedLocalIdentifier()
         {
-            return scannedLocalIdentifier;
+            return _scannedLocalIdentifier;
         }
 
-        public string getRemoteIdentifier()
+        public string GetRemoteIdentifier()
         {
-            return remoteIdentifier;
+            return _remoteIdentifier;
         }
 
-        public string getLocalIdentifier()
+        public string GetLocalIdentifier()
         {
-            return localIdentifier;
+            return _localIdentifier;
         }
     }
 }

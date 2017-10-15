@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.ecc
+namespace Libsignal.Ecc
 {
-    public interface ECPrivateKey
+    public interface IEcPrivateKey
     {
-        byte[] serialize();
-        int getType();
+        byte[] Serialize();
+        int GetKeyType();
     }
 }

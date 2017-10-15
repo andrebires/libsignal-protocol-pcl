@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.util;
+using Libsignal.Util;
 
-namespace libsignal.groups.ratchet
+namespace Libsignal.Groups.ratchet
 {
     /**
      * Each SenderKey is a "chain" of keys, each derived from the previous.
@@ -32,43 +32,43 @@ namespace libsignal.groups.ratchet
     public class SenderChainKey
     {
 
-        private static readonly byte[] MESSAGE_KEY_SEED = { 0x01 };
-        private static readonly byte[] CHAIN_KEY_SEED = { 0x02 };
+        private static readonly byte[] MessageKeySeed = { 0x01 };
+        private static readonly byte[] ChainKeySeed = { 0x02 };
 
-        private readonly uint iteration;
-        private readonly byte[] chainKey;
+        private readonly uint _iteration;
+        private readonly byte[] _chainKey;
 
         public SenderChainKey(uint iteration, byte[] chainKey)
         {
-            this.iteration = iteration;
-            this.chainKey = chainKey;
+            _iteration = iteration;
+            _chainKey = chainKey;
         }
 
-        public uint getIteration()
+        public uint GetIteration()
         {
-            return iteration;
+            return _iteration;
         }
 
-        public SenderMessageKey getSenderMessageKey()
+        public SenderMessageKey GetSenderMessageKey()
         {
-            return new SenderMessageKey(iteration, getDerivative(MESSAGE_KEY_SEED, chainKey));
+            return new SenderMessageKey(_iteration, GetDerivative(MessageKeySeed, _chainKey));
         }
 
-        public SenderChainKey getNext()
+        public SenderChainKey GetNext()
         {
-            return new SenderChainKey(iteration + 1, getDerivative(CHAIN_KEY_SEED, chainKey));
+            return new SenderChainKey(_iteration + 1, GetDerivative(ChainKeySeed, _chainKey));
         }
 
-        public byte[] getSeed()
+        public byte[] GetSeed()
         {
-            return chainKey;
+            return _chainKey;
         }
 
-        private byte[] getDerivative(byte[] seed, byte[] key)
+        private byte[] GetDerivative(byte[] seed, byte[] key)
         {
             // try
             //{
-            return Sign.sha256sum(key, seed);
+            return Sign.Sha256Sum(key, seed);
             /*}
             catch (NoSuchAlgorithmException | InvalidKeyException e) {
                 throw new AssertionError(e);

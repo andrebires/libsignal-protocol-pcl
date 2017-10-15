@@ -17,18 +17,17 @@
 
 using System;
 using System.Collections.Generic;
-using static PCLCrypto.WinRTCrypto;
 using PCLCrypto;
 
-namespace libsignal.util
+namespace Libsignal.Util
 {
     public class Sign
     {
-        public static byte[] sha256sum(byte[] key, byte[] message)
+        public static byte[] Sha256Sum(byte[] key, byte[] message)
         {
-            IMacAlgorithmProvider provider = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacSha256);
+            IMacAlgorithmProvider provider = WinRTCrypto.MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacSha256);
             ICryptographicKey hmacKey = provider.CreateKey(key);
-            byte [] hmac = CryptographicEngine.Sign(hmacKey, message);
+            byte [] hmac = WinRTCrypto.CryptographicEngine.Sign(hmacKey, message);
             return hmac;
         }
     }
@@ -37,18 +36,18 @@ namespace libsignal.util
     {
         public static byte[] Sign(byte[] key, byte[] message)
         {
-            IMacAlgorithmProvider provider = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacSha256);
+            IMacAlgorithmProvider provider = WinRTCrypto.MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacSha256);
             ICryptographicKey hmacKey = provider.CreateKey(key);
-            byte[] hmac = CryptographicEngine.Sign(hmacKey, message);
+            byte[] hmac = WinRTCrypto.CryptographicEngine.Sign(hmacKey, message);
             return hmac;
         }
 
         public static bool Verify(byte[] key, byte[] message, byte[] signature)
         {
-            IMacAlgorithmProvider provider = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacSha256);
+            IMacAlgorithmProvider provider = WinRTCrypto.MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacSha256);
 
             ICryptographicKey hmacKey = provider.CreateKey(key);
-            return CryptographicEngine.VerifySignature(hmacKey, message, signature);
+            return WinRTCrypto.CryptographicEngine.VerifySignature(hmacKey, message, signature);
         }
     }
 
@@ -62,23 +61,23 @@ namespace libsignal.util
         /// </summary>
         /// <param name="message">plaintext</param>
         /// <returns>PKCS5 of the message</returns>
-        public static byte[] aesCbcPkcs5(byte[] message, byte[] key, byte[] iv)
+        public static byte[] AesCbcPkcs5(byte[] message, byte[] key, byte[] iv)
         {
-            ISymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7); // PKCS5
+            ISymmetricKeyAlgorithmProvider objAlg = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7); // PKCS5
             ICryptographicKey ckey = objAlg.CreateSymmetricKey(key);
-            byte [] result = CryptographicEngine.Encrypt(ckey, message, iv);
+            byte [] result = WinRTCrypto.CryptographicEngine.Encrypt(ckey, message, iv);
             return result;
         }
 
-        public static byte[] aesCtr(byte[] message, byte[] key, uint counter)
+        public static byte[] AesCtr(byte[] message, byte[] key, uint counter)
         {
-            ISymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7); // CRT
+            ISymmetricKeyAlgorithmProvider objAlg = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7); // CRT
             ICryptographicKey ckey = objAlg.CreateSymmetricKey(key);
 
             byte[] ivBytes = new byte[16];
-            ByteUtil.intToByteArray(ivBytes, 0, (int)counter);
+            ByteUtil.IntToByteArray(ivBytes, 0, (int)counter);
 
-            byte [] result = CryptographicEngine.Encrypt(ckey, message, ivBytes);
+            byte [] result = WinRTCrypto.CryptographicEngine.Encrypt(ckey, message, ivBytes);
             return result;
         }
 
@@ -90,26 +89,26 @@ namespace libsignal.util
     /// </summary>
     public class Decrypt
     {
-        public static byte[] aesCbcPkcs5(byte[] message, byte[] key, byte[] iv)
+        public static byte[] AesCbcPkcs5(byte[] message, byte[] key, byte[] iv)
         {
-            ISymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
+            ISymmetricKeyAlgorithmProvider objAlg = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
             ICryptographicKey ckey = objAlg.CreateSymmetricKey(key);
 
             if (message.Length % objAlg.BlockLength != 0) throw new Exception("Invalid ciphertext length");
             
-            byte [] result = CryptographicEngine.Decrypt(ckey, message, iv);
+            byte [] result = WinRTCrypto.CryptographicEngine.Decrypt(ckey, message, iv);
             return result;
         }
 
-        public static byte[] aesCtr(byte[] message, byte[] key, uint counter)
+        public static byte[] AesCtr(byte[] message, byte[] key, uint counter)
         {
-            ISymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
+            ISymmetricKeyAlgorithmProvider objAlg = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
             ICryptographicKey ckey = objAlg.CreateSymmetricKey(key);
 
             byte[] ivBytes = new byte[16];
-            ByteUtil.intToByteArray(ivBytes, 0, (int)counter);
+            ByteUtil.IntToByteArray(ivBytes, 0, (int)counter);
 
-            byte [] result = CryptographicEngine.Decrypt(ckey, message, ivBytes);
+            byte [] result = WinRTCrypto.CryptographicEngine.Decrypt(ckey, message, ivBytes);
             return result;
         }
     }

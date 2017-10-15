@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
-using libsignal.state;
 using System;
 using System.Collections.Generic;
-using static PCLCrypto.WinRTCrypto;
+using Libsignal.Ecc;
+using Libsignal.State;
+using PCLCrypto;
 
-namespace libsignal.util
+namespace Libsignal.Util
 {
     /**
      * Helper class for generating keys of different types.
@@ -39,11 +39,11 @@ namespace libsignal.util
          *
          * @return the generated IdentityKeyPair.
          */
-        public static IdentityKeyPair generateIdentityKeyPair()
+        public static IdentityKeyPair GenerateIdentityKeyPair()
         {
-            ECKeyPair keyPair = Curve.generateKeyPair();
-            IdentityKey publicKey = new IdentityKey(keyPair.getPublicKey());
-            return new IdentityKeyPair(publicKey, keyPair.getPrivateKey());
+            EcKeyPair keyPair = Curve.GenerateKeyPair();
+            IdentityKey publicKey = new IdentityKey(keyPair.GetPublicKey());
+            return new IdentityKeyPair(publicKey, keyPair.GetPrivateKey());
         }
 
         /**
@@ -57,13 +57,13 @@ namespace libsignal.util
          *                      higher encoding overhead.
          * @return the generated registration ID.
          */
-        public static uint generateRegistrationId(bool extendedRange)
+        public static uint GenerateRegistrationId(bool extendedRange)
         {
             //try
             //{
                 //SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
-                if (extendedRange) return getRandomSequence(uint.MaxValue - 1) + 1;
-                else return getRandomSequence(16380) + 1;
+                if (extendedRange) return GetRandomSequence(uint.MaxValue - 1) + 1;
+                else return GetRandomSequence(16380) + 1;
             /*}
             catch (NoSuchAlgorithmException e)
             {
@@ -71,10 +71,10 @@ namespace libsignal.util
             }*/
         }
 
-        public static uint getRandomSequence(uint max)
+        public static uint GetRandomSequence(uint max)
         {
 
-            return CryptographicBuffer.GenerateRandomNumber() % max;
+            return WinRTCrypto.CryptographicBuffer.GenerateRandomNumber() % max;
 
 
         }
@@ -91,7 +91,7 @@ namespace libsignal.util
          * @param count The number of PreKeys to generate.
          * @return the list of generated PreKeyRecords.
          */
-        public static IList<PreKeyRecord> generatePreKeys(uint start, uint count)
+        public static IList<PreKeyRecord> GeneratePreKeys(uint start, uint count)
         {
             IList<PreKeyRecord> results = new List<PreKeyRecord>();
 
@@ -99,7 +99,7 @@ namespace libsignal.util
 
             for (uint i = 0; i < count; i++)
             {
-                results.Add(new PreKeyRecord(((start + i) % (Medium.MAX_VALUE - 1)) + 1, Curve.generateKeyPair()));
+                results.Add(new PreKeyRecord(((start + i) % (Medium.MaxValue - 1)) + 1, Curve.GenerateKeyPair()));
             }
 
             return results;
@@ -111,10 +111,10 @@ namespace libsignal.util
          *
          * @return the generated last resort PreKeyRecord.
          */
-        public static PreKeyRecord generateLastResortPreKey()
+        public static PreKeyRecord GenerateLastResortPreKey()
         {
-            ECKeyPair keyPair = Curve.generateKeyPair();
-            return new PreKeyRecord(Medium.MAX_VALUE, keyPair);
+            EcKeyPair keyPair = Curve.GenerateKeyPair();
+            return new PreKeyRecord(Medium.MaxValue, keyPair);
         }
 
         /**
@@ -126,34 +126,34 @@ namespace libsignal.util
          * @return the generated signed PreKey
          * @throws InvalidKeyException when the provided identity key is invalid
          */
-        public static SignedPreKeyRecord generateSignedPreKey(IdentityKeyPair identityKeyPair, uint signedPreKeyId)
+        public static SignedPreKeyRecord GenerateSignedPreKey(IdentityKeyPair identityKeyPair, uint signedPreKeyId)
         {
-            ECKeyPair keyPair = Curve.generateKeyPair();
-            byte[] signature = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
+            EcKeyPair keyPair = Curve.GenerateKeyPair();
+            byte[] signature = Curve.CalculateSignature(identityKeyPair.GetPrivateKey(), keyPair.GetPublicKey().Serialize());
 
-            return new SignedPreKeyRecord(signedPreKeyId, getTime(), keyPair, signature);
+            return new SignedPreKeyRecord(signedPreKeyId, GetTime(), keyPair, signature);
         }
 
 
-        public static ECKeyPair generateSenderSigningKey()
+        public static EcKeyPair GenerateSenderSigningKey()
         {
-            return Curve.generateKeyPair();
+            return Curve.GenerateKeyPair();
         }
 
-        public static byte[] generateSenderKey()
+        public static byte[] GenerateSenderKey()
         {
-            byte[] key = CryptographicBuffer.GenerateRandom(32);
+            byte[] key = WinRTCrypto.CryptographicBuffer.GenerateRandom(32);
             return key;
         }
 
-        public static uint generateSenderKeyId()
+        public static uint GenerateSenderKeyId()
         {
 
-            return CryptographicBuffer.GenerateRandomNumber();
+            return WinRTCrypto.CryptographicBuffer.GenerateRandomNumber();
 
         }
 
-        public static ulong getTime()
+        public static ulong GetTime()
         {
             return (ulong)DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         }

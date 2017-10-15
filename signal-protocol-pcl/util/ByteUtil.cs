@@ -18,7 +18,7 @@
 using System;
 using System.IO;
 
-namespace libsignal.util
+namespace Libsignal.Util
 {
     public class ByteUtil
     {
@@ -27,7 +27,7 @@ namespace libsignal.util
         /// https://codahale.com/a-lesson-in-timing-attacks/ , this helper method in the Java
         /// environment is vulnerable to timing attacks.
         /// </summary>
-        public static bool isEqual(byte[] first, byte[] second)
+        public static bool IsEqual(byte[] first, byte[] second)
         {
             if (first.Length != second.Length)
             {
@@ -42,7 +42,7 @@ namespace libsignal.util
             return result == 0;
         }
 
-        public static byte[] combine(params byte[][] elements)
+        public static byte[] Combine(params byte[][] elements)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace libsignal.util
             }
         }
 
-        public static byte[][] split(byte[] input, int firstLength, int secondLength)
+        public static byte[][] Split(byte[] input, int firstLength, int secondLength)
         {
             byte[][] parts = new byte[2][];
 
@@ -74,7 +74,7 @@ namespace libsignal.util
             return parts;
         }
 
-        public static byte[][] split(byte[] input, int firstLength, int secondLength, int thirdLength)
+        public static byte[][] Split(byte[] input, int firstLength, int secondLength, int thirdLength)
         {
             if (input == null || firstLength < 0 || secondLength < 0 || thirdLength < 0 ||
                 input.Length < firstLength + secondLength + thirdLength)
@@ -96,7 +96,7 @@ namespace libsignal.util
             return parts;
         }
 
-        public static byte[] trim(byte[] input, int length)
+        public static byte[] Trim(byte[] input, int length)
         {
             byte[] result = new byte[length];
             Buffer.BlockCopy(input, 0, result, 0, result.Length);
@@ -104,7 +104,7 @@ namespace libsignal.util
             return result;
         }
 
-        public static byte[] copyFrom(byte[] input)
+        public static byte[] CopyFrom(byte[] input)
         {
             byte[] output = new byte[input.Length];
             Buffer.BlockCopy(input, 0, output, 0, output.Length);
@@ -112,60 +112,60 @@ namespace libsignal.util
             return output;
         }
 
-        public static byte intsToByteHighAndLow(int highValue, int lowValue)
+        public static byte IntsToByteHighAndLow(int highValue, int lowValue)
         {
             return (byte)((highValue << 4 | lowValue) & 0xFF);
         }
 
-        public static int highBitsToInt(byte value)
+        public static int HighBitsToInt(byte value)
         {
             return (value & 0xFF) >> 4;
         }
 
-        public static int lowBitsToInt(byte value)
+        public static int LowBitsToInt(byte value)
         {
             return (value & 0xF);
         }
 
-        public static int highBitsToMedium(int value)
+        public static int HighBitsToMedium(int value)
         {
             return (value >> 12);
         }
 
-        public static int lowBitsToMedium(int value)
+        public static int LowBitsToMedium(int value)
         {
             return (value & 0xFFF);
         }
 
-        public static byte[] shortToByteArray(int value)
+        public static byte[] ShortToByteArray(int value)
         {
             byte[] bytes = new byte[2];
-            shortToByteArray(bytes, 0, value);
+            ShortToByteArray(bytes, 0, value);
             return bytes;
         }
 
-        public static int shortToByteArray(byte[] bytes, int offset, int value)
+        public static int ShortToByteArray(byte[] bytes, int offset, int value)
         {
             bytes[offset + 1] = (byte)value;
             bytes[offset] = (byte)(value >> 8);
             return 2;
         }
 
-        public static int shortToLittleEndianByteArray(byte[] bytes, int offset, int value)
+        public static int ShortToLittleEndianByteArray(byte[] bytes, int offset, int value)
         {
             bytes[offset] = (byte)value;
             bytes[offset + 1] = (byte)(value >> 8);
             return 2;
         }
 
-        public static byte[] mediumToByteArray(int value)
+        public static byte[] MediumToByteArray(int value)
         {
             byte[] bytes = new byte[3];
-            mediumToByteArray(bytes, 0, value);
+            MediumToByteArray(bytes, 0, value);
             return bytes;
         }
 
-        public static int mediumToByteArray(byte[] bytes, int offset, int value)
+        public static int MediumToByteArray(byte[] bytes, int offset, int value)
         {
             bytes[offset + 2] = (byte)value;
             bytes[offset + 1] = (byte)(value >> 8);
@@ -173,14 +173,14 @@ namespace libsignal.util
             return 3;
         }
 
-        public static byte[] intToByteArray(int value)
+        public static byte[] IntToByteArray(int value)
         {
             byte[] bytes = new byte[4];
-            intToByteArray(bytes, 0, value);
+            IntToByteArray(bytes, 0, value);
             return bytes;
         }
 
-        public static int intToByteArray(byte[] bytes, int offset, int value)
+        public static int IntToByteArray(byte[] bytes, int offset, int value)
         {
             bytes[offset + 3] = (byte)value;
             bytes[offset + 2] = (byte)(value >> 8);
@@ -189,7 +189,7 @@ namespace libsignal.util
             return 4;
         }
 
-        public static int intToLittleEndianByteArray(byte[] bytes, int offset, int value)
+        public static int IntToLittleEndianByteArray(byte[] bytes, int offset, int value)
         {
             bytes[offset] = (byte)value;
             bytes[offset + 1] = (byte)(value >> 8);
@@ -198,14 +198,14 @@ namespace libsignal.util
             return 4;
         }
 
-        public static byte[] longToByteArray(long l)
+        public static byte[] LongToByteArray(long l)
         {
             byte[] bytes = new byte[8];
-            longToByteArray(bytes, 0, l);
+            LongToByteArray(bytes, 0, l);
             return bytes;
         }
 
-        public static int longToByteArray(byte[] bytes, int offset, long value)
+        public static int LongToByteArray(byte[] bytes, int offset, long value)
         {
             bytes[offset + 7] = (byte)value;
             bytes[offset + 6] = (byte)(value >> 8);
@@ -218,7 +218,7 @@ namespace libsignal.util
             return 8;
         }
 
-        public static int longTo4ByteArray(byte[] bytes, int offset, long value)
+        public static int LongTo4ByteArray(byte[] bytes, int offset, long value)
         {
             bytes[offset + 3] = (byte)value;
             bytes[offset + 2] = (byte)(value >> 8);
@@ -227,19 +227,19 @@ namespace libsignal.util
             return 4;
         }
 
-        public static int byteArrayToShort(byte[] bytes)
+        public static int ByteArrayToShort(byte[] bytes)
         {
-            return byteArrayToShort(bytes, 0);
+            return ByteArrayToShort(bytes, 0);
         }
 
-        public static int byteArrayToShort(byte[] bytes, int offset)
+        public static int ByteArrayToShort(byte[] bytes, int offset)
         {
             return
                 (bytes[offset] & 0xff) << 8 | (bytes[offset + 1] & 0xff);
         }
 
         // The SSL patented 3-byte Value.
-        public static int byteArrayToMedium(byte[] bytes, int offset)
+        public static int ByteArrayToMedium(byte[] bytes, int offset)
         {
             return
                 (bytes[offset] & 0xff) << 16 |
@@ -247,12 +247,12 @@ namespace libsignal.util
                     (bytes[offset + 2] & 0xff);
         }
 
-        public static int byteArrayToInt(byte[] bytes)
+        public static int ByteArrayToInt(byte[] bytes)
         {
-            return byteArrayToInt(bytes, 0);
+            return ByteArrayToInt(bytes, 0);
         }
 
-        public static int byteArrayToInt(byte[] bytes, int offset)
+        public static int ByteArrayToInt(byte[] bytes, int offset)
         {
             return
                 (bytes[offset] & 0xff) << 24 |
@@ -261,7 +261,7 @@ namespace libsignal.util
                     (bytes[offset + 3] & 0xff);
         }
 
-        public static int byteArrayToIntLittleEndian(byte[] bytes, int offset)
+        public static int ByteArrayToIntLittleEndian(byte[] bytes, int offset)
         {
             return
                 (bytes[offset + 3] & 0xff) << 24 |
@@ -270,12 +270,12 @@ namespace libsignal.util
                     (bytes[offset] & 0xff);
         }
 
-        public static long byteArrayToLong(byte[] bytes)
+        public static long ByteArrayToLong(byte[] bytes)
         {
-            return byteArrayToLong(bytes, 0);
+            return ByteArrayToLong(bytes, 0);
         }
 
-        public static long byteArray4ToLong(byte[] bytes, int offset)
+        public static long ByteArray4ToLong(byte[] bytes, int offset)
         {
             return
                 ((bytes[offset + 0] & 0xffL) << 24) |
@@ -284,7 +284,7 @@ namespace libsignal.util
                     ((bytes[offset + 3] & 0xffL));
         }
 
-        public static long byteArray5ToLong(byte[] bytes, int offset)
+        public static long ByteArray5ToLong(byte[] bytes, int offset)
         {
             return
                 ((bytes[offset] & 0xffL) << 32) |
@@ -294,7 +294,7 @@ namespace libsignal.util
                 ((bytes[offset + 4] & 0xffL));
         }
 
-        public static long byteArrayToLong(byte[] bytes, int offset)
+        public static long ByteArrayToLong(byte[] bytes, int offset)
         {
             return
                 ((bytes[offset] & 0xffL) << 56) |

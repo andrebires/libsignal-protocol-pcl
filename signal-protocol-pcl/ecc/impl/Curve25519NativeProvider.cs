@@ -17,48 +17,48 @@
 
 using System;
 
-namespace libsignal.ecc.impl
+namespace Libsignal.Ecc.impl
 {
 	class Curve25519NativeProvider : ICurve25519Provider
 	{
 		//private curve25519.Curve25519Native native = new curve25519.Curve25519Native();
 
-		public byte[] calculateAgreement(byte[] ourPrivate, byte[] theirPublic)
+		public byte[] CalculateAgreement(byte[] ourPrivate, byte[] theirPublic)
 		{
             throw new NotImplementedException();
         }
 
-		public byte[] calculateSignature(byte[] random, byte[] privateKey, byte[] message)
+		public byte[] CalculateSignature(byte[] random, byte[] privateKey, byte[] message)
 		{
             throw new NotImplementedException();
         }
 
-        public byte[] calculateVrfSignature(byte[] privateKey, byte[] message)
+        public byte[] CalculateVrfSignature(byte[] privateKey, byte[] message)
         {
             throw new NotImplementedException();
         }
 
-        public byte[] generatePrivateKey(byte[] random)
+        public byte[] GeneratePrivateKey(byte[] random)
 		{
             throw new NotImplementedException();
         }
 
-		public byte[] generatePublicKey(byte[] privateKey)
+		public byte[] GeneratePublicKey(byte[] privateKey)
 		{
             throw new NotImplementedException();
         }
 
-		public bool isNative()
+		public bool IsNative()
 		{
             throw new NotImplementedException();
         }
 
-		public bool verifySignature(byte[] publicKey, byte[] message, byte[] signature)
+		public bool VerifySignature(byte[] publicKey, byte[] message, byte[] signature)
 		{
             throw new NotImplementedException();
         }
 
-        public byte[] verifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature)
+        public byte[] VerifyVrfSignature(byte[] publicKey, byte[] message, byte[] signature)
         {
             throw new NotImplementedException();
         }

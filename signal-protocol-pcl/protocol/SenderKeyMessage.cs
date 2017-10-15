@@ -15,41 +15,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Google.ProtocolBuffers;
-using libsignal.ecc;
-using libsignal.util;
 using System;
+using Google.ProtocolBuffers;
+using Libsignal.Ecc;
+using Libsignal.Util;
 
-namespace libsignal.protocol
+namespace Libsignal.Protocol
 {
     public partial class SenderKeyMessage : CiphertextMessage
     {
 
-        private static readonly int SIGNATURE_LENGTH = 64;
+        private static readonly int SignatureLength = 64;
 
-        private readonly uint messageVersion;
-        private readonly uint keyId;
-        private readonly uint iteration;
-        private readonly byte[] ciphertext;
-        private readonly byte[] serialized;
+        private readonly uint _messageVersion;
+        private readonly uint _keyId;
+        private readonly uint _iteration;
+        private readonly byte[] _ciphertext;
+        private readonly byte[] _serialized;
 
         public SenderKeyMessage(byte[] serialized)
         {
             try
             {
-                byte[][] messageParts = ByteUtil.split(serialized, 1, serialized.Length - 1 - SIGNATURE_LENGTH, SIGNATURE_LENGTH);
+                byte[][] messageParts = ByteUtil.Split(serialized, 1, serialized.Length - 1 - SignatureLength, SignatureLength);
                 byte version = messageParts[0][0];
                 byte[] message = messageParts[1];
                 byte[] signature = messageParts[2];
 
-                if (ByteUtil.highBitsToInt(version) < 3)
+                if (ByteUtil.HighBitsToInt(version) < 3)
                 {
-                    throw new LegacyMessageException("Legacy message: " + ByteUtil.highBitsToInt(version));
+                    throw new LegacyMessageException("Legacy message: " + ByteUtil.HighBitsToInt(version));
                 }
 
-                if (ByteUtil.highBitsToInt(version) > CURRENT_VERSION)
+                if (ByteUtil.HighBitsToInt(version) > CurrentVersion)
                 {
-                    throw new InvalidMessageException("Unknown version: " + ByteUtil.highBitsToInt(version));
+                    throw new InvalidMessageException("Unknown version: " + ByteUtil.HighBitsToInt(version));
                 }
 
                 WhisperProtos.SenderKeyMessage senderKeyMessage = WhisperProtos.SenderKeyMessage.ParseFrom(message);
@@ -61,11 +61,11 @@ namespace libsignal.protocol
                     throw new InvalidMessageException("Incomplete message.");
                 }
 
-                this.serialized = serialized;
-                this.messageVersion = (uint)ByteUtil.highBitsToInt(version);
-                this.keyId = senderKeyMessage.Id;
-                this.iteration = senderKeyMessage.Iteration;
-                this.ciphertext = senderKeyMessage.Ciphertext.ToByteArray();
+                _serialized = serialized;
+                _messageVersion = (uint)ByteUtil.HighBitsToInt(version);
+                _keyId = senderKeyMessage.Id;
+                _iteration = senderKeyMessage.Iteration;
+                _ciphertext = senderKeyMessage.Ciphertext.ToByteArray();
             }
             catch (/*InvalidProtocolBufferException | Parse*/Exception e)
             {
@@ -73,46 +73,46 @@ namespace libsignal.protocol
             }
         }
 
-        public SenderKeyMessage(uint keyId, uint iteration, byte[] ciphertext, ECPrivateKey signatureKey)
+        public SenderKeyMessage(uint keyId, uint iteration, byte[] ciphertext, IEcPrivateKey signatureKey)
         {
-            byte[] version = { ByteUtil.intsToByteHighAndLow((int)CURRENT_VERSION, (int)CURRENT_VERSION) };
+            byte[] version = { ByteUtil.IntsToByteHighAndLow((int)CurrentVersion, (int)CurrentVersion) };
             byte[] message = WhisperProtos.SenderKeyMessage.CreateBuilder()
                                                            .SetId(keyId)
                                                            .SetIteration(iteration)
                                                            .SetCiphertext(ByteString.CopyFrom(ciphertext))
                                                            .Build().ToByteArray();
 
-            byte[] signature = getSignature(signatureKey, ByteUtil.combine(version, message));
+            byte[] signature = GetSignature(signatureKey, ByteUtil.Combine(version, message));
 
-            this.serialized = ByteUtil.combine(version, message, signature);
-            this.messageVersion = CURRENT_VERSION;
-            this.keyId = keyId;
-            this.iteration = iteration;
-            this.ciphertext = ciphertext;
+            _serialized = ByteUtil.Combine(version, message, signature);
+            _messageVersion = CurrentVersion;
+            _keyId = keyId;
+            _iteration = iteration;
+            _ciphertext = ciphertext;
         }
 
-        public uint getKeyId()
+        public uint GetKeyId()
         {
-            return keyId;
+            return _keyId;
         }
 
-        public uint getIteration()
+        public uint GetIteration()
         {
-            return iteration;
+            return _iteration;
         }
 
-        public byte[] getCipherText()
+        public byte[] GetCipherText()
         {
-            return ciphertext;
+            return _ciphertext;
         }
 
-        public void verifySignature(ECPublicKey signatureKey)
+        public void VerifySignature(IEcPublicKey signatureKey)
         {
             try
             {
-                byte[][] parts = ByteUtil.split(serialized, serialized.Length - SIGNATURE_LENGTH, SIGNATURE_LENGTH);
+                byte[][] parts = ByteUtil.Split(_serialized, _serialized.Length - SignatureLength, SignatureLength);
 
-                if (!Curve.verifySignature(signatureKey, parts[0], parts[1]))
+                if (!Curve.VerifySignature(signatureKey, parts[0], parts[1]))
                 {
                     throw new InvalidMessageException("Invalid signature!");
                 }
@@ -124,11 +124,11 @@ namespace libsignal.protocol
             }
         }
 
-        private byte[] getSignature(ECPrivateKey signatureKey, byte[] serialized)
+        private byte[] GetSignature(IEcPrivateKey signatureKey, byte[] serialized)
         {
             try
             {
-                return Curve.calculateSignature(signatureKey, serialized);
+                return Curve.CalculateSignature(signatureKey, serialized);
             }
             catch (InvalidKeyException e)
             {
@@ -136,15 +136,15 @@ namespace libsignal.protocol
             }
         }
 
-        public override byte[] serialize()
+        public override byte[] Serialize()
         {
-            return serialized;
+            return _serialized;
         }
 
 
-        public override uint getType()
+        public override uint GetMessageType()
         {
-            return CiphertextMessage.SENDERKEY_TYPE;
+            return SenderkeyType;
         }
     }
 }

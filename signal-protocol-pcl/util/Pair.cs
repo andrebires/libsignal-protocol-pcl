@@ -17,42 +17,42 @@
 
 using System;
 
-namespace libsignal.util
+namespace Libsignal.Util
 {
     public class Pair<T1, T2>
     {
-        private readonly T1 v1;
-        private readonly T2 v2;
+        private readonly T1 _v1;
+        private readonly T2 _v2;
 
         public Pair(T1 v1, T2 v2)
         {
-            this.v1 = v1;
-            this.v2 = v2;
+            _v1 = v1;
+            _v2 = v2;
         }
 
-        public T1 first()
+        public T1 First()
         {
-            return v1;
+            return _v1;
         }
 
-        public T2 second()
+        public T2 Second()
         {
-            return v2;
+            return _v2;
         }
 
-        public bool equals(Object o)
+        public override bool Equals(object o)
         {
             return o is Pair<T1, T2> &&
-                equal(((Pair<T1, T2>)o).first(), first()) &&
-                equal(((Pair<T1, T2>)o).second(), second());
+                Equal(((Pair<T1, T2>)o).First(), First()) &&
+                Equal(((Pair<T1, T2>)o).Second(), Second());
         }
 
-        public int hashCode()
+        public override int GetHashCode()
         {
-            return first().GetHashCode() ^ second().GetHashCode();
+            return First().GetHashCode() ^ Second().GetHashCode();
         }
 
-        private bool equal(Object first, Object second)
+        private bool Equal(Object first, Object second)
         {
             if (first == null && second == null) return true;
             if (first == null || second == null) return false;

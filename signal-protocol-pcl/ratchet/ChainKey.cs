@@ -15,60 +15,60 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.kdf;
-using libsignal.util;
 using System;
 using System.Text;
+using Libsignal.Kdf;
+using Libsignal.Util;
 
-namespace libsignal.ratchet
+namespace Libsignal.Ratchet
 {
     public class ChainKey
     {
 
-        private static readonly byte[] MESSAGE_KEY_SEED = { 0x01 };
-        private static readonly byte[] CHAIN_KEY_SEED = { 0x02 };
+        private static readonly byte[] MessageKeySeed = { 0x01 };
+        private static readonly byte[] ChainKeySeed = { 0x02 };
 
-        private readonly HKDF kdf;
-        private readonly byte[] key;
-        private readonly uint index;
+        private readonly Hkdf _kdf;
+        private readonly byte[] _key;
+        private readonly uint _index;
 
-        public ChainKey(HKDF kdf, byte[] key, uint index)
+        public ChainKey(Hkdf kdf, byte[] key, uint index)
         {
-            this.kdf = kdf;
-            this.key = key;
-            this.index = index;
+            _kdf = kdf;
+            _key = key;
+            _index = index;
         }
 
-        public byte[] getKey()
+        public byte[] GetKey()
         {
-            return key;
+            return _key;
         }
 
-        public uint getIndex()
+        public uint GetIndex()
         {
-            return index;
+            return _index;
         }
 
-        public ChainKey getNextChainKey()
+        public ChainKey GetNextChainKey()
         {
-            byte[] nextKey = getBaseMaterial(CHAIN_KEY_SEED);
-            return new ChainKey(kdf, nextKey, index + 1);
+            byte[] nextKey = GetBaseMaterial(ChainKeySeed);
+            return new ChainKey(_kdf, nextKey, _index + 1);
         }
 
-        public MessageKeys getMessageKeys()
+        public MessageKeys GetMessageKeys()
         {
-            byte[] inputKeyMaterial = getBaseMaterial(MESSAGE_KEY_SEED);
-            byte[] keyMaterialBytes = kdf.deriveSecrets(inputKeyMaterial, Encoding.UTF8.GetBytes("WhisperMessageKeys"), DerivedMessageSecrets.SIZE);
+            byte[] inputKeyMaterial = GetBaseMaterial(MessageKeySeed);
+            byte[] keyMaterialBytes = _kdf.DeriveSecrets(inputKeyMaterial, Encoding.UTF8.GetBytes("WhisperMessageKeys"), DerivedMessageSecrets.Size);
             DerivedMessageSecrets keyMaterial = new DerivedMessageSecrets(keyMaterialBytes);
 
-            return new MessageKeys(keyMaterial.getCipherKey(), keyMaterial.getMacKey(), keyMaterial.getIv(), index);
+            return new MessageKeys(keyMaterial.GetCipherKey(), keyMaterial.GetMacKey(), keyMaterial.GetIv(), _index);
         }
 
-        private byte[] getBaseMaterial(byte[] seed)
+        private byte[] GetBaseMaterial(byte[] seed)
         {
             try
             {
-                return Sign.sha256sum(key, seed);
+                return Sign.Sha256Sum(_key, seed);
             }
             catch (InvalidKeyException e)
             {

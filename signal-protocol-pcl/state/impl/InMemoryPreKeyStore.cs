@@ -18,24 +18,24 @@
 using System;
 using System.Collections.Generic;
 
-namespace libsignal.state.impl
+namespace Libsignal.State.Impl
 {
-    public class InMemoryPreKeyStore : PreKeyStore
+    public class InMemoryPreKeyStore : IPreKeyStore
 	{
 
-		private readonly IDictionary<uint, byte[]> store = new Dictionary<uint, byte[]>();
+		private readonly IDictionary<uint, byte[]> _store = new Dictionary<uint, byte[]>();
 
 
 		public PreKeyRecord LoadPreKey(uint preKeyId)
 		{
 			try
 			{
-				if (!store.ContainsKey(preKeyId))
+				if (!_store.ContainsKey(preKeyId))
 				{
 					throw new InvalidKeyIdException("No such prekeyrecord!");
 				}
 				byte[] record;
-				store.TryGetValue(preKeyId, out record);  // get()
+				_store.TryGetValue(preKeyId, out record);  // get()
 
 				return new PreKeyRecord(record);
 			}
@@ -48,19 +48,19 @@ namespace libsignal.state.impl
 
 		public void StorePreKey(uint preKeyId, PreKeyRecord record)
 		{
-			store[preKeyId] = record.serialize();
+			_store[preKeyId] = record.Serialize();
 		}
 
 
 		public bool ContainsPreKey(uint preKeyId)
 		{
-			return store.ContainsKey(preKeyId);
+			return _store.ContainsKey(preKeyId);
 		}
 
 
 		public void RemovePreKey(uint preKeyId)
 		{
-			store.Remove(preKeyId);
+			_store.Remove(preKeyId);
 		}
 	}
 }

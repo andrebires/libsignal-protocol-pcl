@@ -17,13 +17,13 @@
 
 using System;
 
-namespace libsignal.kdf
+namespace Libsignal.Kdf
 {
     [Obsolete("Use HKDFv3 over v2 for new work.")]
-    public class HKDFv2 : HKDF
+    public class HkdFv2 : Hkdf
     {
         [Obsolete("HKDFv2 should be upgraded to v3.")]
-        protected override int getIterationStartOffset()
+        protected override int GetIterationStartOffset()
         {
             return 0;
         }

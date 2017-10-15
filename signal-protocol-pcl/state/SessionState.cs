@@ -15,97 +15,95 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Google.ProtocolBuffers;
-using libsignal.ecc;
-using libsignal.kdf;
-using libsignal.ratchet;
-using libsignal.util;
-using Strilanc.Value;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using static libsignal.state.StorageProtos;
-using static libsignal.state.StorageProtos.SessionStructure.Types;
+using Google.ProtocolBuffers;
+using Libsignal.Ecc;
+using Libsignal.Kdf;
+using Libsignal.Ratchet;
+using Libsignal.Util;
+using Strilanc.Value;
 
-namespace libsignal.state
+namespace Libsignal.State
 {
     public class SessionState
 	{
-		private static readonly int MAX_MESSAGE_KEYS = 2000;
+		private static readonly int MaxMessageKeys = 2000;
 
-		private SessionStructure sessionStructure;
+		private StorageProtos.SessionStructure _sessionStructure;
 
 		public SessionState()
 		{
-			this.sessionStructure = SessionStructure.CreateBuilder().Build();
+			_sessionStructure = StorageProtos.SessionStructure.CreateBuilder().Build();
 		}
 
-		public SessionState(SessionStructure sessionStructure)
+		public SessionState(StorageProtos.SessionStructure sessionStructure)
 		{
-			this.sessionStructure = sessionStructure;
+			_sessionStructure = sessionStructure;
 		}
 
 		public SessionState(SessionState copy)
 		{
-			this.sessionStructure = copy.sessionStructure.ToBuilder().Build();
+			_sessionStructure = copy._sessionStructure.ToBuilder().Build();
 		}
 
-		public SessionStructure getStructure()
+		public StorageProtos.SessionStructure GetStructure()
 		{
-			return sessionStructure;
+			return _sessionStructure;
 		}
 
-		public byte[] getAliceBaseKey()
+		public byte[] GetAliceBaseKey()
 		{
-			return this.sessionStructure.AliceBaseKey.ToByteArray();
+			return _sessionStructure.AliceBaseKey.ToByteArray();
 		}
 
-		public void setAliceBaseKey(byte[] aliceBaseKey)
+		public void SetAliceBaseKey(byte[] aliceBaseKey)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .SetAliceBaseKey(ByteString.CopyFrom(aliceBaseKey))
 														 .Build();
 		}
 
-		public void setSessionVersion(uint version)
+		public void SetSessionVersion(uint version)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .SetSessionVersion(version)
 														 .Build();
 		}
 
-		public uint getSessionVersion()
+		public uint GetSessionVersion()
 		{
-			uint sessionVersion = this.sessionStructure.SessionVersion;
+			uint sessionVersion = _sessionStructure.SessionVersion;
 
 			if (sessionVersion == 0) return 2;
 			else return sessionVersion;
 		}
 
-		public void setRemoteIdentityKey(IdentityKey identityKey)
+		public void SetRemoteIdentityKey(IdentityKey identityKey)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
-														 .SetRemoteIdentityPublic(ByteString.CopyFrom(identityKey.serialize()))
+			_sessionStructure = _sessionStructure.ToBuilder()
+														 .SetRemoteIdentityPublic(ByteString.CopyFrom(identityKey.Serialize()))
 														 .Build();
 		}
 
-		public void setLocalIdentityKey(IdentityKey identityKey)
+		public void SetLocalIdentityKey(IdentityKey identityKey)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
-														 .SetLocalIdentityPublic(ByteString.CopyFrom(identityKey.serialize()))
+			_sessionStructure = _sessionStructure.ToBuilder()
+														 .SetLocalIdentityPublic(ByteString.CopyFrom(identityKey.Serialize()))
 														 .Build();
 		}
 
-		public IdentityKey getRemoteIdentityKey()
+		public IdentityKey GetRemoteIdentityKey()
 		{
 			try
 			{
-				if (!this.sessionStructure.HasRemoteIdentityPublic)
+				if (!_sessionStructure.HasRemoteIdentityPublic)
 				{
 					return null;
 				}
 
-				return new IdentityKey(this.sessionStructure.RemoteIdentityPublic.ToByteArray(), 0);
+				return new IdentityKey(_sessionStructure.RemoteIdentityPublic.ToByteArray(), 0);
 			}
 			catch (InvalidKeyException e)
 			{
@@ -114,11 +112,11 @@ namespace libsignal.state
 			}
 		}
 
-		public IdentityKey getLocalIdentityKey()
+		public IdentityKey GetLocalIdentityKey()
 		{
 			try
 			{
-				return new IdentityKey(this.sessionStructure.LocalIdentityPublic.ToByteArray(), 0);
+				return new IdentityKey(_sessionStructure.LocalIdentityPublic.ToByteArray(), 0);
 			}
 			catch (InvalidKeyException e)
 			{
@@ -126,36 +124,36 @@ namespace libsignal.state
 			}
 		}
 
-		public uint getPreviousCounter()
+		public uint GetPreviousCounter()
 		{
-			return sessionStructure.PreviousCounter;
+			return _sessionStructure.PreviousCounter;
 		}
 
-		public void setPreviousCounter(uint previousCounter)
+		public void SetPreviousCounter(uint previousCounter)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .SetPreviousCounter(previousCounter)
 														 .Build();
 		}
 
-		public RootKey getRootKey()
+		public RootKey GetRootKey()
 		{
-			return new RootKey(HKDF.createFor(getSessionVersion()),
-							   this.sessionStructure.RootKey.ToByteArray());
+			return new RootKey(Hkdf.CreateFor(GetSessionVersion()),
+							   _sessionStructure.RootKey.ToByteArray());
 		}
 
-		public void setRootKey(RootKey rootKey)
+		public void SetRootKey(RootKey rootKey)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
-														 .SetRootKey(ByteString.CopyFrom(rootKey.getKeyBytes()))
+			_sessionStructure = _sessionStructure.ToBuilder()
+														 .SetRootKey(ByteString.CopyFrom(rootKey.GetKeyBytes()))
 														 .Build();
 		}
 
-		public ECPublicKey getSenderRatchetKey()
+		public IEcPublicKey GetSenderRatchetKey()
 		{
 			try
 			{
-				return Curve.decodePoint(sessionStructure.SenderChain.SenderRatchetKey.ToByteArray(), 0);
+				return Curve.DecodePoint(_sessionStructure.SenderChain.SenderRatchetKey.ToByteArray(), 0);
 			}
 			catch (InvalidKeyException e)
 			{
@@ -163,40 +161,40 @@ namespace libsignal.state
 			}
 		}
 
-		public ECKeyPair getSenderRatchetKeyPair()
+		public EcKeyPair GetSenderRatchetKeyPair()
 		{
-			ECPublicKey publicKey = getSenderRatchetKey();
-			ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.SenderChain
+			IEcPublicKey publicKey = GetSenderRatchetKey();
+			IEcPrivateKey privateKey = Curve.DecodePrivatePoint(_sessionStructure.SenderChain
 																			   .SenderRatchetKeyPrivate
 																			   .ToByteArray());
 
-			return new ECKeyPair(publicKey, privateKey);
+			return new EcKeyPair(publicKey, privateKey);
 		}
 
-		public bool hasReceiverChain(ECPublicKey senderEphemeral)
+		public bool HasReceiverChain(IEcPublicKey senderEphemeral)
 		{
-			return getReceiverChain(senderEphemeral) != null;
+			return GetReceiverChain(senderEphemeral) != null;
 		}
 
-		public bool hasSenderChain()
+		public bool HasSenderChain()
 		{
-			return sessionStructure.HasSenderChain;
+			return _sessionStructure.HasSenderChain;
 		}
 
-		private Pair<Chain, uint> getReceiverChain(ECPublicKey senderEphemeral)
+		private Pair<StorageProtos.SessionStructure.Types.Chain, uint> GetReceiverChain(IEcPublicKey senderEphemeral)
 		{
-			IList<Chain> receiverChains = sessionStructure.ReceiverChainsList;
+			IList<StorageProtos.SessionStructure.Types.Chain> receiverChains = _sessionStructure.ReceiverChainsList;
 			uint index = 0;
 
-			foreach (Chain receiverChain in receiverChains)
+			foreach (StorageProtos.SessionStructure.Types.Chain receiverChain in receiverChains)
 			{
 				try
 				{
-					ECPublicKey chainSenderRatchetKey = Curve.decodePoint(receiverChain.SenderRatchetKey.ToByteArray(), 0);
+					IEcPublicKey chainSenderRatchetKey = Curve.DecodePoint(receiverChain.SenderRatchetKey.ToByteArray(), 0);
 
 					if (chainSenderRatchetKey.Equals(senderEphemeral))
 					{
-						return new Pair<Chain, uint>(receiverChain, index);
+						return new Pair<StorageProtos.SessionStructure.Types.Chain, uint>(receiverChain, index);
 					}
 				}
 				catch (InvalidKeyException e)
@@ -210,10 +208,10 @@ namespace libsignal.state
 			return null;
 		}
 
-		public ChainKey getReceiverChainKey(ECPublicKey senderEphemeral)
+		public ChainKey GetReceiverChainKey(IEcPublicKey senderEphemeral)
 		{
-			Pair<Chain, uint> receiverChainAndIndex = getReceiverChain(senderEphemeral);
-			Chain receiverChain = receiverChainAndIndex.first();
+			Pair<StorageProtos.SessionStructure.Types.Chain, uint> receiverChainAndIndex = GetReceiverChain(senderEphemeral);
+			StorageProtos.SessionStructure.Types.Chain receiverChain = receiverChainAndIndex.First();
 
 			if (receiverChain == null)
 			{
@@ -221,82 +219,82 @@ namespace libsignal.state
 			}
 			else
 			{
-				return new ChainKey(HKDF.createFor(getSessionVersion()),
+				return new ChainKey(Hkdf.CreateFor(GetSessionVersion()),
 									receiverChain.ChainKey.Key.ToByteArray(),
 									receiverChain.ChainKey.Index);
 			}
 		}
 
-		public void addReceiverChain(ECPublicKey senderRatchetKey, ChainKey chainKey)
+		public void AddReceiverChain(IEcPublicKey senderRatchetKey, ChainKey chainKey)
 		{
-			Chain.Types.ChainKey chainKeyStructure = Chain.Types.ChainKey.CreateBuilder()
-															 .SetKey(ByteString.CopyFrom(chainKey.getKey()))
-															 .SetIndex(chainKey.getIndex())
+			StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKeyStructure = StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder()
+															 .SetKey(ByteString.CopyFrom(chainKey.GetKey()))
+															 .SetIndex(chainKey.GetIndex())
 															 .Build();
 
-			Chain chain = Chain.CreateBuilder()
+			StorageProtos.SessionStructure.Types.Chain chain = StorageProtos.SessionStructure.Types.Chain.CreateBuilder()
 							   .SetChainKey(chainKeyStructure)
-							   .SetSenderRatchetKey(ByteString.CopyFrom(senderRatchetKey.serialize()))
+							   .SetSenderRatchetKey(ByteString.CopyFrom(senderRatchetKey.Serialize()))
 							   .Build();
 
-			this.sessionStructure = this.sessionStructure.ToBuilder().AddReceiverChains(chain).Build();
+			_sessionStructure = _sessionStructure.ToBuilder().AddReceiverChains(chain).Build();
 
-			if (this.sessionStructure.ReceiverChainsList.Count > 5)
+			if (_sessionStructure.ReceiverChainsList.Count > 5)
 			{
-				this.sessionStructure = this.sessionStructure.ToBuilder()/*.ClearReceiverChains()*/.Build(); //RemoveReceiverChains(0) TODO: why does it work without
+				_sessionStructure = _sessionStructure.ToBuilder()/*.ClearReceiverChains()*/.Build(); //RemoveReceiverChains(0) TODO: why does it work without
 			}
 		}
 
-		public void setSenderChain(ECKeyPair senderRatchetKeyPair, ChainKey chainKey)
+		public void SetSenderChain(EcKeyPair senderRatchetKeyPair, ChainKey chainKey)
 		{
-			Chain.Types.ChainKey chainKeyStructure = Chain.Types.ChainKey.CreateBuilder()
-															 .SetKey(ByteString.CopyFrom(chainKey.getKey()))
-															 .SetIndex(chainKey.getIndex())
+			StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKeyStructure = StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder()
+															 .SetKey(ByteString.CopyFrom(chainKey.GetKey()))
+															 .SetIndex(chainKey.GetIndex())
 															 .Build();
 
-			Chain senderChain = Chain.CreateBuilder()
-									 .SetSenderRatchetKey(ByteString.CopyFrom(senderRatchetKeyPair.getPublicKey().serialize()))
-									 .SetSenderRatchetKeyPrivate(ByteString.CopyFrom(senderRatchetKeyPair.getPrivateKey().serialize()))
+			StorageProtos.SessionStructure.Types.Chain senderChain = StorageProtos.SessionStructure.Types.Chain.CreateBuilder()
+									 .SetSenderRatchetKey(ByteString.CopyFrom(senderRatchetKeyPair.GetPublicKey().Serialize()))
+									 .SetSenderRatchetKeyPrivate(ByteString.CopyFrom(senderRatchetKeyPair.GetPrivateKey().Serialize()))
 									 .SetChainKey(chainKeyStructure)
 									 .Build();
 
-			this.sessionStructure = this.sessionStructure.ToBuilder().SetSenderChain(senderChain).Build();
+			_sessionStructure = _sessionStructure.ToBuilder().SetSenderChain(senderChain).Build();
 		}
 
-		public ChainKey getSenderChainKey()
+		public ChainKey GetSenderChainKey()
 		{
-			Chain.Types.ChainKey chainKeyStructure = sessionStructure.SenderChain.ChainKey;
-			return new ChainKey(HKDF.createFor(getSessionVersion()),
+			StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKeyStructure = _sessionStructure.SenderChain.ChainKey;
+			return new ChainKey(Hkdf.CreateFor(GetSessionVersion()),
 								chainKeyStructure.Key.ToByteArray(), chainKeyStructure.Index);
 		}
 
 
-		public void setSenderChainKey(ChainKey nextChainKey)
+		public void SetSenderChainKey(ChainKey nextChainKey)
 		{
-			Chain.Types.ChainKey chainKey = Chain.Types.ChainKey.CreateBuilder()
-													.SetKey(ByteString.CopyFrom(nextChainKey.getKey()))
-													.SetIndex(nextChainKey.getIndex())
+			StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKey = StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder()
+													.SetKey(ByteString.CopyFrom(nextChainKey.GetKey()))
+													.SetIndex(nextChainKey.GetIndex())
 													.Build();
 
-			Chain chain = sessionStructure.SenderChain.ToBuilder()
+			StorageProtos.SessionStructure.Types.Chain chain = _sessionStructure.SenderChain.ToBuilder()
 										  .SetChainKey(chainKey).Build();
 
-			this.sessionStructure = this.sessionStructure.ToBuilder().SetSenderChain(chain).Build();
+			_sessionStructure = _sessionStructure.ToBuilder().SetSenderChain(chain).Build();
 		}
 
-		public bool hasMessageKeys(ECPublicKey senderEphemeral, uint counter)
+		public bool HasMessageKeys(IEcPublicKey senderEphemeral, uint counter)
 		{
-			Pair<Chain, uint> chainAndIndex = getReceiverChain(senderEphemeral);
-			Chain chain = chainAndIndex.first();
+			Pair<StorageProtos.SessionStructure.Types.Chain, uint> chainAndIndex = GetReceiverChain(senderEphemeral);
+			StorageProtos.SessionStructure.Types.Chain chain = chainAndIndex.First();
 
 			if (chain == null)
 			{
 				return false;
 			}
 
-			IList<Chain.Types.MessageKey> messageKeyList = chain.MessageKeysList;
+			IList<StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> messageKeyList = chain.MessageKeysList;
 
-			foreach (Chain.Types.MessageKey messageKey in messageKeyList)
+			foreach (StorageProtos.SessionStructure.Types.Chain.Types.MessageKey messageKey in messageKeyList)
 			{
 				if (messageKey.Index == counter)
 				{
@@ -307,23 +305,23 @@ namespace libsignal.state
 			return false;
 		}
 
-		public MessageKeys removeMessageKeys(ECPublicKey senderEphemeral, uint counter)
+		public MessageKeys RemoveMessageKeys(IEcPublicKey senderEphemeral, uint counter)
 		{
-			Pair<Chain, uint> chainAndIndex = getReceiverChain(senderEphemeral);
-			Chain chain = chainAndIndex.first();
+			Pair<StorageProtos.SessionStructure.Types.Chain, uint> chainAndIndex = GetReceiverChain(senderEphemeral);
+			StorageProtos.SessionStructure.Types.Chain chain = chainAndIndex.First();
 
 			if (chain == null)
 			{
 				return null;
 			}
 
-			List<Chain.Types.MessageKey> messageKeyList = new List<Chain.Types.MessageKey>(chain.MessageKeysList);
-			IEnumerator<Chain.Types.MessageKey> messageKeyIterator = messageKeyList.GetEnumerator();
+			List<StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> messageKeyList = new List<StorageProtos.SessionStructure.Types.Chain.Types.MessageKey>(chain.MessageKeysList);
+			IEnumerator<StorageProtos.SessionStructure.Types.Chain.Types.MessageKey> messageKeyIterator = messageKeyList.GetEnumerator();
 			MessageKeys result = null;
 
 			while (messageKeyIterator.MoveNext()) //hasNext()
 			{
-				Chain.Types.MessageKey messageKey = messageKeyIterator.Current; // next()
+				StorageProtos.SessionStructure.Types.Chain.Types.MessageKey messageKey = messageKeyIterator.Current; // next()
 
 				if (messageKey.Index == counter)
 				{
@@ -337,153 +335,153 @@ namespace libsignal.state
 				}
 			}
 
-			Chain updatedChain = chain.ToBuilder().ClearMessageKeys()
+			StorageProtos.SessionStructure.Types.Chain updatedChain = chain.ToBuilder().ClearMessageKeys()
 									  .AddRangeMessageKeys(messageKeyList) // AddAllMessageKeys
 									  .Build();
 
-			this.sessionStructure = this.sessionStructure.ToBuilder()
-														 .SetReceiverChains((int)chainAndIndex.second(), updatedChain) // TODO: conv
+			_sessionStructure = _sessionStructure.ToBuilder()
+														 .SetReceiverChains((int)chainAndIndex.Second(), updatedChain) // TODO: conv
 														 .Build();
 
 			return result;
 		}
 
-		public void setMessageKeys(ECPublicKey senderEphemeral, MessageKeys messageKeys)
+		public void SetMessageKeys(IEcPublicKey senderEphemeral, MessageKeys messageKeys)
 		{
-			Pair<Chain, uint> chainAndIndex = getReceiverChain(senderEphemeral);
-			Chain chain = chainAndIndex.first();
-			Chain.Types.MessageKey messageKeyStructure = Chain.Types.MessageKey.CreateBuilder()
-																	  .SetCipherKey(ByteString.CopyFrom(messageKeys.getCipherKey()/*.getEncoded()*/))
-																	  .SetMacKey(ByteString.CopyFrom(messageKeys.getMacKey()/*.getEncoded()*/))
-																	  .SetIndex(messageKeys.getCounter())
-																	  .SetIv(ByteString.CopyFrom(messageKeys.getIv()/*.getIV()*/))
+			Pair<StorageProtos.SessionStructure.Types.Chain, uint> chainAndIndex = GetReceiverChain(senderEphemeral);
+			StorageProtos.SessionStructure.Types.Chain chain = chainAndIndex.First();
+			StorageProtos.SessionStructure.Types.Chain.Types.MessageKey messageKeyStructure = StorageProtos.SessionStructure.Types.Chain.Types.MessageKey.CreateBuilder()
+																	  .SetCipherKey(ByteString.CopyFrom(messageKeys.GetCipherKey()/*.getEncoded()*/))
+																	  .SetMacKey(ByteString.CopyFrom(messageKeys.GetMacKey()/*.getEncoded()*/))
+																	  .SetIndex(messageKeys.GetCounter())
+																	  .SetIv(ByteString.CopyFrom(messageKeys.GetIv()/*.getIV()*/))
 																	  .Build();
 
-			Chain.Builder updatedChain = chain.ToBuilder().AddMessageKeys(messageKeyStructure);
-			if (updatedChain.MessageKeysList.Count > MAX_MESSAGE_KEYS)
+			StorageProtos.SessionStructure.Types.Chain.Builder updatedChain = chain.ToBuilder().AddMessageKeys(messageKeyStructure);
+			if (updatedChain.MessageKeysList.Count > MaxMessageKeys)
 			{
 				updatedChain.MessageKeysList.RemoveAt(0);
 			}
 
-			this.sessionStructure = this.sessionStructure.ToBuilder()
-														 .SetReceiverChains((int)chainAndIndex.second(), updatedChain.Build()) // TODO: conv
+			_sessionStructure = _sessionStructure.ToBuilder()
+														 .SetReceiverChains((int)chainAndIndex.Second(), updatedChain.Build()) // TODO: conv
 														 .Build();
 		}
 
-		public void setReceiverChainKey(ECPublicKey senderEphemeral, ChainKey chainKey)
+		public void SetReceiverChainKey(IEcPublicKey senderEphemeral, ChainKey chainKey)
 		{
-			Pair<Chain, uint> chainAndIndex = getReceiverChain(senderEphemeral);
-			Chain chain = chainAndIndex.first();
+			Pair<StorageProtos.SessionStructure.Types.Chain, uint> chainAndIndex = GetReceiverChain(senderEphemeral);
+			StorageProtos.SessionStructure.Types.Chain chain = chainAndIndex.First();
 
-			Chain.Types.ChainKey chainKeyStructure = Chain.Types.ChainKey.CreateBuilder()
-															 .SetKey(ByteString.CopyFrom(chainKey.getKey()))
-															 .SetIndex(chainKey.getIndex())
+			StorageProtos.SessionStructure.Types.Chain.Types.ChainKey chainKeyStructure = StorageProtos.SessionStructure.Types.Chain.Types.ChainKey.CreateBuilder()
+															 .SetKey(ByteString.CopyFrom(chainKey.GetKey()))
+															 .SetIndex(chainKey.GetIndex())
 															 .Build();
 
-			Chain updatedChain = chain.ToBuilder().SetChainKey(chainKeyStructure).Build();
+			StorageProtos.SessionStructure.Types.Chain updatedChain = chain.ToBuilder().SetChainKey(chainKeyStructure).Build();
 
-			this.sessionStructure = this.sessionStructure.ToBuilder()
-														 .SetReceiverChains((int)chainAndIndex.second(), updatedChain) // TODO: conv
+			_sessionStructure = _sessionStructure.ToBuilder()
+														 .SetReceiverChains((int)chainAndIndex.Second(), updatedChain) // TODO: conv
 														 .Build();
 		}
 
-		public void setPendingKeyExchange(uint sequence,
-										  ECKeyPair ourBaseKey,
-										  ECKeyPair ourRatchetKey,
+		public void SetPendingKeyExchange(uint sequence,
+										  EcKeyPair ourBaseKey,
+										  EcKeyPair ourRatchetKey,
 										  IdentityKeyPair ourIdentityKey)
 		{
-			PendingKeyExchange structure =
-				PendingKeyExchange.CreateBuilder()
+			StorageProtos.SessionStructure.Types.PendingKeyExchange structure =
+				StorageProtos.SessionStructure.Types.PendingKeyExchange.CreateBuilder()
 								  .SetSequence(sequence)
-								  .SetLocalBaseKey(ByteString.CopyFrom(ourBaseKey.getPublicKey().serialize()))
-								  .SetLocalBaseKeyPrivate(ByteString.CopyFrom(ourBaseKey.getPrivateKey().serialize()))
-								  .SetLocalRatchetKey(ByteString.CopyFrom(ourRatchetKey.getPublicKey().serialize()))
-								  .SetLocalRatchetKeyPrivate(ByteString.CopyFrom(ourRatchetKey.getPrivateKey().serialize()))
-								  .SetLocalIdentityKey(ByteString.CopyFrom(ourIdentityKey.getPublicKey().serialize()))
-								  .SetLocalIdentityKeyPrivate(ByteString.CopyFrom(ourIdentityKey.getPrivateKey().serialize()))
+								  .SetLocalBaseKey(ByteString.CopyFrom(ourBaseKey.GetPublicKey().Serialize()))
+								  .SetLocalBaseKeyPrivate(ByteString.CopyFrom(ourBaseKey.GetPrivateKey().Serialize()))
+								  .SetLocalRatchetKey(ByteString.CopyFrom(ourRatchetKey.GetPublicKey().Serialize()))
+								  .SetLocalRatchetKeyPrivate(ByteString.CopyFrom(ourRatchetKey.GetPrivateKey().Serialize()))
+								  .SetLocalIdentityKey(ByteString.CopyFrom(ourIdentityKey.GetPublicKey().Serialize()))
+								  .SetLocalIdentityKeyPrivate(ByteString.CopyFrom(ourIdentityKey.GetPrivateKey().Serialize()))
 								  .Build();
 
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .SetPendingKeyExchange(structure)
 														 .Build();
 		}
 
-		public uint getPendingKeyExchangeSequence()
+		public uint GetPendingKeyExchangeSequence()
 		{
-			return sessionStructure.PendingKeyExchange.Sequence;
+			return _sessionStructure.PendingKeyExchange.Sequence;
 		}
 
-		public ECKeyPair getPendingKeyExchangeBaseKey()
+		public EcKeyPair GetPendingKeyExchangeBaseKey()
 		{
-			ECPublicKey publicKey = Curve.decodePoint(sessionStructure.PendingKeyExchange
+			IEcPublicKey publicKey = Curve.DecodePoint(_sessionStructure.PendingKeyExchange
 																.LocalBaseKey.ToByteArray(), 0);
 
-			ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.PendingKeyExchange
+			IEcPrivateKey privateKey = Curve.DecodePrivatePoint(_sessionStructure.PendingKeyExchange
 																	   .LocalBaseKeyPrivate
 																	   .ToByteArray());
 
-			return new ECKeyPair(publicKey, privateKey);
+			return new EcKeyPair(publicKey, privateKey);
 		}
 
-		public ECKeyPair getPendingKeyExchangeRatchetKey()
+		public EcKeyPair GetPendingKeyExchangeRatchetKey()
 		{
-			ECPublicKey publicKey = Curve.decodePoint(sessionStructure.PendingKeyExchange
+			IEcPublicKey publicKey = Curve.DecodePoint(_sessionStructure.PendingKeyExchange
 																.LocalRatchetKey.ToByteArray(), 0);
 
-			ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.PendingKeyExchange
+			IEcPrivateKey privateKey = Curve.DecodePrivatePoint(_sessionStructure.PendingKeyExchange
 																	   .LocalRatchetKeyPrivate
 																	   .ToByteArray());
 
-			return new ECKeyPair(publicKey, privateKey);
+			return new EcKeyPair(publicKey, privateKey);
 		}
 
-		public IdentityKeyPair getPendingKeyExchangeIdentityKey()
+		public IdentityKeyPair GetPendingKeyExchangeIdentityKey()
 		{
-			IdentityKey publicKey = new IdentityKey(sessionStructure.PendingKeyExchange
+			IdentityKey publicKey = new IdentityKey(_sessionStructure.PendingKeyExchange
 															.LocalIdentityKey.ToByteArray(), 0);
 
-			ECPrivateKey privateKey = Curve.decodePrivatePoint(sessionStructure.PendingKeyExchange
+			IEcPrivateKey privateKey = Curve.DecodePrivatePoint(_sessionStructure.PendingKeyExchange
 																	   .LocalIdentityKeyPrivate
 																	   .ToByteArray());
 
 			return new IdentityKeyPair(publicKey, privateKey);
 		}
 
-		public bool hasPendingKeyExchange()
+		public bool HasPendingKeyExchange()
 		{
-			return sessionStructure.HasPendingKeyExchange;
+			return _sessionStructure.HasPendingKeyExchange;
 		}
 
-		public void setUnacknowledgedPreKeyMessage(May<uint> preKeyId, uint signedPreKeyId, ECPublicKey baseKey)
+		public void SetUnacknowledgedPreKeyMessage(May<uint> preKeyId, uint signedPreKeyId, IEcPublicKey baseKey)
 		{
-			PendingPreKey.Builder pending = PendingPreKey.CreateBuilder()
+			StorageProtos.SessionStructure.Types.PendingPreKey.Builder pending = StorageProtos.SessionStructure.Types.PendingPreKey.CreateBuilder()
 														 .SetSignedPreKeyId((int)signedPreKeyId)
-														 .SetBaseKey(ByteString.CopyFrom(baseKey.serialize()));
+														 .SetBaseKey(ByteString.CopyFrom(baseKey.Serialize()));
 
 			if (preKeyId.HasValue)
 			{
 				pending.SetPreKeyId(preKeyId.ForceGetValue());
 			}
 
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .SetPendingPreKey(pending.Build())
 														 .Build();
 		}
 
-		public bool hasUnacknowledgedPreKeyMessage()
+		public bool HasUnacknowledgedPreKeyMessage()
 		{
-			return this.sessionStructure.HasPendingPreKey;
+			return _sessionStructure.HasPendingPreKey;
 		}
 
-		public UnacknowledgedPreKeyMessageItems getUnacknowledgedPreKeyMessageItems()
+		public UnacknowledgedPreKeyMessageItems GetUnacknowledgedPreKeyMessageItems()
 		{
 			try
 			{
 				May<uint> preKeyId;
 
-				if (sessionStructure.PendingPreKey.HasPreKeyId)
+				if (_sessionStructure.PendingPreKey.HasPreKeyId)
 				{
-					preKeyId = new May<uint>(sessionStructure.PendingPreKey.PreKeyId);
+					preKeyId = new May<uint>(_sessionStructure.PendingPreKey.PreKeyId);
 				}
 				else
 				{
@@ -492,8 +490,8 @@ namespace libsignal.state
 
 				return
 					new UnacknowledgedPreKeyMessageItems(preKeyId,
-														 (uint)sessionStructure.PendingPreKey.SignedPreKeyId,
-														 Curve.decodePoint(sessionStructure.PendingPreKey
+														 (uint)_sessionStructure.PendingPreKey.SignedPreKeyId,
+														 Curve.DecodePoint(_sessionStructure.PendingPreKey
 																						   .BaseKey
 																						   .ToByteArray(), 0));
 			}
@@ -503,71 +501,71 @@ namespace libsignal.state
 			}
 		}
 
-		public void clearUnacknowledgedPreKeyMessage()
+		public void ClearUnacknowledgedPreKeyMessage()
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .ClearPendingPreKey()
 														 .Build();
 		}
 
-		public void setRemoteRegistrationId(uint registrationId)
+		public void SetRemoteRegistrationId(uint registrationId)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .SetRemoteRegistrationId(registrationId)
 														 .Build();
 		}
 
-		public uint getRemoteRegistrationId()
+		public uint GetRemoteRegistrationId()
 		{
-			return this.sessionStructure.RemoteRegistrationId;
+			return _sessionStructure.RemoteRegistrationId;
 		}
 
-		public void setLocalRegistrationId(uint registrationId)
+		public void SetLocalRegistrationId(uint registrationId)
 		{
-			this.sessionStructure = this.sessionStructure.ToBuilder()
+			_sessionStructure = _sessionStructure.ToBuilder()
 														 .SetLocalRegistrationId(registrationId)
 														 .Build();
 		}
 
 		public uint GetLocalRegistrationId()
 		{
-			return this.sessionStructure.LocalRegistrationId;
+			return _sessionStructure.LocalRegistrationId;
 		}
 
-		public byte[] serialize()
+		public byte[] Serialize()
 		{
-			return sessionStructure.ToByteArray();
+			return _sessionStructure.ToByteArray();
 		}
 
 		public class UnacknowledgedPreKeyMessageItems
 		{
-			private readonly May<uint> preKeyId;
-			private readonly uint signedPreKeyId;
-			private readonly ECPublicKey baseKey;
+			private readonly May<uint> _preKeyId;
+			private readonly uint _signedPreKeyId;
+			private readonly IEcPublicKey _baseKey;
 
 			public UnacknowledgedPreKeyMessageItems(May<uint> preKeyId,
 													uint signedPreKeyId,
-													ECPublicKey baseKey)
+													IEcPublicKey baseKey)
 			{
-				this.preKeyId = preKeyId;
-				this.signedPreKeyId = signedPreKeyId;
-				this.baseKey = baseKey;
+				_preKeyId = preKeyId;
+				_signedPreKeyId = signedPreKeyId;
+				_baseKey = baseKey;
 			}
 
 
-			public May<uint> getPreKeyId()
+			public May<uint> GetPreKeyId()
 			{
-				return preKeyId;
+				return _preKeyId;
 			}
 
-			public uint getSignedPreKeyId()
+			public uint GetSignedPreKeyId()
 			{
-				return signedPreKeyId;
+				return _signedPreKeyId;
 			}
 
-			public ECPublicKey getBaseKey()
+			public IEcPublicKey GetBaseKey()
 			{
-				return baseKey;
+				return _baseKey;
 			}
 		}
 	}

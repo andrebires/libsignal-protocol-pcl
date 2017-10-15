@@ -15,33 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.ecc
+namespace Libsignal.Ecc
 {
-    public class DjbECPrivateKey : ECPrivateKey
+    public class DjbEcPrivateKey : IEcPrivateKey
     {
 
-        private readonly byte[] privateKey;
+        private readonly byte[] _privateKey;
 
-        public DjbECPrivateKey(byte[] privateKey)
+        public DjbEcPrivateKey(byte[] privateKey)
         {
-            this.privateKey = privateKey;
+            _privateKey = privateKey;
         }
 
 
-        public byte[] serialize()
+        public byte[] Serialize()
         {
-            return privateKey;
+            return _privateKey;
         }
 
 
-        public int getType()
+        public int GetKeyType()
         {
-            return Curve.DJB_TYPE;
+            return Curve.DjbType;
         }
 
-        public byte[] getPrivateKey()
+        public byte[] GetPrivateKey()
         {
-            return privateKey;
+            return _privateKey;
         }
     }
 }

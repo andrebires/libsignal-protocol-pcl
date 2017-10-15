@@ -15,32 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.ecc;
 using System;
+using Libsignal.Ecc;
 
-namespace libsignal.ratchet
+namespace Libsignal.Ratchet
 {
     public class SymmetricSignalProtocolParameters
     {
 
-        private readonly ECKeyPair       ourBaseKey;
-  private readonly ECKeyPair       ourRatchetKey;
-  private readonly IdentityKeyPair ourIdentityKey;
+        private readonly EcKeyPair       _ourBaseKey;
+  private readonly EcKeyPair       _ourRatchetKey;
+  private readonly IdentityKeyPair _ourIdentityKey;
 
-  private readonly ECPublicKey     theirBaseKey;
-  private readonly ECPublicKey     theirRatchetKey;
-  private readonly IdentityKey     theirIdentityKey;
+  private readonly IEcPublicKey     _theirBaseKey;
+  private readonly IEcPublicKey     _theirRatchetKey;
+  private readonly IdentityKey     _theirIdentityKey;
 
-  SymmetricSignalProtocolParameters(ECKeyPair ourBaseKey, ECKeyPair ourRatchetKey,
-                             IdentityKeyPair ourIdentityKey, ECPublicKey theirBaseKey,
-                             ECPublicKey theirRatchetKey, IdentityKey theirIdentityKey)
+  SymmetricSignalProtocolParameters(EcKeyPair ourBaseKey, EcKeyPair ourRatchetKey,
+                             IdentityKeyPair ourIdentityKey, IEcPublicKey theirBaseKey,
+                             IEcPublicKey theirRatchetKey, IdentityKey theirIdentityKey)
         {
-            this.ourBaseKey = ourBaseKey;
-            this.ourRatchetKey = ourRatchetKey;
-            this.ourIdentityKey = ourIdentityKey;
-            this.theirBaseKey = theirBaseKey;
-            this.theirRatchetKey = theirRatchetKey;
-            this.theirIdentityKey = theirIdentityKey;
+            _ourBaseKey = ourBaseKey;
+            _ourRatchetKey = ourRatchetKey;
+            _ourIdentityKey = ourIdentityKey;
+            _theirBaseKey = theirBaseKey;
+            _theirRatchetKey = theirRatchetKey;
+            _theirIdentityKey = theirIdentityKey;
 
             if (ourBaseKey == null || ourRatchetKey == null || ourIdentityKey == null ||
                 theirBaseKey == null || theirRatchetKey == null || theirIdentityKey == null)
@@ -49,91 +49,91 @@ namespace libsignal.ratchet
             }
         }
 
-        public ECKeyPair getOurBaseKey()
+        public EcKeyPair GetOurBaseKey()
         {
-            return ourBaseKey;
+            return _ourBaseKey;
         }
 
-        public ECKeyPair getOurRatchetKey()
+        public EcKeyPair GetOurRatchetKey()
         {
-            return ourRatchetKey;
+            return _ourRatchetKey;
         }
 
-        public IdentityKeyPair getOurIdentityKey()
+        public IdentityKeyPair GetOurIdentityKey()
         {
-            return ourIdentityKey;
+            return _ourIdentityKey;
         }
 
-        public ECPublicKey getTheirBaseKey()
+        public IEcPublicKey GetTheirBaseKey()
         {
-            return theirBaseKey;
+            return _theirBaseKey;
         }
 
-        public ECPublicKey getTheirRatchetKey()
+        public IEcPublicKey GetTheirRatchetKey()
         {
-            return theirRatchetKey;
+            return _theirRatchetKey;
         }
 
-        public IdentityKey getTheirIdentityKey()
+        public IdentityKey GetTheirIdentityKey()
         {
-            return theirIdentityKey;
+            return _theirIdentityKey;
         }
 
-        public static Builder newBuilder()
+        public static Builder NewBuilder()
         {
             return new Builder();
         }
 
         public class Builder
         {
-            private ECKeyPair ourBaseKey;
-            private ECKeyPair ourRatchetKey;
-            private IdentityKeyPair ourIdentityKey;
+            private EcKeyPair _ourBaseKey;
+            private EcKeyPair _ourRatchetKey;
+            private IdentityKeyPair _ourIdentityKey;
 
-            private ECPublicKey theirBaseKey;
-            private ECPublicKey theirRatchetKey;
-            private IdentityKey theirIdentityKey;
+            private IEcPublicKey _theirBaseKey;
+            private IEcPublicKey _theirRatchetKey;
+            private IdentityKey _theirIdentityKey;
 
-            public Builder setOurBaseKey(ECKeyPair ourBaseKey)
+            public Builder SetOurBaseKey(EcKeyPair ourBaseKey)
             {
-                this.ourBaseKey = ourBaseKey;
+                _ourBaseKey = ourBaseKey;
                 return this;
             }
 
-            public Builder setOurRatchetKey(ECKeyPair ourRatchetKey)
+            public Builder SetOurRatchetKey(EcKeyPair ourRatchetKey)
             {
-                this.ourRatchetKey = ourRatchetKey;
+                _ourRatchetKey = ourRatchetKey;
                 return this;
             }
 
-            public Builder setOurIdentityKey(IdentityKeyPair ourIdentityKey)
+            public Builder SetOurIdentityKey(IdentityKeyPair ourIdentityKey)
             {
-                this.ourIdentityKey = ourIdentityKey;
+                _ourIdentityKey = ourIdentityKey;
                 return this;
             }
 
-            public Builder setTheirBaseKey(ECPublicKey theirBaseKey)
+            public Builder SetTheirBaseKey(IEcPublicKey theirBaseKey)
             {
-                this.theirBaseKey = theirBaseKey;
+                _theirBaseKey = theirBaseKey;
                 return this;
             }
 
-            public Builder setTheirRatchetKey(ECPublicKey theirRatchetKey)
+            public Builder SetTheirRatchetKey(IEcPublicKey theirRatchetKey)
             {
-                this.theirRatchetKey = theirRatchetKey;
+                _theirRatchetKey = theirRatchetKey;
                 return this;
             }
 
-            public Builder setTheirIdentityKey(IdentityKey theirIdentityKey)
+            public Builder SetTheirIdentityKey(IdentityKey theirIdentityKey)
             {
-                this.theirIdentityKey = theirIdentityKey;
+                _theirIdentityKey = theirIdentityKey;
                 return this;
             }
 
-            public SymmetricSignalProtocolParameters create()
+            public SymmetricSignalProtocolParameters Create()
             {
-                return new SymmetricSignalProtocolParameters(ourBaseKey, ourRatchetKey, ourIdentityKey,
-                                                      theirBaseKey, theirRatchetKey, theirIdentityKey);
+                return new SymmetricSignalProtocolParameters(_ourBaseKey, _ourRatchetKey, _ourIdentityKey,
+                                                      _theirBaseKey, _theirRatchetKey, _theirIdentityKey);
             }
         }
     }

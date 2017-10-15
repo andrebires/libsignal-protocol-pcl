@@ -17,7 +17,7 @@
 
 using System;
 
-namespace libsignal.groups
+namespace Libsignal.Groups
 {
     /**
      * A representation of a (groupId + senderId + deviceId) tuple.
@@ -25,28 +25,28 @@ namespace libsignal.groups
     public class SenderKeyName
     {
 
-        private readonly String groupId;
-        private readonly SignalProtocolAddress sender;
+        private readonly String _groupId;
+        private readonly SignalProtocolAddress _sender;
 
         public SenderKeyName(String groupId, SignalProtocolAddress sender)
         {
-            this.groupId = groupId;
-            this.sender = sender;
+            _groupId = groupId;
+            _sender = sender;
         }
 
-        public String getGroupId()
+        public String GetGroupId()
         {
-            return groupId;
+            return _groupId;
         }
 
-        public SignalProtocolAddress getSender()
+        public SignalProtocolAddress GetSender()
         {
-            return sender;
+            return _sender;
         }
 
-        public String serialize()
+        public String Serialize()
         {
-            return groupId + "::" + sender.getName() + "::" + sender.getDeviceId();
+            return _groupId + "::" + _sender.GetName() + "::" + _sender.GetDeviceId();
         }
 
 
@@ -58,13 +58,13 @@ namespace libsignal.groups
             SenderKeyName that = (SenderKeyName)other;
 
             return
-                this.groupId.Equals(that.groupId) &&
-                this.sender.Equals(that.sender);
+                _groupId.Equals(that._groupId) &&
+                _sender.Equals(that._sender);
         }
 
         public override int GetHashCode()
         {
-            return this.groupId.GetHashCode() ^ this.sender.GetHashCode();
+            return _groupId.GetHashCode() ^ _sender.GetHashCode();
         }
 
     }

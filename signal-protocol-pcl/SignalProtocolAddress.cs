@@ -17,33 +17,33 @@
 
 using System;
 
-namespace libsignal
+namespace Libsignal
 {
     public class SignalProtocolAddress
     {
 
-        private readonly String name;
-        private readonly uint deviceId;
+        private readonly String _name;
+        private readonly uint _deviceId;
 
         public SignalProtocolAddress(String name, uint deviceId)
         {
-            this.name = name;
-            this.deviceId = deviceId;
+            _name = name;
+            _deviceId = deviceId;
         }
 
-        public String getName()
+        public String GetName()
         {
-            return name;
+            return _name;
         }
 
-        public uint getDeviceId()
+        public uint GetDeviceId()
         {
-            return deviceId;
+            return _deviceId;
         }
 
         public override String ToString()
         {
-            return name + ":" + deviceId;
+            return _name + ":" + _deviceId;
         }
 
         public override bool Equals(Object other)
@@ -52,13 +52,13 @@ namespace libsignal
             if (!(other is SignalProtocolAddress)) return false;
 
             SignalProtocolAddress that = (SignalProtocolAddress)other;
-            return this.name.Equals(that.name) && this.deviceId == that.deviceId;
+            return _name.Equals(that._name) && _deviceId == that._deviceId;
         }
 
 
         public override int GetHashCode()
         {
-            return this.name.GetHashCode() ^ (int)this.deviceId;
+            return _name.GetHashCode() ^ (int)_deviceId;
         }
     }
 }

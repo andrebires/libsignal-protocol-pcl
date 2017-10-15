@@ -18,7 +18,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace signal_protocol_tests
+namespace Libsignal.Tests
 {
     public static class HelperMethods
     {

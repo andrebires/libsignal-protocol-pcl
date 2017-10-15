@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace libsignal.groups.state
+namespace Libsignal.Groups.state
 {
-    public interface SenderKeyStore
+    public interface ISenderKeyStore
     {
 
         /**
@@ -27,7 +27,7 @@ namespace libsignal.groups.state
          * @param senderKeyName the (groupId + senderId + deviceId) tuple.
          * @param record the current SenderKeyRecord for the specified senderKeyName.
          */
-        void storeSenderKey(SenderKeyName senderKeyName, SenderKeyRecord record);
+        void StoreSenderKey(SenderKeyName senderKeyName, SenderKeyRecord record);
 
         /**
          * Returns a copy of the {@link org.whispersystems.libsignal.groups.state.SenderKeyRecord}
@@ -44,6 +44,6 @@ namespace libsignal.groups.state
          *         a new SenderKeyRecord if one does not currently exist.
          */
 
-        SenderKeyRecord loadSenderKey(SenderKeyName senderKeyName);
+        SenderKeyRecord LoadSenderKey(SenderKeyName senderKeyName);
     }
 }

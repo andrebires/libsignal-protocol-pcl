@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.kdf;
-using libsignal.util;
 using System.Text;
+using Libsignal.Kdf;
+using Libsignal.Util;
 
-namespace libsignal.groups.ratchet
+namespace Libsignal.Groups.ratchet
 {
     /**
      * The final symmetric material (IV and Cipher Key) used for encrypting
@@ -30,40 +30,40 @@ namespace libsignal.groups.ratchet
     public class SenderMessageKey
     {
 
-        private readonly uint iteration;
-        private readonly byte[] iv;
-        private readonly byte[] cipherKey;
-        private readonly byte[] seed;
+        private readonly uint _iteration;
+        private readonly byte[] _iv;
+        private readonly byte[] _cipherKey;
+        private readonly byte[] _seed;
 
         public SenderMessageKey(uint iteration, byte[] seed)
         {
-            byte[] derivative = new HKDFv3().deriveSecrets(seed, Encoding.UTF8.GetBytes("WhisperGroup"), 48);
-            byte[][] parts = ByteUtil.split(derivative, 16, 32);
+            byte[] derivative = new HkdFv3().DeriveSecrets(seed, Encoding.UTF8.GetBytes("WhisperGroup"), 48);
+            byte[][] parts = ByteUtil.Split(derivative, 16, 32);
 
-            this.iteration = iteration;
-            this.seed = seed;
-            this.iv = parts[0];
-            this.cipherKey = parts[1];
+            _iteration = iteration;
+            _seed = seed;
+            _iv = parts[0];
+            _cipherKey = parts[1];
         }
 
-        public uint getIteration()
+        public uint GetIteration()
         {
-            return iteration;
+            return _iteration;
         }
 
-        public byte[] getIv()
+        public byte[] GetIv()
         {
-            return iv;
+            return _iv;
         }
 
-        public byte[] getCipherKey()
+        public byte[] GetCipherKey()
         {
-            return cipherKey;
+            return _cipherKey;
         }
 
-        public byte[] getSeed()
+        public byte[] GetSeed()
         {
-            return seed;
+            return _seed;
         }
     }
 }

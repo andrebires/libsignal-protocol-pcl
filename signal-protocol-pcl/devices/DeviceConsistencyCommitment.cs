@@ -19,18 +19,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using libsignal.util;
+using Libsignal.Util;
 using PCLCrypto;
-using static PCLCrypto.WinRTCrypto;
 
-namespace libsignal.devices
+namespace Libsignal.Devices
 {
     public class DeviceConsistencyCommitment
     {
-        private static readonly string VERSION = "DeviceConsistencyCommitment_V0"; 
+        private static readonly string Version = "DeviceConsistencyCommitment_V0"; 
 
-        private readonly int generation;
-        private readonly byte[] serialized;
+        private readonly int _generation;
+        private readonly byte[] _serialized;
 
         public DeviceConsistencyCommitment(int generation, List<IdentityKey> identityKeys)
         {
@@ -39,23 +38,23 @@ namespace libsignal.devices
                 List<IdentityKey> sortedIdentityKeys = new List<IdentityKey>(identityKeys);
                 sortedIdentityKeys.Sort(new IdentityKeyComparator());
 
-                IHashAlgorithmProvider messageDigest = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha512);
-                serialized = messageDigest.HashData(ByteUtil.combine(new byte[][]
+                IHashAlgorithmProvider messageDigest = WinRTCrypto.HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha512);
+                _serialized = messageDigest.HashData(ByteUtil.Combine(new byte[][]
                     {
-                        Encoding.UTF8.GetBytes(VERSION),
-                        ByteUtil.intToByteArray(generation)
+                        Encoding.UTF8.GetBytes(Version),
+                        ByteUtil.IntToByteArray(generation)
                     }));
 
                 foreach (IdentityKey commitment in sortedIdentityKeys)
                 {
-                    serialized = messageDigest.HashData(ByteUtil.combine(new byte[][]
+                    _serialized = messageDigest.HashData(ByteUtil.Combine(new byte[][]
                         {
-                            serialized,
-                            commitment.getPublicKey().serialize()
+                            _serialized,
+                            commitment.GetPublicKey().Serialize()
                         }));
                 }
 
-                this.generation = generation;
+                _generation = generation;
             }
             catch (Exception e)
             {
@@ -64,14 +63,14 @@ namespace libsignal.devices
             }
         }
 
-        public byte[] toByteArray()
+        public byte[] ToByteArray()
         {
-            return serialized;
+            return _serialized;
         }
 
-        public int getGeneration()
+        public int GetGeneration()
         {
-            return generation;
+            return _generation;
         }
     }
 }

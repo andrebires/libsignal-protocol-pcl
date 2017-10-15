@@ -17,30 +17,30 @@
 
 using System.Diagnostics;
 using Google.ProtocolBuffers;
-using libsignal.devices;
-using libsignal.ecc;
+using Libsignal.Devices;
+using Libsignal.Ecc;
 using org.whispersystems.curve25519;
 
-namespace libsignal.protocol
+namespace Libsignal.Protocol
 {
     public class DeviceConsistencyMessage
     {
-        private readonly DeviceConsistencySignature signature;
-        private readonly int generation;
-        private readonly byte[] serialized;
+        private readonly DeviceConsistencySignature _signature;
+        private readonly int _generation;
+        private readonly byte[] _serialized;
 
         public DeviceConsistencyMessage(DeviceConsistencyCommitment commitment, IdentityKeyPair identityKeyPair)
         {
             try
             {
-                byte[] signatureBytes = Curve.calculateVrfSignature(identityKeyPair.getPrivateKey(), commitment.toByteArray());
-                byte[] vrfOutputBytes = Curve.verifyVrfSignature(identityKeyPair.getPublicKey().getPublicKey(), commitment.toByteArray(), signatureBytes);
+                byte[] signatureBytes = Curve.CalculateVrfSignature(identityKeyPair.GetPrivateKey(), commitment.ToByteArray());
+                byte[] vrfOutputBytes = Curve.VerifyVrfSignature(identityKeyPair.GetPublicKey().GetPublicKey(), commitment.ToByteArray(), signatureBytes);
 
-                this.generation = commitment.getGeneration();
-                this.signature = new DeviceConsistencySignature(signatureBytes, vrfOutputBytes);
-                this.serialized = SignalProtos.DeviceConsistencyCodeMessage.CreateBuilder()
-                    .SetGeneration((uint)commitment.getGeneration())
-                    .SetSignature(ByteString.CopyFrom(signature.getSignature()))
+                _generation = commitment.GetGeneration();
+                _signature = new DeviceConsistencySignature(signatureBytes, vrfOutputBytes);
+                _serialized = SignalProtos.DeviceConsistencyCodeMessage.CreateBuilder()
+                    .SetGeneration((uint)commitment.GetGeneration())
+                    .SetSignature(ByteString.CopyFrom(_signature.GetSignature()))
                     .Build()
                     .ToByteArray();
             }
@@ -61,11 +61,11 @@ namespace libsignal.protocol
             try
             {
                 SignalProtos.DeviceConsistencyCodeMessage message = SignalProtos.DeviceConsistencyCodeMessage.ParseFrom(serialized);
-                byte[] vrfOutputBytes = Curve.verifyVrfSignature(identityKey.getPublicKey(), commitment.toByteArray(), message.Signature.ToByteArray());
+                byte[] vrfOutputBytes = Curve.VerifyVrfSignature(identityKey.GetPublicKey(), commitment.ToByteArray(), message.Signature.ToByteArray());
 
-                this.generation = (int)message.Generation;
-                this.signature = new DeviceConsistencySignature(message.Signature.ToByteArray(), vrfOutputBytes);
-                this.serialized = serialized;
+                _generation = (int)message.Generation;
+                _signature = new DeviceConsistencySignature(message.Signature.ToByteArray(), vrfOutputBytes);
+                _serialized = serialized;
             }
             catch (InvalidProtocolBufferException e)
             {
@@ -81,19 +81,19 @@ namespace libsignal.protocol
             }
         }
 
-        public byte[] getSerialized()
+        public byte[] GetSerialized()
         {
-            return serialized;
+            return _serialized;
         }
 
-        public DeviceConsistencySignature getSignature()
+        public DeviceConsistencySignature GetSignature()
         {
-            return signature;
+            return _signature;
         }
 
-        public int getGeneration()
+        public int GetGeneration()
         {
-            return generation;
+            return _generation;
         }
     }
 }

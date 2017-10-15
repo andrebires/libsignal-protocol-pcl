@@ -3,10 +3,9 @@
 #region Designer generated code
 
 using pb = global::Google.ProtocolBuffers;
-using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
-using scg = global::System.Collections.Generic;
-namespace libsignal.fingerprint {
+
+namespace Libsignal.Fingerprint {
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class FingerprintProtos {
@@ -17,9 +16,9 @@ namespace libsignal.fingerprint {
     #endregion
     #region Static variables
     private static pbd::MessageDescriptor internal__static_LogicalFingerprint__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint, global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.Builder> internal__static_LogicalFingerprint__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint, global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.Builder> internal__static_LogicalFingerprint__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_CombinedFingerprints__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.fingerprint.FingerprintProtos.CombinedFingerprints, global::libsignal.fingerprint.FingerprintProtos.CombinedFingerprints.Builder> internal__static_CombinedFingerprints__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Fingerprint.FingerprintProtos.CombinedFingerprints, global::Libsignal.Fingerprint.FingerprintProtos.CombinedFingerprints.Builder> internal__static_CombinedFingerprints__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -39,11 +38,11 @@ namespace libsignal.fingerprint {
         descriptor = root;
         internal__static_LogicalFingerprint__Descriptor = Descriptor.MessageTypes[0];
         internal__static_LogicalFingerprint__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint, global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.Builder>(internal__static_LogicalFingerprint__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint, global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.Builder>(internal__static_LogicalFingerprint__Descriptor,
                 new string[] { "Content", });
         internal__static_CombinedFingerprints__Descriptor = Descriptor.MessageTypes[1];
         internal__static_CombinedFingerprints__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.fingerprint.FingerprintProtos.CombinedFingerprints, global::libsignal.fingerprint.FingerprintProtos.CombinedFingerprints.Builder>(internal__static_CombinedFingerprints__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Fingerprint.FingerprintProtos.CombinedFingerprints, global::Libsignal.Fingerprint.FingerprintProtos.CombinedFingerprints.Builder>(internal__static_CombinedFingerprints__Descriptor,
                 new string[] { "Version", "LocalFingerprint", "RemoteFingerprint", });
         return null;
       };
@@ -73,11 +72,11 @@ namespace libsignal.fingerprint {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.fingerprint.FingerprintProtos.internal__static_LogicalFingerprint__Descriptor; }
+        get { return global::Libsignal.Fingerprint.FingerprintProtos.internal__static_LogicalFingerprint__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<LogicalFingerprint, LogicalFingerprint.Builder> InternalFieldAccessors {
-        get { return global::libsignal.fingerprint.FingerprintProtos.internal__static_LogicalFingerprint__FieldAccessorTable; }
+        get { return global::Libsignal.Fingerprint.FingerprintProtos.internal__static_LogicalFingerprint__FieldAccessorTable; }
       }
       
       public const int ContentFieldNumber = 1;
@@ -217,11 +216,11 @@ namespace libsignal.fingerprint {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.Descriptor; }
+          get { return global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.Descriptor; }
         }
         
         public override LogicalFingerprint DefaultInstanceForType {
-          get { return global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance; }
+          get { return global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance; }
         }
         
         public override LogicalFingerprint BuildPartial() {
@@ -242,7 +241,7 @@ namespace libsignal.fingerprint {
         }
         
         public override Builder MergeFrom(LogicalFingerprint other) {
-          if (other == global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance) return this;
+          if (other == global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasContent) {
             Content = other.Content;
@@ -326,7 +325,7 @@ namespace libsignal.fingerprint {
         }
       }
       static LogicalFingerprint() {
-        object.ReferenceEquals(global::libsignal.fingerprint.FingerprintProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Fingerprint.FingerprintProtos.Descriptor, null);
       }
     }
     
@@ -349,11 +348,11 @@ namespace libsignal.fingerprint {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.fingerprint.FingerprintProtos.internal__static_CombinedFingerprints__Descriptor; }
+        get { return global::Libsignal.Fingerprint.FingerprintProtos.internal__static_CombinedFingerprints__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<CombinedFingerprints, CombinedFingerprints.Builder> InternalFieldAccessors {
-        get { return global::libsignal.fingerprint.FingerprintProtos.internal__static_CombinedFingerprints__FieldAccessorTable; }
+        get { return global::Libsignal.Fingerprint.FingerprintProtos.internal__static_CombinedFingerprints__FieldAccessorTable; }
       }
       
       public const int VersionFieldNumber = 1;
@@ -369,22 +368,22 @@ namespace libsignal.fingerprint {
       
       public const int LocalFingerprintFieldNumber = 2;
       private bool hasLocalFingerprint;
-      private global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint localFingerprint_;
+      private global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint localFingerprint_;
       public bool HasLocalFingerprint {
         get { return hasLocalFingerprint; }
       }
-      public global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint LocalFingerprint {
-        get { return localFingerprint_ ?? global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance; }
+      public global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint LocalFingerprint {
+        get { return localFingerprint_ ?? global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance; }
       }
       
       public const int RemoteFingerprintFieldNumber = 3;
       private bool hasRemoteFingerprint;
-      private global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint remoteFingerprint_;
+      private global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint remoteFingerprint_;
       public bool HasRemoteFingerprint {
         get { return hasRemoteFingerprint; }
       }
-      public global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint RemoteFingerprint {
-        get { return remoteFingerprint_ ?? global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance; }
+      public global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint RemoteFingerprint {
+        get { return remoteFingerprint_ ?? global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance; }
       }
       
       public override bool IsInitialized {
@@ -526,11 +525,11 @@ namespace libsignal.fingerprint {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.fingerprint.FingerprintProtos.CombinedFingerprints.Descriptor; }
+          get { return global::Libsignal.Fingerprint.FingerprintProtos.CombinedFingerprints.Descriptor; }
         }
         
         public override CombinedFingerprints DefaultInstanceForType {
-          get { return global::libsignal.fingerprint.FingerprintProtos.CombinedFingerprints.DefaultInstance; }
+          get { return global::Libsignal.Fingerprint.FingerprintProtos.CombinedFingerprints.DefaultInstance; }
         }
         
         public override CombinedFingerprints BuildPartial() {
@@ -551,7 +550,7 @@ namespace libsignal.fingerprint {
         }
         
         public override Builder MergeFrom(CombinedFingerprints other) {
-          if (other == global::libsignal.fingerprint.FingerprintProtos.CombinedFingerprints.DefaultInstance) return this;
+          if (other == global::Libsignal.Fingerprint.FingerprintProtos.CombinedFingerprints.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasVersion) {
             Version = other.Version;
@@ -610,7 +609,7 @@ namespace libsignal.fingerprint {
                 break;
               }
               case 18: {
-                global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.Builder subBuilder = global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder();
+                global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.Builder subBuilder = global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder();
                 if (result.hasLocalFingerprint) {
                   subBuilder.MergeFrom(LocalFingerprint);
                 }
@@ -619,7 +618,7 @@ namespace libsignal.fingerprint {
                 break;
               }
               case 26: {
-                global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.Builder subBuilder = global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder();
+                global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.Builder subBuilder = global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder();
                 if (result.hasRemoteFingerprint) {
                   subBuilder.MergeFrom(RemoteFingerprint);
                 }
@@ -662,30 +661,30 @@ namespace libsignal.fingerprint {
         public bool HasLocalFingerprint {
          get { return result.hasLocalFingerprint; }
         }
-        public global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint LocalFingerprint {
+        public global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint LocalFingerprint {
           get { return result.LocalFingerprint; }
           set { SetLocalFingerprint(value); }
         }
-        public Builder SetLocalFingerprint(global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint value) {
+        public Builder SetLocalFingerprint(global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasLocalFingerprint = true;
           result.localFingerprint_ = value;
           return this;
         }
-        public Builder SetLocalFingerprint(global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.Builder builderForValue) {
+        public Builder SetLocalFingerprint(global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasLocalFingerprint = true;
           result.localFingerprint_ = builderForValue.Build();
           return this;
         }
-        public Builder MergeLocalFingerprint(global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint value) {
+        public Builder MergeLocalFingerprint(global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasLocalFingerprint &&
-              result.localFingerprint_ != global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance) {
-              result.localFingerprint_ = global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder(result.localFingerprint_).MergeFrom(value).BuildPartial();
+              result.localFingerprint_ != global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance) {
+              result.localFingerprint_ = global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder(result.localFingerprint_).MergeFrom(value).BuildPartial();
           } else {
             result.localFingerprint_ = value;
           }
@@ -702,30 +701,30 @@ namespace libsignal.fingerprint {
         public bool HasRemoteFingerprint {
          get { return result.hasRemoteFingerprint; }
         }
-        public global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint RemoteFingerprint {
+        public global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint RemoteFingerprint {
           get { return result.RemoteFingerprint; }
           set { SetRemoteFingerprint(value); }
         }
-        public Builder SetRemoteFingerprint(global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint value) {
+        public Builder SetRemoteFingerprint(global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           result.hasRemoteFingerprint = true;
           result.remoteFingerprint_ = value;
           return this;
         }
-        public Builder SetRemoteFingerprint(global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.Builder builderForValue) {
+        public Builder SetRemoteFingerprint(global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.Builder builderForValue) {
           pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
           PrepareBuilder();
           result.hasRemoteFingerprint = true;
           result.remoteFingerprint_ = builderForValue.Build();
           return this;
         }
-        public Builder MergeRemoteFingerprint(global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint value) {
+        public Builder MergeRemoteFingerprint(global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint value) {
           pb::ThrowHelper.ThrowIfNull(value, "value");
           PrepareBuilder();
           if (result.hasRemoteFingerprint &&
-              result.remoteFingerprint_ != global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance) {
-              result.remoteFingerprint_ = global::libsignal.fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder(result.remoteFingerprint_).MergeFrom(value).BuildPartial();
+              result.remoteFingerprint_ != global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.DefaultInstance) {
+              result.remoteFingerprint_ = global::Libsignal.Fingerprint.FingerprintProtos.LogicalFingerprint.CreateBuilder(result.remoteFingerprint_).MergeFrom(value).BuildPartial();
           } else {
             result.remoteFingerprint_ = value;
           }
@@ -740,7 +739,7 @@ namespace libsignal.fingerprint {
         }
       }
       static CombinedFingerprints() {
-        object.ReferenceEquals(global::libsignal.fingerprint.FingerprintProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Fingerprint.FingerprintProtos.Descriptor, null);
       }
     }
     

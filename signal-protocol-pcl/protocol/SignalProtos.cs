@@ -3,10 +3,9 @@
 #region Designer generated code
 
 using pb = global::Google.ProtocolBuffers;
-using pbc = global::Google.ProtocolBuffers.Collections;
 using pbd = global::Google.ProtocolBuffers.Descriptors;
-using scg = global::System.Collections.Generic;
-namespace libsignal.protocol {
+
+namespace Libsignal.Protocol {
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public static partial class SignalProtos {
@@ -17,17 +16,17 @@ namespace libsignal.protocol {
     #endregion
     #region Static variables
     private static pbd::MessageDescriptor internal__static_SignalMessage__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.SignalMessage, global::libsignal.protocol.SignalProtos.SignalMessage.Builder> internal__static_SignalMessage__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.SignalMessage, global::Libsignal.Protocol.SignalProtos.SignalMessage.Builder> internal__static_SignalMessage__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_PreKeySignalMessage__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.PreKeySignalMessage, global::libsignal.protocol.SignalProtos.PreKeySignalMessage.Builder> internal__static_PreKeySignalMessage__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.PreKeySignalMessage, global::Libsignal.Protocol.SignalProtos.PreKeySignalMessage.Builder> internal__static_PreKeySignalMessage__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_KeyExchangeMessage__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.KeyExchangeMessage, global::libsignal.protocol.SignalProtos.KeyExchangeMessage.Builder> internal__static_KeyExchangeMessage__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.KeyExchangeMessage, global::Libsignal.Protocol.SignalProtos.KeyExchangeMessage.Builder> internal__static_KeyExchangeMessage__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_SenderKeyMessage__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.SenderKeyMessage, global::libsignal.protocol.SignalProtos.SenderKeyMessage.Builder> internal__static_SenderKeyMessage__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.SenderKeyMessage, global::Libsignal.Protocol.SignalProtos.SenderKeyMessage.Builder> internal__static_SenderKeyMessage__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_SenderKeyDistributionMessage__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.SenderKeyDistributionMessage, global::libsignal.protocol.SignalProtos.SenderKeyDistributionMessage.Builder> internal__static_SenderKeyDistributionMessage__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.SenderKeyDistributionMessage, global::Libsignal.Protocol.SignalProtos.SenderKeyDistributionMessage.Builder> internal__static_SenderKeyDistributionMessage__FieldAccessorTable;
     private static pbd::MessageDescriptor internal__static_DeviceConsistencyCodeMessage__Descriptor;
-    private static pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.DeviceConsistencyCodeMessage, global::libsignal.protocol.SignalProtos.DeviceConsistencyCodeMessage.Builder> internal__static_DeviceConsistencyCodeMessage__FieldAccessorTable;
+    private static pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.DeviceConsistencyCodeMessage, global::Libsignal.Protocol.SignalProtos.DeviceConsistencyCodeMessage.Builder> internal__static_DeviceConsistencyCodeMessage__FieldAccessorTable;
     #endregion
     #region Descriptor
     public static pbd::FileDescriptor Descriptor {
@@ -57,27 +56,27 @@ namespace libsignal.protocol {
         descriptor = root;
         internal__static_SignalMessage__Descriptor = Descriptor.MessageTypes[0];
         internal__static_SignalMessage__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.SignalMessage, global::libsignal.protocol.SignalProtos.SignalMessage.Builder>(internal__static_SignalMessage__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.SignalMessage, global::Libsignal.Protocol.SignalProtos.SignalMessage.Builder>(internal__static_SignalMessage__Descriptor,
                 new string[] { "RatchetKey", "Counter", "PreviousCounter", "Ciphertext", });
         internal__static_PreKeySignalMessage__Descriptor = Descriptor.MessageTypes[1];
         internal__static_PreKeySignalMessage__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.PreKeySignalMessage, global::libsignal.protocol.SignalProtos.PreKeySignalMessage.Builder>(internal__static_PreKeySignalMessage__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.PreKeySignalMessage, global::Libsignal.Protocol.SignalProtos.PreKeySignalMessage.Builder>(internal__static_PreKeySignalMessage__Descriptor,
                 new string[] { "RegistrationId", "PreKeyId", "SignedPreKeyId", "BaseKey", "IdentityKey", "Message", });
         internal__static_KeyExchangeMessage__Descriptor = Descriptor.MessageTypes[2];
         internal__static_KeyExchangeMessage__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.KeyExchangeMessage, global::libsignal.protocol.SignalProtos.KeyExchangeMessage.Builder>(internal__static_KeyExchangeMessage__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.KeyExchangeMessage, global::Libsignal.Protocol.SignalProtos.KeyExchangeMessage.Builder>(internal__static_KeyExchangeMessage__Descriptor,
                 new string[] { "Id", "BaseKey", "RatchetKey", "IdentityKey", "BaseKeySignature", });
         internal__static_SenderKeyMessage__Descriptor = Descriptor.MessageTypes[3];
         internal__static_SenderKeyMessage__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.SenderKeyMessage, global::libsignal.protocol.SignalProtos.SenderKeyMessage.Builder>(internal__static_SenderKeyMessage__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.SenderKeyMessage, global::Libsignal.Protocol.SignalProtos.SenderKeyMessage.Builder>(internal__static_SenderKeyMessage__Descriptor,
                 new string[] { "Id", "Iteration", "Ciphertext", });
         internal__static_SenderKeyDistributionMessage__Descriptor = Descriptor.MessageTypes[4];
         internal__static_SenderKeyDistributionMessage__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.SenderKeyDistributionMessage, global::libsignal.protocol.SignalProtos.SenderKeyDistributionMessage.Builder>(internal__static_SenderKeyDistributionMessage__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.SenderKeyDistributionMessage, global::Libsignal.Protocol.SignalProtos.SenderKeyDistributionMessage.Builder>(internal__static_SenderKeyDistributionMessage__Descriptor,
                 new string[] { "Id", "Iteration", "ChainKey", "SigningKey", });
         internal__static_DeviceConsistencyCodeMessage__Descriptor = Descriptor.MessageTypes[5];
         internal__static_DeviceConsistencyCodeMessage__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::libsignal.protocol.SignalProtos.DeviceConsistencyCodeMessage, global::libsignal.protocol.SignalProtos.DeviceConsistencyCodeMessage.Builder>(internal__static_DeviceConsistencyCodeMessage__Descriptor,
+            new pb::FieldAccess.FieldAccessorTable<global::Libsignal.Protocol.SignalProtos.DeviceConsistencyCodeMessage, global::Libsignal.Protocol.SignalProtos.DeviceConsistencyCodeMessage.Builder>(internal__static_DeviceConsistencyCodeMessage__Descriptor,
                 new string[] { "Generation", "Signature", });
         return null;
       };
@@ -107,11 +106,11 @@ namespace libsignal.protocol {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_SignalMessage__Descriptor; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_SignalMessage__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<SignalMessage, SignalMessage.Builder> InternalFieldAccessors {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_SignalMessage__FieldAccessorTable; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_SignalMessage__FieldAccessorTable; }
       }
       
       public const int RatchetKeyFieldNumber = 1;
@@ -301,11 +300,11 @@ namespace libsignal.protocol {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.protocol.SignalProtos.SignalMessage.Descriptor; }
+          get { return global::Libsignal.Protocol.SignalProtos.SignalMessage.Descriptor; }
         }
         
         public override SignalMessage DefaultInstanceForType {
-          get { return global::libsignal.protocol.SignalProtos.SignalMessage.DefaultInstance; }
+          get { return global::Libsignal.Protocol.SignalProtos.SignalMessage.DefaultInstance; }
         }
         
         public override SignalMessage BuildPartial() {
@@ -326,7 +325,7 @@ namespace libsignal.protocol {
         }
         
         public override Builder MergeFrom(SignalMessage other) {
-          if (other == global::libsignal.protocol.SignalProtos.SignalMessage.DefaultInstance) return this;
+          if (other == global::Libsignal.Protocol.SignalProtos.SignalMessage.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasRatchetKey) {
             RatchetKey = other.RatchetKey;
@@ -496,7 +495,7 @@ namespace libsignal.protocol {
         }
       }
       static SignalMessage() {
-        object.ReferenceEquals(global::libsignal.protocol.SignalProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Protocol.SignalProtos.Descriptor, null);
       }
     }
     
@@ -519,11 +518,11 @@ namespace libsignal.protocol {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_PreKeySignalMessage__Descriptor; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_PreKeySignalMessage__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<PreKeySignalMessage, PreKeySignalMessage.Builder> InternalFieldAccessors {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_PreKeySignalMessage__FieldAccessorTable; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_PreKeySignalMessage__FieldAccessorTable; }
       }
       
       public const int RegistrationIdFieldNumber = 5;
@@ -746,11 +745,11 @@ namespace libsignal.protocol {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.protocol.SignalProtos.PreKeySignalMessage.Descriptor; }
+          get { return global::Libsignal.Protocol.SignalProtos.PreKeySignalMessage.Descriptor; }
         }
         
         public override PreKeySignalMessage DefaultInstanceForType {
-          get { return global::libsignal.protocol.SignalProtos.PreKeySignalMessage.DefaultInstance; }
+          get { return global::Libsignal.Protocol.SignalProtos.PreKeySignalMessage.DefaultInstance; }
         }
         
         public override PreKeySignalMessage BuildPartial() {
@@ -771,7 +770,7 @@ namespace libsignal.protocol {
         }
         
         public override Builder MergeFrom(PreKeySignalMessage other) {
-          if (other == global::libsignal.protocol.SignalProtos.PreKeySignalMessage.DefaultInstance) return this;
+          if (other == global::Libsignal.Protocol.SignalProtos.PreKeySignalMessage.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasRegistrationId) {
             RegistrationId = other.RegistrationId;
@@ -998,7 +997,7 @@ namespace libsignal.protocol {
         }
       }
       static PreKeySignalMessage() {
-        object.ReferenceEquals(global::libsignal.protocol.SignalProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Protocol.SignalProtos.Descriptor, null);
       }
     }
     
@@ -1021,11 +1020,11 @@ namespace libsignal.protocol {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_KeyExchangeMessage__Descriptor; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_KeyExchangeMessage__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<KeyExchangeMessage, KeyExchangeMessage.Builder> InternalFieldAccessors {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_KeyExchangeMessage__FieldAccessorTable; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_KeyExchangeMessage__FieldAccessorTable; }
       }
       
       public const int IdFieldNumber = 1;
@@ -1230,11 +1229,11 @@ namespace libsignal.protocol {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.protocol.SignalProtos.KeyExchangeMessage.Descriptor; }
+          get { return global::Libsignal.Protocol.SignalProtos.KeyExchangeMessage.Descriptor; }
         }
         
         public override KeyExchangeMessage DefaultInstanceForType {
-          get { return global::libsignal.protocol.SignalProtos.KeyExchangeMessage.DefaultInstance; }
+          get { return global::Libsignal.Protocol.SignalProtos.KeyExchangeMessage.DefaultInstance; }
         }
         
         public override KeyExchangeMessage BuildPartial() {
@@ -1255,7 +1254,7 @@ namespace libsignal.protocol {
         }
         
         public override Builder MergeFrom(KeyExchangeMessage other) {
-          if (other == global::libsignal.protocol.SignalProtos.KeyExchangeMessage.DefaultInstance) return this;
+          if (other == global::Libsignal.Protocol.SignalProtos.KeyExchangeMessage.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasId) {
             Id = other.Id;
@@ -1452,7 +1451,7 @@ namespace libsignal.protocol {
         }
       }
       static KeyExchangeMessage() {
-        object.ReferenceEquals(global::libsignal.protocol.SignalProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Protocol.SignalProtos.Descriptor, null);
       }
     }
     
@@ -1475,11 +1474,11 @@ namespace libsignal.protocol {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_SenderKeyMessage__Descriptor; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_SenderKeyMessage__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<SenderKeyMessage, SenderKeyMessage.Builder> InternalFieldAccessors {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_SenderKeyMessage__FieldAccessorTable; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_SenderKeyMessage__FieldAccessorTable; }
       }
       
       public const int IdFieldNumber = 1;
@@ -1653,11 +1652,11 @@ namespace libsignal.protocol {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.protocol.SignalProtos.SenderKeyMessage.Descriptor; }
+          get { return global::Libsignal.Protocol.SignalProtos.SenderKeyMessage.Descriptor; }
         }
         
         public override SenderKeyMessage DefaultInstanceForType {
-          get { return global::libsignal.protocol.SignalProtos.SenderKeyMessage.DefaultInstance; }
+          get { return global::Libsignal.Protocol.SignalProtos.SenderKeyMessage.DefaultInstance; }
         }
         
         public override SenderKeyMessage BuildPartial() {
@@ -1678,7 +1677,7 @@ namespace libsignal.protocol {
         }
         
         public override Builder MergeFrom(SenderKeyMessage other) {
-          if (other == global::libsignal.protocol.SignalProtos.SenderKeyMessage.DefaultInstance) return this;
+          if (other == global::Libsignal.Protocol.SignalProtos.SenderKeyMessage.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasId) {
             Id = other.Id;
@@ -1820,7 +1819,7 @@ namespace libsignal.protocol {
         }
       }
       static SenderKeyMessage() {
-        object.ReferenceEquals(global::libsignal.protocol.SignalProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Protocol.SignalProtos.Descriptor, null);
       }
     }
     
@@ -1843,11 +1842,11 @@ namespace libsignal.protocol {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_SenderKeyDistributionMessage__Descriptor; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_SenderKeyDistributionMessage__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<SenderKeyDistributionMessage, SenderKeyDistributionMessage.Builder> InternalFieldAccessors {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_SenderKeyDistributionMessage__FieldAccessorTable; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_SenderKeyDistributionMessage__FieldAccessorTable; }
       }
       
       public const int IdFieldNumber = 1;
@@ -2037,11 +2036,11 @@ namespace libsignal.protocol {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.protocol.SignalProtos.SenderKeyDistributionMessage.Descriptor; }
+          get { return global::Libsignal.Protocol.SignalProtos.SenderKeyDistributionMessage.Descriptor; }
         }
         
         public override SenderKeyDistributionMessage DefaultInstanceForType {
-          get { return global::libsignal.protocol.SignalProtos.SenderKeyDistributionMessage.DefaultInstance; }
+          get { return global::Libsignal.Protocol.SignalProtos.SenderKeyDistributionMessage.DefaultInstance; }
         }
         
         public override SenderKeyDistributionMessage BuildPartial() {
@@ -2062,7 +2061,7 @@ namespace libsignal.protocol {
         }
         
         public override Builder MergeFrom(SenderKeyDistributionMessage other) {
-          if (other == global::libsignal.protocol.SignalProtos.SenderKeyDistributionMessage.DefaultInstance) return this;
+          if (other == global::Libsignal.Protocol.SignalProtos.SenderKeyDistributionMessage.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasId) {
             Id = other.Id;
@@ -2232,7 +2231,7 @@ namespace libsignal.protocol {
         }
       }
       static SenderKeyDistributionMessage() {
-        object.ReferenceEquals(global::libsignal.protocol.SignalProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Protocol.SignalProtos.Descriptor, null);
       }
     }
     
@@ -2255,11 +2254,11 @@ namespace libsignal.protocol {
       }
       
       public static pbd::MessageDescriptor Descriptor {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_DeviceConsistencyCodeMessage__Descriptor; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_DeviceConsistencyCodeMessage__Descriptor; }
       }
       
       protected override pb::FieldAccess.FieldAccessorTable<DeviceConsistencyCodeMessage, DeviceConsistencyCodeMessage.Builder> InternalFieldAccessors {
-        get { return global::libsignal.protocol.SignalProtos.internal__static_DeviceConsistencyCodeMessage__FieldAccessorTable; }
+        get { return global::Libsignal.Protocol.SignalProtos.internal__static_DeviceConsistencyCodeMessage__FieldAccessorTable; }
       }
       
       public const int GenerationFieldNumber = 1;
@@ -2416,11 +2415,11 @@ namespace libsignal.protocol {
         }
         
         public override pbd::MessageDescriptor DescriptorForType {
-          get { return global::libsignal.protocol.SignalProtos.DeviceConsistencyCodeMessage.Descriptor; }
+          get { return global::Libsignal.Protocol.SignalProtos.DeviceConsistencyCodeMessage.Descriptor; }
         }
         
         public override DeviceConsistencyCodeMessage DefaultInstanceForType {
-          get { return global::libsignal.protocol.SignalProtos.DeviceConsistencyCodeMessage.DefaultInstance; }
+          get { return global::Libsignal.Protocol.SignalProtos.DeviceConsistencyCodeMessage.DefaultInstance; }
         }
         
         public override DeviceConsistencyCodeMessage BuildPartial() {
@@ -2441,7 +2440,7 @@ namespace libsignal.protocol {
         }
         
         public override Builder MergeFrom(DeviceConsistencyCodeMessage other) {
-          if (other == global::libsignal.protocol.SignalProtos.DeviceConsistencyCodeMessage.DefaultInstance) return this;
+          if (other == global::Libsignal.Protocol.SignalProtos.DeviceConsistencyCodeMessage.DefaultInstance) return this;
           PrepareBuilder();
           if (other.HasGeneration) {
             Generation = other.Generation;
@@ -2554,7 +2553,7 @@ namespace libsignal.protocol {
         }
       }
       static DeviceConsistencyCodeMessage() {
-        object.ReferenceEquals(global::libsignal.protocol.SignalProtos.Descriptor, null);
+        object.ReferenceEquals(global::Libsignal.Protocol.SignalProtos.Descriptor, null);
       }
     }
     

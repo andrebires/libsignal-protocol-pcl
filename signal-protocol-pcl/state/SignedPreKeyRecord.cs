@@ -15,26 +15,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Google.ProtocolBuffers;
-using libsignal.ecc;
 using System;
-using static libsignal.state.StorageProtos;
+using Google.ProtocolBuffers;
+using Libsignal.Ecc;
 
-namespace libsignal.state
+namespace Libsignal.State
 {
     public class SignedPreKeyRecord
     {
 
-        private SignedPreKeyRecordStructure structure;
+        private StorageProtos.SignedPreKeyRecordStructure _structure;
 
-        public SignedPreKeyRecord(uint id, ulong timestamp, ECKeyPair keyPair, byte[] signature)
+        public SignedPreKeyRecord(uint id, ulong timestamp, EcKeyPair keyPair, byte[] signature)
         {
-            this.structure = SignedPreKeyRecordStructure.CreateBuilder()
+            _structure = StorageProtos.SignedPreKeyRecordStructure.CreateBuilder()
                                                         .SetId(id)
-                                                        .SetPublicKey(ByteString.CopyFrom(keyPair.getPublicKey()
-                                                                                                 .serialize()))
-                                                        .SetPrivateKey(ByteString.CopyFrom(keyPair.getPrivateKey()
-                                                                                                  .serialize()))
+                                                        .SetPublicKey(ByteString.CopyFrom(keyPair.GetPublicKey()
+                                                                                                 .Serialize()))
+                                                        .SetPrivateKey(ByteString.CopyFrom(keyPair.GetPrivateKey()
+                                                                                                  .Serialize()))
                                                         .SetSignature(ByteString.CopyFrom(signature))
                                                         .SetTimestamp(timestamp)
                                                         .Build();
@@ -42,27 +41,27 @@ namespace libsignal.state
 
         public SignedPreKeyRecord(byte[] serialized)
         {
-            this.structure = SignedPreKeyRecordStructure.ParseFrom(serialized);
+            _structure = StorageProtos.SignedPreKeyRecordStructure.ParseFrom(serialized);
         }
 
-        public uint getId()
+        public uint GetId()
         {
-            return this.structure.Id;
+            return _structure.Id;
         }
 
-        public ulong getTimestamp()
+        public ulong GetTimestamp()
         {
-            return this.structure.Timestamp;
+            return _structure.Timestamp;
         }
 
-        public ECKeyPair getKeyPair()
+        public EcKeyPair GetKeyPair()
         {
             try
             {
-                ECPublicKey publicKey = Curve.decodePoint(this.structure.PublicKey.ToByteArray(), 0);
-                ECPrivateKey privateKey = Curve.decodePrivatePoint(this.structure.PrivateKey.ToByteArray());
+                IEcPublicKey publicKey = Curve.DecodePoint(_structure.PublicKey.ToByteArray(), 0);
+                IEcPrivateKey privateKey = Curve.DecodePrivatePoint(_structure.PrivateKey.ToByteArray());
 
-                return new ECKeyPair(publicKey, privateKey);
+                return new EcKeyPair(publicKey, privateKey);
             }
             catch (InvalidKeyException e)
             {
@@ -70,14 +69,14 @@ namespace libsignal.state
             }
         }
 
-        public byte[] getSignature()
+        public byte[] GetSignature()
         {
-            return this.structure.Signature.ToByteArray();
+            return _structure.Signature.ToByteArray();
         }
 
-        public byte[] serialize()
+        public byte[] Serialize()
         {
-            return this.structure.ToByteArray();
+            return _structure.ToByteArray();
         }
     }
 }

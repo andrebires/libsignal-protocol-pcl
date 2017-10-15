@@ -15,44 +15,44 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using libsignal.util;
 using System;
 using System.IO;
+using Libsignal.Util;
 
-namespace libsignal.kdf
+namespace Libsignal.Kdf
 {
-    public abstract class HKDF
+    public abstract class Hkdf
     {
 
-        private static readonly int HASH_OUTPUT_SIZE = 32;
+        private static readonly int HashOutputSize = 32;
 
-        public static HKDF createFor(uint messageVersion)
+        public static Hkdf CreateFor(uint messageVersion)
         {
             switch (messageVersion)
             {
-                case 2: return new HKDFv2();
-                case 3: return new HKDFv3();
+                case 2: return new HkdFv2();
+                case 3: return new HkdFv3();
                 default: throw new Exception("Unknown version: " + messageVersion);
             }
         }
 
-        public byte[] deriveSecrets(byte[] inputKeyMaterial, byte[] info, int outputLength)
+        public byte[] DeriveSecrets(byte[] inputKeyMaterial, byte[] info, int outputLength)
         {
-            byte[] salt = new byte[HASH_OUTPUT_SIZE];
-            return deriveSecrets(inputKeyMaterial, salt, info, outputLength);
+            byte[] salt = new byte[HashOutputSize];
+            return DeriveSecrets(inputKeyMaterial, salt, info, outputLength);
         }
 
-        public byte[] deriveSecrets(byte[] inputKeyMaterial, byte[] salt, byte[] info, int outputLength)
+        public byte[] DeriveSecrets(byte[] inputKeyMaterial, byte[] salt, byte[] info, int outputLength)
         {
-            byte[] prk = extract(salt, inputKeyMaterial);
-            return expand(prk, info, outputLength);
+            byte[] prk = Extract(salt, inputKeyMaterial);
+            return Expand(prk, info, outputLength);
         }
 
-        private byte[] extract(byte[] salt, byte[] inputKeyMaterial)
+        private byte[] Extract(byte[] salt, byte[] inputKeyMaterial)
         {
             try
             {
-                return Sign.sha256sum(salt, inputKeyMaterial);
+                return Sign.Sha256Sum(salt, inputKeyMaterial);
             }
             catch (Exception ex)
             {
@@ -60,16 +60,16 @@ namespace libsignal.kdf
             }
         }
 
-        private byte[] expand(byte[] prk, byte[] info, int outputSize)
+        private byte[] Expand(byte[] prk, byte[] info, int outputSize)
         {
             try
             {
-                int iterations = (int)Math.Ceiling((double)outputSize / (double)HASH_OUTPUT_SIZE);
+                int iterations = (int)Math.Ceiling((double)outputSize / (double)HashOutputSize);
                 byte[] mixin = new byte[0];
                 MemoryStream results = new MemoryStream();
                 int remainingBytes = outputSize;
 
-                for (int i = getIterationStartOffset(); i < iterations + getIterationStartOffset(); i++)
+                for (int i = GetIterationStartOffset(); i < iterations + GetIterationStartOffset(); i++)
                 {
                     MemoryStream msg = new MemoryStream();
                     msg.Write(mixin, 0, mixin.Length);
@@ -80,7 +80,7 @@ namespace libsignal.kdf
                     byte[] ib = BitConverter.GetBytes(i);
                     msg.Write(ib, 0, 1);
 
-                    byte[] stepResult = Sign.sha256sum(prk, msg.ToArray());
+                    byte[] stepResult = Sign.Sha256Sum(prk, msg.ToArray());
                     int stepSize = Math.Min(remainingBytes, stepResult.Length);
 
                     results.Write(stepResult, 0, stepSize);
@@ -97,7 +97,7 @@ namespace libsignal.kdf
             }
         }
 
-        protected abstract int getIterationStartOffset();
+        protected abstract int GetIterationStartOffset();
 
     }
 }
